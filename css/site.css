@@ -93,18 +93,22 @@ img { display: block; max-width: 100%; }
 .hero-bg {
   position: absolute; inset: 0;
   background-image: url("/images/hero-showroom.png");
-  background-size: cover; background-position: center 35%;
-  filter: grayscale(1) contrast(1.05);
+  background-size: cover; background-position: center center;
+  filter: grayscale(0.5) contrast(1.05);
 }
-.hero-tint { position: absolute; inset: 0; background: var(--color-accent); mix-blend-mode: color; }
+.hero-tint { position: absolute; inset: 0; background: var(--color-accent); mix-blend-mode: color; opacity: 0.35; }
 .hero-scrim {
   position: absolute; inset: 0;
   background: linear-gradient(180deg,
-    color-mix(in srgb, var(--color-bg) 55%, transparent) 0%,
-    color-mix(in srgb, var(--color-bg) 88%, transparent) 55%,
-    var(--color-bg) 100%);
+    color-mix(in srgb, var(--color-bg) 38%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg) 30%, transparent) 40%,
+    color-mix(in srgb, var(--color-bg) 12%, transparent) 70%,
+    color-mix(in srgb, var(--color-bg) 8%, transparent) 100%);
 }
 .hero { position: relative; padding: 44px 0 34px; text-align: center; }
+.hero .kicker, .hero h1, .hero .lead {
+  text-shadow: 0 0 14px var(--color-bg), 0 0 6px var(--color-bg), 0 0 3px var(--color-bg);
+}
 .kicker {
   font: 500 10px "IBM Plex Mono", monospace; letter-spacing: .14em; text-transform: uppercase;
   color: var(--color-accent-2-600);
