@@ -102,7 +102,13 @@ function machineCard(m) {
 
   const ph = document.createElement("div");
   ph.className = "ph duotone";
-  ph.textContent = L().machinePhoto;
+  if (m.image) {
+    const img = document.createElement("img");
+    img.src = m.image; img.alt = m.name; img.loading = "lazy";
+    ph.appendChild(img);
+  } else {
+    ph.textContent = L().machinePhoto;
+  }
   a.appendChild(ph);
 
   const kicker = document.createElement("div");
@@ -244,7 +250,7 @@ function initMachinesTable() {
   MACHINES.forEach(m => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td class="thumb-cell"><div class="ph duotone" style="width:100%;height:100%">photo</div></td>
+      <td class="thumb-cell"><div class="ph duotone" style="width:100%;height:100%">${m.image ? `<img src="${m.image}" alt="${m.name}" loading="lazy">` : "photo"}</div></td>
       <td><strong>${m.name}</strong><div class="meta-mono">${machineCategoryLabel(m, lang())}</div></td>
       <td>${m.year}</td>
       <td>${m.clampingForceKN ? fmtInt(m.clampingForceKN) + " kN" : "—"}</td>
@@ -425,6 +431,15 @@ function initMachineDetail() {
 
   document.title = m.name + " — KMS";
   const setText = (sel, text) => { const n = root.querySelector(sel); if (n) n.textContent = text; };
+
+  const photoText = root.querySelector("[data-field='photo-text']");
+  if (m.image && photoText) {
+    const img = document.createElement("img");
+    img.src = m.image; img.alt = m.name;
+    photoText.replaceWith(img);
+  } else if (photoText) {
+    photoText.textContent = L().machinePhoto;
+  }
 
   setText("[data-field='kicker']", machineCategoryLabel(m, lang()));
   setText("[data-field='title']", m.name);
