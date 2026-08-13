@@ -64,9 +64,9 @@ const MACHINES = [
     make: "KraussMaffei",
     year: 2014,
     clampingForceKN: 2000,
-    hours: 18400,
     location: "Šenčur, SI",
     status: "Inspected",
+    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel, mould temperature controller connections and safety guarding.",
     price: "Price on request",
     placeholder: true
   },
@@ -77,9 +77,9 @@ const MACHINES = [
     make: "KraussMaffei",
     year: 2018,
     clampingForceKN: 6500,
-    hours: 6200,
     location: "München, DE",
     status: "Inspected",
+    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet, robot interface and safety guarding.",
     price: "Price on request",
     placeholder: true
   },
@@ -90,9 +90,9 @@ const MACHINES = [
     make: "KraussMaffei",
     year: 2020,
     clampingForceKN: 800,
-    hours: 3100,
     location: "Zagreb, HR",
     status: "Inspected",
+    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel and safety guarding.",
     price: "Price on request",
     placeholder: true
   },
@@ -103,9 +103,9 @@ const MACHINES = [
     make: "KraussMaffei",
     year: 2012,
     clampingForceKN: 4200,
-    hours: 31000,
     location: "Šenčur, SI",
     status: "As seen",
+    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack and control cabinet. Sold as seen, untested.",
     price: "Price on request",
     placeholder: true
   },
@@ -116,9 +116,9 @@ const MACHINES = [
     make: "KraussMaffei",
     year: 2016,
     clampingForceKN: 1600,
-    hours: 12700,
     location: "Šenčur, SI",
     status: "Inspected",
+    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel and safety guarding.",
     price: "Price on request",
     placeholder: true
   },
@@ -129,9 +129,9 @@ const MACHINES = [
     make: "KraussMaffei",
     year: 2009,
     clampingForceKN: 10000,
-    hours: null,
     location: "Šenčur, SI",
     status: "Rebuilt",
+    description: "Large-tonnage injection moulding machine, rebuilt: hydraulics, control cabinet and operator panel overhauled. Includes clamping unit, injection unit and safety guarding.",
     price: "Price on request",
     placeholder: true
   },
@@ -142,9 +142,9 @@ const MACHINES = [
     make: "Other",
     year: 2011,
     clampingForceKN: null,
-    hours: null,
     location: "Šenčur, SI",
     status: "Rebuilt",
+    description: "Twin-screw extruder including gearbox, barrel and screw set, control cabinet and feeding hopper. Rebuilt 2023.",
     price: "Price on request",
     placeholder: true
   },
@@ -155,9 +155,9 @@ const MACHINES = [
     make: "KraussMaffei",
     year: 2016,
     clampingForceKN: null,
-    hours: null,
     location: "Šenčur, SI",
     status: "As seen",
+    description: "Linear take-out robot including gripper interface, control cabinet and teach pendant. Mounts directly on the injection moulding machine.",
     price: "Price on request",
     placeholder: true
   }

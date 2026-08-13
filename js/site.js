@@ -248,7 +248,6 @@ function initMachinesTable() {
       <td><strong>${m.name}</strong><div class="meta-mono">${machineCategoryLabel(m, lang())}</div></td>
       <td>${m.year}</td>
       <td>${m.clampingForceKN ? fmtInt(m.clampingForceKN) + " kN" : "—"}</td>
-      <td>${m.hours ? fmtInt(m.hours) : "—"}</td>
       <td>${m.location}</td>
       <td><span class="tag ${statusTagClass[m.status] || "tag-neutral"}">${m.status}</span></td>
       <td><a class="btn btn-ghost" href="machine-detail.html?id=${encodeURIComponent(m.id)}">${L().enquire}</a></td>
@@ -434,14 +433,14 @@ function initMachineDetail() {
   setText("[data-field='year-value']", m.year);
   setText("[data-field='force-label']", lang() === "sl" ? "Sila zapiranja" : "Clamping force");
   setText("[data-field='force-value']", m.clampingForceKN ? fmtInt(m.clampingForceKN) + " kN" : "—");
-  setText("[data-field='hours-label']", lang() === "sl" ? "Obratovalne ure" : "Hours");
-  setText("[data-field='hours-value']", m.hours ? fmtInt(m.hours) : "—");
   setText("[data-field='location-label']", lang() === "sl" ? "Lokacija" : "Location");
   setText("[data-field='location-value']", m.location);
   setText("[data-field='condition-label']", L().condition);
   setText("[data-field='condition-value']", m.status);
   setText("[data-field='price-label']", L().price);
   setText("[data-field='price-value']", m.price);
+  setText("[data-field='description-label']", lang() === "sl" ? "OPIS OPREME" : "EQUIPMENT DESCRIPTION");
+  setText("[data-field='description-value']", m.description || "—");
   setText("[data-field='or-call']", L().orCall(PHONE));
   setText("[data-field='request-price-btn']", L().requestPrice);
 

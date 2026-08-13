@@ -278,6 +278,10 @@ figure.duotone.blueprint { overflow: visible; }
 .detail-content .part-no { font: 400 11px "IBM Plex Mono", monospace; opacity: .6; margin: 6px 0 12px; }
 .detail-content .avail-tags { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
 .spec-table td:first-child { opacity: .6; width: 40%; }
+.spec-desc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; margin-bottom: 16px; }
+.spec-desc-grid .spec-table { margin-bottom: 0; }
+.machine-description p { font-size: 13px; opacity: .8; margin: 0; }
+@media (max-width: 700px) { .spec-desc-grid { grid-template-columns: 1fr; } }
 .enquiry-box { padding: var(--space-4); background: var(--color-surface); }
 .enquiry-box .row { display: flex; gap: var(--space-2); margin-bottom: var(--space-2); flex-wrap: wrap; }
 .enquiry-box .qty { max-width: 90px; }
