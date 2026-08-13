@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Podrobnosti stroja — KMS Rabljeni stroji</title>
+<meta name="description" content="Podrobnosti rabljenega stroja — specifikacije, stanje in povpraševanje.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/theme/kms-theme.css">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="container">
+    <span class="cert">POOBLAŠČENI SERVISNI PARTNER KRAUSSMAFFEI · SLOVENIJA</span>
+    <div class="right">
+      <a class="phone" href="tel:+38642516150">T +386 4 25 16 150</a>
+      <span class="lang-switch"><a href="/machine-detail.html">EN</a><span style="opacity:.45">|</span><a href="/sl/machine-detail.html" class="active">SL</a></span>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/sl/index.html">
+      <span class="brand-mark">KMS</span>
+      <span><span class="brand-word">RABLJENI STROJI</span><span class="brand-sub">KMS d.o.o. · Šenčur</span></span>
+    </a>
+    <nav class="nav-primary">
+      <a href="machines.html" aria-current="page">Stroji</a>
+      <a href="spare-parts.html">Rezervni deli</a>
+      <a href="service.html">Servis</a>
+      <a href="about.html">O nas</a>
+      <a href="about.html#contact">Kontakt</a>
+    </nav>
+    <a class="btn btn-primary blueprint header-cta" href="about.html#contact">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Povpraševanje
+    </a>
+    <button class="burger" aria-label="Meni"><span></span></button>
+  </div>
+  <div class="mobile-panel">
+    <a href="machines.html">Stroji</a>
+    <a href="spare-parts.html">Rezervni deli</a>
+    <a href="service.html">Servis</a>
+    <a href="about.html">O nas</a>
+    <a href="about.html#contact">Kontakt</a>
+    <div class="lang-switch-mobile" style="margin-top:10px;font:400 11px 'IBM Plex Mono',monospace"><a href="/machine-detail.html">EN</a> · <a href="/sl/machine-detail.html">SL</a></div>
+    <a class="btn btn-primary blueprint" href="about.html#contact"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Povpraševanje</a>
+  </div>
+</header>
+
+<div class="breadcrumb-bar">
+  <div class="container">
+    <span class="breadcrumb"><a href="/sl/index.html">Domov</a> / <a href="machines.html">Stroji</a></span>
+    <span class="breadcrumb-right">EN / SL</span>
+  </div>
+</div>
+
+<main class="container" id="machine-detail-root" style="padding-bottom:40px">
+  <div class="detail-grid">
+    <div class="detail-media">
+      <div class="ph duotone blueprint main-photo">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>fotografija stroja
+      </div>
+      <div class="thumb-row">
+        <div class="ph">1</div><div class="ph">2</div><div class="ph">3</div>
+      </div>
+    </div>
+    <div class="detail-content">
+      <div class="kicker" data-field="kicker"></div>
+      <h1 data-field="title" style="font-size:26px;margin:6px 0 4px"></h1>
+      <div class="part-no" data-field="meta"></div>
+      <div class="avail-tags">
+        <span class="tag tag-accent" data-field="status-tag"></span>
+      </div>
+      <table class="table spec-table">
+        <tbody>
+          <tr><td data-field="year-label"></td><td data-field="year-value"></td></tr>
+          <tr><td data-field="force-label"></td><td data-field="force-value"></td></tr>
+          <tr><td data-field="hours-label"></td><td data-field="hours-value"></td></tr>
+          <tr><td data-field="location-label"></td><td data-field="location-value"></td></tr>
+          <tr><td data-field="condition-label"></td><td data-field="condition-value"></td></tr>
+          <tr><td data-field="price-label"></td><td data-field="price-value"></td></tr>
+        </tbody>
+      </table>
+      <form id="enquiry-form" class="blueprint enquiry-box">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <div class="row">
+          <input class="input" placeholder="Vaše ime">
+          <input class="input" placeholder="Telefon ali e-pošta">
+        </div>
+        <button class="btn btn-primary btn-block" type="submit" data-field="request-price-btn"></button>
+        <div class="or-call" data-field="or-call"></div>
+        <div id="enquiry-confirm" class="enquiry-confirm"></div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><h6>STROJI</h6><a href="machines.html">Brizganje plastike</a><a href="machines.html">Ekstruzija</a><a href="machines.html">Avtomatizacija</a></div>
+      <div><h6>REZERVNI DELI</h6><a href="spare-parts.html">Iskanje delov</a><a href="category.html?cat=electronics">Elektronika</a><a href="category.html?cat=hydraulic">Hidravlični ventili</a></div>
+      <div><h6>SERVIS</h6><a href="service.html">Popravila</a><a href="service.html">Servis na lokaciji</a></div>
+      <div><h6>PODJETJE</h6><a href="about.html">O nas</a><a href="about.html#contact">Kontakt</a></div>
+      <div><h6>PRAVNO</h6><a href="#">Politika zasebnosti</a><a href="#">Pogoji uporabe</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 KMS, d.o.o. · Šenčur, Slovenija</span>
+      <span class="lang-switch"><a href="/machine-detail.html">EN</a> · <a href="/sl/machine-detail.html" class="active">SL</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/data.js"></script>
+<script src="/js/site.js"></script>
+<script>initMachineDetail();</script>
+</body>
+</html>

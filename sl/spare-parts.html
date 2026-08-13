@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rezervni deli — KMS Rabljeni stroji</title>
+<meta name="description" content="Poiščite rezervni del po številki, brskajte po kategorijah ali nam pošljite fotografijo dela, ki ga potrebujete.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/theme/kms-theme.css">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="container">
+    <span class="cert">POOBLAŠČENI SERVISNI PARTNER KRAUSSMAFFEI · SLOVENIJA</span>
+    <div class="right">
+      <a class="phone" href="tel:+38642516150">T +386 4 25 16 150</a>
+      <span class="lang-switch"><a href="/spare-parts.html">EN</a><span style="opacity:.45">|</span><a href="/sl/spare-parts.html" class="active">SL</a></span>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/sl/index.html">
+      <span class="brand-mark">KMS</span>
+      <span><span class="brand-word">RABLJENI STROJI</span><span class="brand-sub">KMS d.o.o. · Šenčur</span></span>
+    </a>
+    <nav class="nav-primary">
+      <a href="machines.html">Stroji</a>
+      <a href="spare-parts.html" aria-current="page">Rezervni deli</a>
+      <a href="service.html">Servis</a>
+      <a href="about.html">O nas</a>
+      <a href="about.html#contact">Kontakt</a>
+    </nav>
+    <a class="btn btn-primary blueprint header-cta" href="about.html#contact">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Povpraševanje
+    </a>
+    <button class="burger" aria-label="Meni"><span></span></button>
+  </div>
+  <div class="mobile-panel">
+    <a href="machines.html">Stroji</a>
+    <a href="spare-parts.html">Rezervni deli</a>
+    <a href="service.html">Servis</a>
+    <a href="about.html">O nas</a>
+    <a href="about.html#contact">Kontakt</a>
+    <div class="lang-switch-mobile" style="margin-top:10px;font:400 11px 'IBM Plex Mono',monospace"><a href="/spare-parts.html">EN</a> · <a href="/sl/spare-parts.html">SL</a></div>
+    <a class="btn btn-primary blueprint" href="about.html#contact"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Povpraševanje</a>
+  </div>
+</header>
+
+<div class="breadcrumb-bar">
+  <div class="container">
+    <span class="breadcrumb"><a href="/sl/index.html">Domov</a> / Rezervni deli</span>
+    <span class="breadcrumb-right">EN / SL</span>
+  </div>
+</div>
+
+<main class="container" style="padding-top:28px;padding-bottom:0">
+  <h1>Rezervni deli za stroje KraussMaffei</h1>
+  <p class="lead" style="margin:0 0 20px;max-width:520px;text-align:left">Originalni in enakovredni deli. Če ne poznate številke dela, običajno zadostuje fotografija starega dela.</p>
+
+  <form id="part-search-form" class="blueprint search-panel" style="margin:0 0 22px;text-align:left;max-width:none">
+    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    <div class="row">
+      <input class="input" placeholder="Številka dela, ime ali proizvajalec — npr. D3-330 ali Schneider Electric">
+      <button class="btn btn-primary" type="submit">Preveri razpoložljivost</button>
+    </div>
+    <div class="mono" style="font-size:10px;opacity:.55;margin-top:8px">NASVET — ISKANJE UPOŠTEVA TUDI SERIJSKO ŠTEVILKO IN OPIS</div>
+  </form>
+
+  <div class="route-grid" style="margin-bottom:28px">
+    <div class="blueprint" style="padding:18px">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div class="kicker">Pot 2</div>
+      <h2 style="font-size:20px;margin:6px 0 10px">Brskaj po kategorijah</h2>
+      <div id="category-browser" class="series-list"></div>
+    </div>
+    <div class="blueprint" style="padding:18px;display:flex;flex-direction:column">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div class="kicker">Pot 3</div>
+      <h2 style="font-size:20px;margin:6px 0 10px">Pošljite fotografijo ali seznam</h2>
+      <form id="photo-enquiry-form" style="display:flex;flex-direction:column;flex:1">
+        <div class="ph dropzone">cona za nalaganje — fotografija dela, skenirani seznam delov ali preglednica</div>
+        <div class="row" style="gap:8px;margin-top:12px">
+          <input class="input" placeholder="Vaš stroj — npr. KM 200 / 1000 CX, 2014" required>
+          <button class="btn btn-primary" type="submit">Pošlji</button>
+        </div>
+        <div class="mono" style="font-size:10px;opacity:.55;margin-top:8px">ODGOVORIMO V DVEH DELOVNIH DNEH</div>
+        <div class="enquiry-confirm"></div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<section class="contact-band">
+  <div class="container">
+    <span class="nl" style="color:#fff">Je stroj trenutno v okvari?</span>
+    <span class="stat-num" style="color:#fff;font-size:18px">Servisna linija +386 4 25 16 150</span>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><h6>STROJI</h6><a href="machines.html">Brizganje plastike</a><a href="machines.html">Ekstruzija</a><a href="machines.html">Avtomatizacija</a></div>
+      <div><h6>REZERVNI DELI</h6><a href="spare-parts.html">Iskanje delov</a><a href="category.html?cat=electronics">Elektronika</a><a href="category.html?cat=hydraulic">Hidravlični ventili</a></div>
+      <div><h6>SERVIS</h6><a href="service.html">Popravila</a><a href="service.html">Servis na lokaciji</a></div>
+      <div><h6>PODJETJE</h6><a href="about.html">O nas</a><a href="about.html#contact">Kontakt</a></div>
+      <div><h6>PRAVNO</h6><a href="#">Politika zasebnosti</a><a href="#">Pogoji uporabe</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 KMS, d.o.o. · Šenčur, Slovenija</span>
+      <span class="lang-switch"><a href="/spare-parts.html">EN</a> · <a href="/sl/spare-parts.html" class="active">SL</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/data.js"></script>
+<script src="/js/site.js"></script>
+<script>
+  initCategoryBrowser("category-browser");
+  initPartSearchRedirect("part-search-form");
+  initGenericEnquiryForm("photo-enquiry-form");
+</script>
+</body>
+</html>

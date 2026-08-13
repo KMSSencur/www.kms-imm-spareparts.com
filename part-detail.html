@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Part Detail — KMS Used Machines</title>
+<meta name="description" content="Spare part detail — fitment, condition, lead time and enquiry.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/theme/kms-theme.css">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="container">
+    <span class="cert">CERTIFIED KRAUSSMAFFEI SERVICE PARTNER · SLOVENIA</span>
+    <div class="right">
+      <a class="phone" href="tel:+38642516150">T +386 4 25 16 150</a>
+      <span class="lang-switch"><a href="/part-detail.html" class="active">EN</a><span style="opacity:.45">|</span><a href="/sl/part-detail.html">SL</a></span>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/index.html">
+      <span class="brand-mark">KMS</span>
+      <span><span class="brand-word">USED MACHINES</span><span class="brand-sub">KMS d.o.o. · Šenčur</span></span>
+    </a>
+    <nav class="nav-primary">
+      <a href="machines.html">Machines</a>
+      <a href="spare-parts.html" aria-current="page">Spare parts</a>
+      <a href="service.html">Service</a>
+      <a href="about.html">About</a>
+      <a href="about.html#contact">Contact</a>
+    </nav>
+    <a class="btn btn-primary blueprint header-cta" href="about.html#contact">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Request a quote
+    </a>
+    <button class="burger" aria-label="Menu"><span></span></button>
+  </div>
+  <div class="mobile-panel">
+    <a href="machines.html">Machines</a>
+    <a href="spare-parts.html">Spare parts</a>
+    <a href="service.html">Service</a>
+    <a href="about.html">About</a>
+    <a href="about.html#contact">Contact</a>
+    <div class="lang-switch-mobile" style="margin-top:10px;font:400 11px 'IBM Plex Mono',monospace"><a href="/part-detail.html">EN</a> · <a href="/sl/part-detail.html">SL</a></div>
+    <a class="btn btn-primary blueprint" href="about.html#contact"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Request a quote</a>
+  </div>
+</header>
+
+<div class="breadcrumb-bar">
+  <div class="container">
+    <span class="breadcrumb"><a href="/index.html">Home</a> / <a href="spare-parts.html">Spare parts</a> / <a href="category.html">Catalog</a></span>
+    <span class="breadcrumb-right">EN / SL</span>
+  </div>
+</div>
+
+<main class="container" id="part-detail-root" style="padding-bottom:40px">
+  <div class="detail-grid">
+    <div class="detail-media">
+      <div class="ph duotone blueprint main-photo">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>part photograph
+      </div>
+      <div class="thumb-row">
+        <div class="ph">1</div><div class="ph">2</div><div class="ph">3</div>
+      </div>
+    </div>
+    <div class="detail-content">
+      <div class="kicker" data-field="kicker"></div>
+      <h1 data-field="title" style="font-size:26px;margin:6px 0 4px"></h1>
+      <div class="part-no" data-field="partno"></div>
+      <div class="avail-tags">
+        <span class="tag tag-accent" data-field="stock-tag"></span>
+        <span class="tag tag-neutral" data-field="original-tag"></span>
+      </div>
+      <table class="table spec-table">
+        <tbody>
+          <tr><td data-field="fits-label"></td><td data-field="fits-value"></td></tr>
+          <tr><td data-field="condition-label"></td><td data-field="condition-value"></td></tr>
+          <tr><td data-field="leadtime-label"></td><td data-field="leadtime-value"></td></tr>
+          <tr><td data-field="price-label"></td><td data-field="price-value"></td></tr>
+        </tbody>
+      </table>
+      <form id="enquiry-form" class="blueprint enquiry-box">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <div class="row">
+          <input class="input qty" placeholder="Quantity" type="number" min="1" value="1">
+          <input class="input" placeholder="Your machine serial (optional)">
+        </div>
+        <button class="btn btn-primary btn-block" type="submit" data-field="request-price-btn"></button>
+        <div class="or-call" data-field="or-call"></div>
+        <div id="enquiry-confirm" class="enquiry-confirm"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="often-together-title" data-field="often-together-title"></div>
+  <div id="often-together-grid" class="often-together-grid"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><h6>MACHINES</h6><a href="machines.html">Injection moulding</a><a href="machines.html">Extrusion</a><a href="machines.html">Automation</a></div>
+      <div><h6>SPARE PARTS</h6><a href="spare-parts.html">Search parts</a><a href="category.html?cat=electronics">Electronics</a><a href="category.html?cat=hydraulic">Hydraulic valves</a></div>
+      <div><h6>SERVICE</h6><a href="service.html">Repair</a><a href="service.html">On-site service</a></div>
+      <div><h6>COMPANY</h6><a href="about.html">About</a><a href="about.html#contact">Contact</a></div>
+      <div><h6>LEGAL</h6><a href="#">Privacy policy</a><a href="#">Terms</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 KMS, d.o.o. · Šenčur, Slovenia</span>
+      <span class="lang-switch"><a href="/part-detail.html" class="active">EN</a> · <a href="/sl/part-detail.html">SL</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/data.js"></script>
+<script src="/js/site.js"></script>
+<script>initPartDetail();</script>
+</body>
+</html>

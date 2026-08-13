@@ -1,0 +1,18 @@
+/* Chrome around the wireframes — NOT part of the product design.
+   Everything inside .dv-card is the design; this file only frames it,
+   plus the few utility classes the wireframe markup uses. */
+body{margin:0;background:var(--color-bg);font-family:var(--font-body);color:var(--color-text)}
+a{color:var(--color-accent-700);text-decoration:none}
+a:hover{color:var(--color-accent-2-600)}
+.wf-nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 24px;border-bottom:1px solid var(--color-divider);background:#fff;font-size:13px}
+.wf-nav-title{font:600 12px/1 var(--font-heading);letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent)}
+.wf-main{padding:28px 24px 60px}
+.wf-h1{font-family:var(--font-heading);font-weight:600;font-size:20px;margin:0 0 18px;letter-spacing:.02em}
+.dv-card{max-width:100%;background:#fff;border:1px solid var(--color-divider);overflow:hidden}
+/* image placeholder — replace with a real <img> wrapped in .duotone */
+.ph{display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,var(--color-accent-100) 0 7px,transparent 7px 14px);border:1px solid var(--color-divider);font:400 10px "IBM Plex Mono",monospace;color:var(--color-accent-700);text-align:center;padding:4px}
+.nl{font:500 12.5px var(--font-body);color:color-mix(in srgb,var(--color-text) 78%,transparent)}
+.kick{font:500 10px "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-2-600)}
+.h{font-family:var(--font-heading);font-weight:600;line-height:1.05;margin:0}
+.mono{font:400 11px "IBM Plex Mono",monospace}
+.row{display:flex;align-items:center}

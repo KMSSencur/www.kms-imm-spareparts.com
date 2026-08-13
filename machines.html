@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Machines — KMS Used Machines</title>
+<meta name="description" content="Browse used KraussMaffei injection moulding machines and other industrial equipment in stock at KMS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/theme/kms-theme.css">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="container">
+    <span class="cert">CERTIFIED KRAUSSMAFFEI SERVICE PARTNER · SLOVENIA</span>
+    <div class="right">
+      <a class="phone" href="tel:+38642516150">T +386 4 25 16 150</a>
+      <span class="lang-switch"><a href="/machines.html" class="active">EN</a><span style="opacity:.45">|</span><a href="/sl/machines.html">SL</a></span>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/index.html">
+      <span class="brand-mark">KMS</span>
+      <span><span class="brand-word">USED MACHINES</span><span class="brand-sub">KMS d.o.o. · Šenčur</span></span>
+    </a>
+    <nav class="nav-primary">
+      <a href="machines.html" aria-current="page">Machines</a>
+      <a href="spare-parts.html">Spare parts</a>
+      <a href="service.html">Service</a>
+      <a href="about.html">About</a>
+      <a href="about.html#contact">Contact</a>
+    </nav>
+    <a class="btn btn-primary blueprint header-cta" href="about.html#contact">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Request a quote
+    </a>
+    <button class="burger" aria-label="Menu"><span></span></button>
+  </div>
+  <div class="mobile-panel">
+    <a href="machines.html">Machines</a>
+    <a href="spare-parts.html">Spare parts</a>
+    <a href="service.html">Service</a>
+    <a href="about.html">About</a>
+    <a href="about.html#contact">Contact</a>
+    <div class="lang-switch-mobile" style="margin-top:10px;font:400 11px 'IBM Plex Mono',monospace"><a href="/machines.html">EN</a> · <a href="/sl/machines.html">SL</a></div>
+    <a class="btn btn-primary blueprint" href="about.html#contact"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Request a quote</a>
+  </div>
+</header>
+
+<div class="breadcrumb-bar">
+  <div class="container">
+    <span class="breadcrumb"><a href="/index.html">Home</a> / Machines</span>
+    <span class="breadcrumb-right">
+      <a href="machines.html">Cards</a> · <a href="machines-table.html">Table</a>
+    </span>
+  </div>
+</div>
+
+<main class="container listing-layout">
+  <aside class="filter-rail">
+    <div class="filter-group">
+      <div class="filter-title">MAKE</div>
+      <label class="radio"><input type="radio" name="mk" value="all" checked><span class="dot"></span>All makes</label>
+      <label class="radio"><input type="radio" name="mk" value="KraussMaffei"><span class="dot"></span>KraussMaffei <span class="count">(7)</span></label>
+      <label class="radio"><input type="radio" name="mk" value="Other"><span class="dot"></span>Other <span class="count">(1)</span></label>
+    </div>
+    <div class="filter-group">
+      <div class="filter-title">CLAMPING FORCE</div>
+      <div class="ph" style="height:34px">range 500 – 14 500 kN</div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-title">YEAR</div>
+      <div class="ph" style="height:34px">range 1998 – 2024</div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-title">CONDITION</div>
+      <div class="tags-wrap">
+        <span class="tag tag-accent">Inspected</span><span class="tag tag-outline">As seen</span><span class="tag tag-outline">Rebuilt</span>
+      </div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-title">LOCATION</div>
+      <div class="ph" style="height:34px">select</div>
+    </div>
+    <button id="clear-filters" class="btn btn-secondary btn-block">Clear all filters</button>
+  </aside>
+
+  <div class="listing-main">
+    <div class="listing-toolbar">
+      <h1>All machines</h1>
+      <div class="sort-row">
+        <span class="sort-label">SORT</span>
+        <span class="seg">
+          <label class="seg-opt"><input type="radio" name="srt" value="newest" checked>Newest</label>
+          <label class="seg-opt"><input type="radio" name="srt" value="year">Year</label>
+          <label class="seg-opt"><input type="radio" name="srt" value="force">Force</label>
+        </span>
+      </div>
+    </div>
+    <div class="chips-row">
+      <span id="machines-count" class="result-count"></span>
+    </div>
+    <div id="machines-grid" class="card-grid cols-3"></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><h6>MACHINES</h6><a href="machines.html">Injection moulding</a><a href="machines.html">Extrusion</a><a href="machines.html">Automation</a></div>
+      <div><h6>SPARE PARTS</h6><a href="spare-parts.html">Search parts</a><a href="category.html?cat=electronics">Electronics</a><a href="category.html?cat=hydraulic">Hydraulic valves</a></div>
+      <div><h6>SERVICE</h6><a href="service.html">Repair</a><a href="service.html">On-site service</a></div>
+      <div><h6>COMPANY</h6><a href="about.html">About</a><a href="about.html#contact">Contact</a></div>
+      <div><h6>LEGAL</h6><a href="#">Privacy policy</a><a href="#">Terms</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 KMS, d.o.o. · Šenčur, Slovenia</span>
+      <span class="lang-switch"><a href="/machines.html" class="active">EN</a> · <a href="/sl/machines.html">SL</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/data.js"></script>
+<script src="/js/site.js"></script>
+<script>initMachinesListing();</script>
+</body>
+</html>

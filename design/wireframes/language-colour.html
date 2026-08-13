@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Language toggle states & colour application — KMS used machines wireframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../theme/kms-theme.css">
+<link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+<nav class="wf-nav">
+  <span class="wf-nav-title">KMS wireframes</span>
+  <a href="home.html">Home</a>
+  <a href="machines.html">Machines (cards)</a>
+  <a href="machines-table.html">Machines (table)</a>
+  <a href="spare-parts.html">Spare parts</a>
+  <a href="part-detail.html">Part detail</a>
+  <a href="about-contact.html">About & contact</a>
+  <a href="language-colour.html">Language & colour</a>
+</nav>
+<main class="wf-main">
+<h1 class="wf-h1">Language toggle states & colour application</h1>
+<div class="dv-card" style="width:640px;padding:20px;box-sizing:border-box">
+  <div class="mono" style="font-size:10px;letter-spacing:.12em;opacity:.5;margin-bottom:10px">LANGUAGE TOGGLE — THREE STATES</div>
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:26px">
+    <div class="row" style="gap:14px"><span class="mono" style="font-size:10px;opacity:.5;width:74px">DESKTOP</span><span class="seg"><label class="seg-opt"><input type="radio" name="lg1" checked>EN</label><label class="seg-opt"><input type="radio" name="lg1">SL</label></span><span class="mono" style="font-size:10px;opacity:.5">EN active — full English site</span></div>
+    <div class="row" style="gap:14px"><span class="mono" style="font-size:10px;opacity:.5;width:74px">DESKTOP</span><span class="seg"><label class="seg-opt"><input type="radio" name="lg2">EN</label><label class="seg-opt"><input type="radio" name="lg2" checked>SL</label></span><span class="mono" style="font-size:10px;opacity:.5">SL active — URL /sl/, same layout</span></div>
+    <div class="row" style="gap:14px"><span class="mono" style="font-size:10px;opacity:.5;width:74px">MOBILE</span><div class="blueprint" style="padding:6px 10px"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><span class="mono" style="font-size:11px">EN ▾</span></div><span class="mono" style="font-size:10px;opacity:.5">collapsed into the burger menu</span></div>
+  </div>
+  <div class="mono" style="font-size:10px;letter-spacing:.12em;opacity:.5;margin-bottom:10px">SAME HEADER, BOTH LANGUAGES</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:26px">
+    <div style="border:1px solid var(--color-divider)">
+      <div class="row" style="justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--color-divider)"><div class="h" style="font-size:12px">KMS USED MACHINES</div><span class="mono" style="font-size:9px;background:var(--color-accent);color:#fff;padding:2px 5px">EN</span></div>
+      <div class="row" style="gap:10px;padding:8px 12px;flex-wrap:wrap"><span class="nl" style="font-size:11px">Machines</span><span class="nl" style="font-size:11px">Spare parts</span><span class="nl" style="font-size:11px">Service</span><span class="nl" style="font-size:11px">About</span><span class="nl" style="font-size:11px">Contact</span></div>
+      <div style="padding:10px 12px 14px"><div class="h" style="font-size:17px">Used KraussMaffei machines</div><button class="btn btn-primary" style="font-size:11px;margin-top:8px">Request a quote</button></div>
+    </div>
+    <div style="border:1px solid var(--color-divider)">
+      <div class="row" style="justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--color-divider)"><div class="h" style="font-size:12px">KMS RABLJENI STROJI</div><span class="mono" style="font-size:9px;background:var(--color-accent);color:#fff;padding:2px 5px">SL</span></div>
+      <div class="row" style="gap:10px;padding:8px 12px;flex-wrap:wrap"><span class="nl" style="font-size:11px">Stroji</span><span class="nl" style="font-size:11px">Rezervni deli</span><span class="nl" style="font-size:11px">Servis</span><span class="nl" style="font-size:11px">O nas</span><span class="nl" style="font-size:11px">Kontakt</span></div>
+      <div style="padding:10px 12px 14px"><div class="h" style="font-size:17px">Rabljeni stroji KraussMaffei</div><button class="btn btn-primary" style="font-size:11px;margin-top:8px">Povpraševanje</button></div>
+    </div>
+  </div>
+  <div class="mono" style="font-size:10px;letter-spacing:.12em;opacity:.5;margin-bottom:10px">COLOUR APPLICATION</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:10px">
+    <div><div style="height:52px;background:var(--color-accent);border:1px solid var(--color-divider)"></div><div class="mono" style="font-size:9px;margin-top:5px;opacity:.7">NAVY #00325A<br>headers, primary button</div></div>
+    <div><div style="height:52px;background:var(--color-accent-2);border:1px solid var(--color-divider)"></div><div class="mono" style="font-size:9px;margin-top:5px;opacity:.7">BLUE #0079C1<br>links, kickers, in-stock</div></div>
+    <div><div style="height:52px;background:var(--color-surface);border:1px solid var(--color-divider)"></div><div class="mono" style="font-size:9px;margin-top:5px;opacity:.7">SURFACE #ECEEF0<br>search panels</div></div>
+    <div><div style="height:52px;background:var(--color-bg);border:1px solid var(--color-divider)"></div><div class="mono" style="font-size:9px;margin-top:5px;opacity:.7">GROUND #F4F5F6<br>page</div></div>
+    <div><div style="height:52px;background:var(--color-text);border:1px solid var(--color-divider)"></div><div class="mono" style="font-size:9px;margin-top:5px;opacity:.7">INK #1D1F20<br>all body copy</div></div>
+  </div>
+  <p style="font-size:12px;opacity:.65;margin:6px 0 0">Navy carries the structure — top bar, footer band, primary button. The brighter blue never fills an area; it only marks what is live: links, stock status, kickers. Everything else is paper and ink, which is what keeps it clean without going sterile: the warmth comes from photographs, duotoned into the navy.</p>
+</div>
+</main>
+</body>
+</html>
