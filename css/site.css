@@ -89,7 +89,22 @@ img { display: block; max-width: 100%; }
 .breadcrumb-right { font: 400 11px "IBM Plex Mono", monospace; opacity: .55; display: flex; gap: var(--space-3); align-items: center; }
 
 /* ---------------------------------------------------------------- hero */
-.hero { padding: 44px 0 34px; text-align: center; }
+.hero-wrap { position: relative; overflow: hidden; }
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url("/images/hero-showroom.png");
+  background-size: cover; background-position: center 35%;
+  filter: grayscale(1) contrast(1.05);
+}
+.hero-tint { position: absolute; inset: 0; background: var(--color-accent); mix-blend-mode: color; }
+.hero-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--color-bg) 55%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg) 88%, transparent) 55%,
+    var(--color-bg) 100%);
+}
+.hero { position: relative; padding: 44px 0 34px; text-align: center; }
 .kicker {
   font: 500 10px "IBM Plex Mono", monospace; letter-spacing: .14em; text-transform: uppercase;
   color: var(--color-accent-2-600);
