@@ -1,7 +1,8 @@
 # KMS — Used Machines & Spare Parts
 
 A static website (no build step, no framework) for **KMS, d.o.o.** (Šenčur,
-Slovenia) — used KraussMaffei machines and industrial spare parts. Built from
+Slovenia) — used IMM (injection moulding machine) machines and industrial
+spare parts. Built from
 the design handoff in [`design/`](design/) (the "Industry" design system,
 re-themed navy/blue) and populated with the KMS spare-parts catalog.
 

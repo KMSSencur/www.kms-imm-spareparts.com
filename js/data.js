@@ -44,6 +44,9 @@ function partSubcategoryLabel(catKey, subKey, lang) {
 // Sample listings — models and specs are the illustrative examples from the
 // design handoff (KraussMaffei-derived, for layout purposes). Replace with
 // real stock before launch.
+// Individual machine "make" values (e.g. "KraussMaffei") are real per-item
+// manufacturer attribution, not a site-wide brand claim — the business
+// sells used IMM (injection moulding machine) equipment across makes.
 const MACHINE_CATEGORY_SL = {
   "Injection moulding": "Brizganje plastike",
   "Extrusion": "Ekstruzija",
