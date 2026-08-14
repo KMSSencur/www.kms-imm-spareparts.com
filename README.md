@@ -68,9 +68,11 @@ items you add.
   illustrative examples from the design handoff itself, not real KMS stock.
 - Serial numbers are placeholders everywhere (`SN-...`) — replace with real
   stock data.
-- Phone (+386 4 25 16 150), email (info@kms.si) and the Šenčur address come
-  from the design brief as placeholder KMS contact details — confirm the
-  real ones before launch.
+- Phone is the real KMS number, +386 51 251 441, used sitewide (utility bar,
+  hero, contact bands, about page). Email (info@kms.si) and the Šenčur
+  address are still from the design brief as placeholders — confirm those
+  before launch. The staff extension placeholders on the About page
+  (+386 4 25 16 1xx) are unrelated per-person numbers, not this line.
 - Photography: none supplied (per the design brief). Every card/detail page
   shows a striped `.ph` placeholder block instead of a photo. Swap in a real
   `<img>` by setting an item's `image` field and updating the relevant markup

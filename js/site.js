@@ -6,7 +6,7 @@
   by document.documentElement.lang so the same script serves both trees.
 */
 
-const PHONE = "+386 4 25 16 150";
+const PHONE = "+386 51 251 441";
 const EMAIL = "info@kms.si";
 
 const LABELS = {
