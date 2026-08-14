@@ -14,7 +14,7 @@ const EMAIL = "info@kms.si";
 // note: the FIRST submission FormSubmit ever receives for this address
 // triggers a one-time confirmation email that has to be clicked before any
 // further submissions actually get delivered.
-const ENQUIRY_EMAIL = "kabo@kms-imm-spareparts.com";
+const ENQUIRY_EMAIL = "info@kms-imm-spareparts.com";
 const ENQUIRY_ENDPOINT = "https://formsubmit.co/ajax/" + ENQUIRY_EMAIL;
 
 const LABELS = {
