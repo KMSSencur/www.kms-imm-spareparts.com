@@ -83,21 +83,58 @@ function initMobileMenu() {
 }
 
 // ---------------------------------------------------------------- photo lightbox
-function openLightbox(src, alt) {
+// images: array of photo URLs; startIndex: which one to open on.
+// One photo -> just the image, no nav chrome. Multiple -> prev/next arrows
+// plus left/right arrow keys, wrapping around at each end.
+function openLightbox(images, startIndex, alt) {
+  let index = startIndex || 0;
   const backdrop = document.createElement("div");
   backdrop.className = "dialog-backdrop lightbox-backdrop";
+
   const img = document.createElement("img");
-  img.src = src; img.alt = alt || "";
   img.className = "lightbox-img";
+  img.alt = alt || "";
   backdrop.appendChild(img);
+
+  function render() { img.src = images[index]; }
+  render();
+
+  const closeBtn = document.createElement("button");
+  closeBtn.className = "lightbox-close";
+  closeBtn.setAttribute("aria-label", "Close");
+  closeBtn.textContent = "✕";
+  closeBtn.addEventListener("click", (e) => { e.stopPropagation(); close(); });
+  backdrop.appendChild(closeBtn);
+
+  if (images.length > 1) {
+    const prevBtn = document.createElement("button");
+    prevBtn.className = "lightbox-nav lightbox-prev";
+    prevBtn.setAttribute("aria-label", "Previous photo");
+    prevBtn.textContent = "‹";
+    prevBtn.addEventListener("click", (e) => { e.stopPropagation(); index = (index - 1 + images.length) % images.length; render(); });
+
+    const nextBtn = document.createElement("button");
+    nextBtn.className = "lightbox-nav lightbox-next";
+    nextBtn.setAttribute("aria-label", "Next photo");
+    nextBtn.textContent = "›";
+    nextBtn.addEventListener("click", (e) => { e.stopPropagation(); index = (index + 1) % images.length; render(); });
+
+    backdrop.appendChild(prevBtn);
+    backdrop.appendChild(nextBtn);
+  }
 
   function close() {
     backdrop.remove();
     document.removeEventListener("keydown", onKey);
   }
-  function onKey(e) { if (e.key === "Escape") close(); }
+  function onKey(e) {
+    if (e.key === "Escape") close();
+    else if (e.key === "ArrowLeft" && images.length > 1) { index = (index - 1 + images.length) % images.length; render(); }
+    else if (e.key === "ArrowRight" && images.length > 1) { index = (index + 1) % images.length; render(); }
+  }
 
-  backdrop.addEventListener("click", close);
+  // Only the backdrop itself (not the image or the buttons) closes on click.
+  backdrop.addEventListener("click", (e) => { if (e.target === backdrop) close(); });
   document.addEventListener("keydown", onKey);
   document.body.appendChild(backdrop);
 }
@@ -454,6 +491,10 @@ function initMachineDetail() {
   document.title = m.name + " — KMS";
   const setText = (sel, text) => { const n = root.querySelector(sel); if (n) n.textContent = text; };
 
+  // All of this machine's photos, main photo first — the lightbox opened
+  // from any of them (or a thumbnail) can page through the full set.
+  const allPhotos = [m.image, ...(m.gallery || [])].filter(Boolean);
+
   const photoText = root.querySelector("[data-field='photo-text']");
   if (m.image && photoText) {
     const img = document.createElement("img");
@@ -463,7 +504,7 @@ function initMachineDetail() {
     if (photoWrap) {
       photoWrap.classList.remove("duotone");
       photoWrap.classList.add("has-photo");
-      photoWrap.addEventListener("click", () => openLightbox(m.image, m.name));
+      photoWrap.addEventListener("click", () => openLightbox(allPhotos, 0, m.name));
     }
   } else if (photoText) {
     photoText.textContent = L().machinePhoto;
@@ -480,7 +521,7 @@ function initMachineDetail() {
       const img = document.createElement("img");
       img.src = src; img.alt = m.name + " " + (i + 2);
       thumb.appendChild(img);
-      thumb.addEventListener("click", () => openLightbox(src, m.name));
+      thumb.addEventListener("click", () => openLightbox(allPhotos, i + 1, m.name));
       thumbRow.appendChild(thumb);
     });
   }
