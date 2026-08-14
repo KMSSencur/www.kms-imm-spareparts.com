@@ -9,6 +9,14 @@
 const PHONE = "+386 51 251 441";
 const EMAIL = "info@kms.si";
 
+// Every enquiry/quote form on the site posts here — FormSubmit.co relays it
+// to this inbox as a real email. No backend needed for a static site, but
+// note: the FIRST submission FormSubmit ever receives for this address
+// triggers a one-time confirmation email that has to be clicked before any
+// further submissions actually get delivered.
+const ENQUIRY_EMAIL = "kabo@kms-imm-spareparts.com";
+const ENQUIRY_ENDPOINT = "https://formsubmit.co/ajax/" + ENQUIRY_EMAIL;
+
 const LABELS = {
   en: {
     priceOnRequest: "Price on request",
@@ -33,6 +41,8 @@ const LABELS = {
     price: "Price",
     partNoLabel: "PART NO.",
     enquirySent: "Thanks — your enquiry has been sent. We answer within two working days, or call " + PHONE + ".",
+    enquiryFailed: "Something went wrong sending that — please call us instead at " + PHONE + ".",
+    chooseFile: "Choose a file",
     machinePhoto: "machine photo",
     partPhoto: "part photograph"
   },
@@ -59,6 +69,8 @@ const LABELS = {
     price: "Cena",
     partNoLabel: "ŠT. DELA",
     enquirySent: "Hvala — vaše povpraševanje je bilo posredovano. Odgovorimo v dveh delovnih dneh, ali pokličite " + PHONE + ".",
+    enquiryFailed: "Prišlo je do napake pri pošiljanju — prosimo, pokličite nas na " + PHONE + ".",
+    chooseFile: "Izberite datoteko",
     machinePhoto: "fotografija stroja",
     partPhoto: "fotografija dela"
   }
@@ -80,6 +92,53 @@ function initMobileMenu() {
   const panel = document.querySelector(".mobile-panel");
   if (!burger || !panel) return;
   burger.addEventListener("click", () => panel.classList.toggle("open"));
+}
+
+// ---------------------------------------------------------------- enquiry submission
+// Shared by every enquiry/quote form on the site. Posts to FormSubmit.co
+// (see ENQUIRY_ENDPOINT) so a plain static site can still deliver real
+// email notifications with no backend of its own. subject/context describe
+// what the enquiry was about (which part/machine/page) so the notification
+// email is useful rather than a bare field dump.
+function sendEnquiry(form, subject, context) {
+  const confirmEl = form.querySelector(".enquiry-confirm") || document.getElementById("enquiry-confirm");
+  const isMultipart = (form.getAttribute("enctype") || "").includes("multipart");
+
+  let body, headers;
+  if (isMultipart) {
+    const fd = new FormData(form);
+    fd.append("_subject", subject);
+    if (context) fd.append("context", context);
+    fd.append("_captcha", "false");
+    body = fd;
+    headers = { "Accept": "application/json" };
+  } else {
+    const data = Object.fromEntries(new FormData(form).entries());
+    data._subject = subject;
+    if (context) data.context = context;
+    data._captcha = "false";
+    body = JSON.stringify(data);
+    headers = { "Content-Type": "application/json", "Accept": "application/json" };
+  }
+
+  fetch(ENQUIRY_ENDPOINT, { method: "POST", headers, body })
+    .then(res => {
+      if (!res.ok) throw new Error("enquiry submission failed");
+      if (confirmEl) {
+        confirmEl.classList.remove("error");
+        confirmEl.textContent = L().enquirySent;
+        confirmEl.classList.add("show");
+      }
+      form.reset();
+      const dzText = form.querySelector("[data-field='dropzone-text']");
+      if (dzText) dzText.textContent = dzText.dataset.default || dzText.textContent;
+    })
+    .catch(() => {
+      if (confirmEl) {
+        confirmEl.textContent = L().enquiryFailed;
+        confirmEl.classList.add("show", "error");
+      }
+    });
 }
 
 // ---------------------------------------------------------------- photo lightbox
@@ -474,9 +533,7 @@ function initPartDetail() {
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const confirmEl = document.getElementById("enquiry-confirm");
-      if (confirmEl) { confirmEl.textContent = L().enquirySent; confirmEl.classList.add("show"); }
-      form.reset();
+      sendEnquiry(form, "Price request: " + part.name, "Part: " + part.name + " (" + (part.partNo || part.id) + ") — " + window.location.href);
     });
   }
 }
@@ -551,23 +608,29 @@ function initMachineDetail() {
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const confirmEl = document.getElementById("enquiry-confirm");
-      if (confirmEl) { confirmEl.textContent = L().enquirySent; confirmEl.classList.add("show"); }
-      form.reset();
+      sendEnquiry(form, "Price request: " + m.name, "Machine: " + m.name + " (" + m.id + ") — " + window.location.href);
     });
   }
 }
 
 // ---------------------------------------------------------------- generic enquiry forms (spare-parts drop zone, about page, contact band)
-function initGenericEnquiryForm(formId) {
+function initGenericEnquiryForm(formId, subject) {
   const form = document.getElementById(formId);
   if (!form) return;
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const confirmEl = form.querySelector(".enquiry-confirm");
-    if (confirmEl) { confirmEl.textContent = L().enquirySent; confirmEl.classList.add("show"); }
-    form.reset();
+    sendEnquiry(form, subject || "New enquiry — kms-imm-spareparts.com", window.location.href);
   });
+
+  // Photo/list drop zone: show the chosen filename in place of the prompt.
+  const fileInput = form.querySelector("input[type='file']");
+  const dzText = form.querySelector("[data-field='dropzone-text']");
+  if (fileInput && dzText) {
+    dzText.dataset.default = dzText.textContent;
+    fileInput.addEventListener("change", () => {
+      dzText.textContent = fileInput.files[0] ? fileInput.files[0].name : dzText.dataset.default;
+    });
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {

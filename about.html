@@ -101,15 +101,15 @@
     <div class="ph map">map</div>
   </div>
 
-  <form id="quote-form" style="margin-top:30px" class="blueprint enquiry-box">
+  <form id="quote-form" style="margin-top:30px" class="blueprint enquiry-box" method="POST" action="https://formsubmit.co/kabo@kms-imm-spareparts.com">
     <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
     <div class="often-together-title">REQUEST A QUOTE</div>
     <div class="row">
-      <input class="input" placeholder="Your name" required>
-      <input class="input" placeholder="Phone or email" required>
+      <input class="input" name="name" placeholder="Your name" required>
+      <input class="input" name="contact" placeholder="Phone or email" required>
     </div>
     <div class="row">
-      <textarea class="input" placeholder="What are you looking for — a machine, a part, a service call?" style="min-height:70px;width:100%" required></textarea>
+      <textarea class="input" name="message" placeholder="What are you looking for — a machine, a part, a service call?" style="min-height:70px;width:100%" required></textarea>
     </div>
     <button class="btn btn-primary btn-block" type="submit">Send enquiry</button>
     <div class="enquiry-confirm"></div>
@@ -134,6 +134,6 @@
 
 <script src="/js/data.js"></script>
 <script src="/js/site.js"></script>
-<script>initGenericEnquiryForm("quote-form");</script>
+<script>initGenericEnquiryForm("quote-form", "General enquiry / quote request");</script>
 </body>
 </html>

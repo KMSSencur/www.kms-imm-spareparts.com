@@ -83,10 +83,13 @@
       <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
       <div class="kicker">Pot 3</div>
       <h2 style="font-size:20px;margin:6px 0 10px">Pošljite fotografijo ali seznam</h2>
-      <form id="photo-enquiry-form" style="display:flex;flex-direction:column;flex:1">
-        <div class="ph dropzone">cona za nalaganje — fotografija dela, skenirani seznam delov ali preglednica</div>
+      <form id="photo-enquiry-form" style="display:flex;flex-direction:column;flex:1" method="POST" action="https://formsubmit.co/kabo@kms-imm-spareparts.com" enctype="multipart/form-data">
+        <label class="ph dropzone">
+          <input type="file" id="photo-file-input" name="attachment" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx" style="display:none">
+          <span data-field="dropzone-text">cona za nalaganje — fotografija dela, skenirani seznam delov ali preglednica</span>
+        </label>
         <div class="row" style="gap:8px;margin-top:12px">
-          <input class="input" placeholder="Vaš stroj — npr. KM 200 / 1000 CX, 2014" required>
+          <input class="input" name="machine" placeholder="Vaš stroj — npr. KM 200 / 1000 CX, 2014" required>
           <button class="btn btn-primary" type="submit">Pošlji</button>
         </div>
         <div class="mono" style="font-size:10px;opacity:.55;margin-top:8px">ODGOVORIMO V DVEH DELOVNIH DNEH</div>
@@ -124,7 +127,7 @@
 <script>
   initCategoryBrowser("category-browser");
   initPartSearchRedirect("part-search-form");
-  initGenericEnquiryForm("photo-enquiry-form");
+  initGenericEnquiryForm("photo-enquiry-form", "Spare parts photo/list enquiry");
 </script>
 </body>
 </html>
