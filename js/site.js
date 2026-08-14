@@ -82,6 +82,26 @@ function initMobileMenu() {
   burger.addEventListener("click", () => panel.classList.toggle("open"));
 }
 
+// ---------------------------------------------------------------- photo lightbox
+function openLightbox(src, alt) {
+  const backdrop = document.createElement("div");
+  backdrop.className = "dialog-backdrop lightbox-backdrop";
+  const img = document.createElement("img");
+  img.src = src; img.alt = alt || "";
+  img.className = "lightbox-img";
+  backdrop.appendChild(img);
+
+  function close() {
+    backdrop.remove();
+    document.removeEventListener("keydown", onKey);
+  }
+  function onKey(e) { if (e.key === "Escape") close(); }
+
+  backdrop.addEventListener("click", close);
+  document.addEventListener("keydown", onKey);
+  document.body.appendChild(backdrop);
+}
+
 // ---------------------------------------------------------------- corner marks
 function corners() {
   const frag = document.createDocumentFragment();
@@ -440,22 +460,30 @@ function initMachineDetail() {
     img.src = m.image; img.alt = m.name;
     photoText.replaceWith(img);
     const photoWrap = root.querySelector(".main-photo");
-    if (photoWrap) { photoWrap.classList.remove("duotone"); photoWrap.classList.add("has-photo"); }
+    if (photoWrap) {
+      photoWrap.classList.remove("duotone");
+      photoWrap.classList.add("has-photo");
+      photoWrap.addEventListener("click", () => openLightbox(m.image, m.name));
+    }
   } else if (photoText) {
     photoText.textContent = L().machinePhoto;
   }
 
-  const thumbs = root.querySelectorAll(".thumb-row .ph");
-  thumbs.forEach((thumb, i) => {
-    const src = m.gallery && m.gallery[i];
-    if (src) {
-      thumb.classList.add("has-photo");
-      thumb.innerHTML = "";
+  // Thumb row only ever shows real photos — no placeholder slots for
+  // photos that don't exist yet.
+  const thumbRow = root.querySelector(".thumb-row");
+  if (thumbRow) {
+    thumbRow.innerHTML = "";
+    (m.gallery || []).forEach((src, i) => {
+      const thumb = document.createElement("div");
+      thumb.className = "ph has-photo";
       const img = document.createElement("img");
-      img.src = src; img.alt = m.name + " " + (i + 1);
+      img.src = src; img.alt = m.name + " " + (i + 2);
       thumb.appendChild(img);
-    }
-  });
+      thumb.addEventListener("click", () => openLightbox(src, m.name));
+      thumbRow.appendChild(thumb);
+    });
+  }
 
   setText("[data-field='kicker']", machineCategoryLabel(m, lang()));
   setText("[data-field='title']", m.name);

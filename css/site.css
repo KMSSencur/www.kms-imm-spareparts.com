@@ -281,7 +281,17 @@ figure.duotone.blueprint { overflow: visible; }
 .detail-media { display: flex; flex-direction: column; gap: 8px; }
 .detail-media .main-photo { height: 170px; }
 .thumb-row { display: flex; gap: 8px; }
-.thumb-row .ph { width: 52px; height: 40px; }
+.thumb-row:empty { display: none; }
+.thumb-row .ph { width: 52px; height: 40px; cursor: pointer; }
+.main-photo.has-photo { cursor: zoom-in; }
+
+/* ---------------------------------------------------------------- photo lightbox */
+.lightbox-backdrop { z-index: 1000; cursor: zoom-out; }
+.lightbox-img {
+  max-width: 50vw; max-height: 50vh; width: auto; height: auto;
+  object-fit: contain; background: #fff; border: 1px solid var(--color-divider);
+  box-shadow: var(--shadow-lg);
+}
 .detail-content .part-no { font: 400 11px "IBM Plex Mono", monospace; opacity: .6; margin: 6px 0 12px; }
 .detail-content .avail-tags { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
 .spec-table td:first-child { opacity: .6; width: 40%; }
