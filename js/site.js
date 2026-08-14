@@ -445,6 +445,18 @@ function initMachineDetail() {
     photoText.textContent = L().machinePhoto;
   }
 
+  const thumbs = root.querySelectorAll(".thumb-row .ph");
+  thumbs.forEach((thumb, i) => {
+    const src = m.gallery && m.gallery[i];
+    if (src) {
+      thumb.classList.add("has-photo");
+      thumb.innerHTML = "";
+      const img = document.createElement("img");
+      img.src = src; img.alt = m.name + " " + (i + 1);
+      thumb.appendChild(img);
+    }
+  });
+
   setText("[data-field='kicker']", machineCategoryLabel(m, lang()));
   setText("[data-field='title']", m.name);
   setText("[data-field='meta']", [m.make, m.year].filter(Boolean).join(" · "));
