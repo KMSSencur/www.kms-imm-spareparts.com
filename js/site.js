@@ -101,7 +101,9 @@ function machineCard(m) {
   a.appendChild(corners());
 
   const ph = document.createElement("div");
-  ph.className = "ph duotone";
+  // Real photos show at their original resolution and colour (no duotone
+  // tint) so buyers see the actual machine; only placeholders get the tint.
+  ph.className = m.image ? "ph has-photo" : "ph duotone";
   if (m.image) {
     const img = document.createElement("img");
     img.src = m.image; img.alt = m.name; img.loading = "lazy";
@@ -250,7 +252,7 @@ function initMachinesTable() {
   MACHINES.forEach(m => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td class="thumb-cell"><div class="ph duotone" style="width:100%;height:100%">${m.image ? `<img src="${m.image}" alt="${m.name}" loading="lazy">` : "photo"}</div></td>
+      <td class="thumb-cell"><div class="ph ${m.image ? "has-photo" : "duotone"}" style="width:100%;height:100%">${m.image ? `<img src="${m.image}" alt="${m.name}" loading="lazy">` : "photo"}</div></td>
       <td><strong>${m.name}</strong><div class="meta-mono">${machineCategoryLabel(m, lang())}</div></td>
       <td>${m.year}</td>
       <td>${m.clampingForceKN ? fmtInt(m.clampingForceKN) + " kN" : "—"}</td>
@@ -437,6 +439,8 @@ function initMachineDetail() {
     const img = document.createElement("img");
     img.src = m.image; img.alt = m.name;
     photoText.replaceWith(img);
+    const photoWrap = root.querySelector(".main-photo");
+    if (photoWrap) { photoWrap.classList.remove("duotone"); photoWrap.classList.add("has-photo"); }
   } else if (photoText) {
     photoText.textContent = L().machinePhoto;
   }
