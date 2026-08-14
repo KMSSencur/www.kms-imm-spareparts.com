@@ -10,6 +10,12 @@
 
 * { box-sizing: border-box; }
 body { margin: 0; }
+
+/* Client preference: drop the blueprint "+" registration marks sitewide.
+   (Theme still adds four <i class="corner ..."> per .blueprint element in
+   markup/JS — this just stops rendering them, rather than ripping the
+   markup out of every card/button/panel.) */
+.blueprint > .corner { display: none; }
 img { display: block; max-width: 100%; }
 .container { max-width: 1280px; margin: 0 auto; padding: 0 22px; }
 
