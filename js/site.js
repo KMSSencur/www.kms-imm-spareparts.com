@@ -122,8 +122,16 @@ function sendEnquiry(form, subject, context) {
   }
 
   fetch(ENQUIRY_ENDPOINT, { method: "POST", headers, body })
-    .then(res => {
-      if (!res.ok) throw new Error("enquiry submission failed");
+    .then(async res => {
+      // FormSubmit returns HTTP 200 even when it isn't actually delivering —
+      // e.g. while the target address is still pending its one-time
+      // activation click — so the real signal is the JSON body, not the
+      // HTTP status.
+      let payload = null;
+      try { payload = await res.json(); } catch (e) { /* non-JSON response */ }
+      if (!res.ok || (payload && String(payload.success) === "false")) {
+        throw new Error((payload && payload.message) || "enquiry submission failed");
+      }
       if (confirmEl) {
         confirmEl.classList.remove("error");
         confirmEl.textContent = L().enquirySent;
