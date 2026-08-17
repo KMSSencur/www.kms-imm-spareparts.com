@@ -84,6 +84,10 @@
       <div class="kicker">Pot 3</div>
       <h2 style="font-size:20px;margin:6px 0 10px">Pošljite fotografijo ali seznam</h2>
       <form id="photo-enquiry-form" style="display:flex;flex-direction:column;flex:1" method="POST" action="https://formsubmit.co/marko.lamovsek@kms.si" enctype="multipart/form-data">
+        <input type="hidden" name="_subject" value="Spare parts photo/list enquiry">
+        <input type="hidden" name="context" value="">
+        <input type="hidden" name="_next" value="">
+        <input type="hidden" name="_captcha" value="false">
         <label class="ph dropzone">
           <input type="file" id="photo-file-input" name="attachment" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx" style="display:none">
           <span data-field="dropzone-text">cona za nalaganje — fotografija dela, skenirani seznam delov ali preglednica</span>

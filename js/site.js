@@ -9,13 +9,20 @@
 const PHONE = "+386 51 251 441";
 const EMAIL = "info@kms.si";
 
-// Every enquiry/quote form on the site posts here — FormSubmit.co relays it
-// to this inbox as a real email. No backend needed for a static site, but
-// note: the FIRST submission FormSubmit ever receives for this address
-// triggers a one-time confirmation email that has to be clicked before any
-// further submissions actually get delivered.
-const ENQUIRY_EMAIL = "marko.lamovsek@kms.si";
-const ENQUIRY_ENDPOINT = "https://formsubmit.co/ajax/" + ENQUIRY_EMAIL;
+// Every enquiry/quote form's action= attribute posts straight to
+// FormSubmit.co (marko.lamovsek@kms.si), which relays it as a real email —
+// no backend needed for a static site. Submission is a native browser POST,
+// not fetch()/AJAX: an early version used fetch to the AJAX endpoint for a
+// smooth inline "thanks" without a page reload, but that reads the
+// cross-origin response, which the live domain's browser blocked via CORS —
+// the email still sent (the POST itself isn't CORS-gated), but the page
+// wrongly reported failure. A native form POST is a plain navigation, never
+// subject to CORS, so it can't have that failure mode. The tradeoff is a
+// page reload; FormSubmit's _next field redirects back here with ?sent=1
+// so the same inline confirmation still shows once the page reloads.
+// (Note: the FIRST submission FormSubmit ever receives for an address
+// triggers a one-time confirmation email that must be clicked before any
+// further submissions actually get delivered.)
 
 const LABELS = {
   en: {
@@ -123,58 +130,40 @@ function validateRequired(form, names, confirmEl) {
 }
 
 // ---------------------------------------------------------------- enquiry submission
-// Shared by every enquiry/quote form on the site. Posts to FormSubmit.co
-// (see ENQUIRY_ENDPOINT) so a plain static site can still deliver real
-// email notifications with no backend of its own. subject/context describe
-// what the enquiry was about (which part/machine/page) so the notification
-// email is useful rather than a bare field dump.
-function sendEnquiry(form, subject, context) {
-  const confirmEl = form.querySelector(".enquiry-confirm") || document.getElementById("enquiry-confirm");
-  const isMultipart = (form.getAttribute("enctype") || "").includes("multipart");
+// Called just before letting a valid form submit natively (do NOT
+// preventDefault after calling this). Fills in the hidden _subject/context/
+// _next fields FormSubmit reads, pointing _next back at the current page
+// with ?sent=1 so checkEnquirySentRedirect() can show the confirmation
+// once FormSubmit redirects back here.
+function prepareEnquirySubmit(form, subject, context) {
+  const setHidden = (name, value) => {
+    const el = form.querySelector(`input[name='${name}']`);
+    if (el) el.value = value;
+  };
+  setHidden("_subject", subject);
+  setHidden("context", context || "");
+  const url = new URL(window.location.href);
+  url.searchParams.set("sent", "1");
+  setHidden("_next", url.toString());
+}
 
-  let body, headers;
-  if (isMultipart) {
-    const fd = new FormData(form);
-    fd.append("_subject", subject);
-    if (context) fd.append("context", context);
-    fd.append("_captcha", "false");
-    body = fd;
-    headers = { "Accept": "application/json" };
-  } else {
-    const data = Object.fromEntries(new FormData(form).entries());
-    data._subject = subject;
-    if (context) data.context = context;
-    data._captcha = "false";
-    body = JSON.stringify(data);
-    headers = { "Content-Type": "application/json", "Accept": "application/json" };
+// Call on every page load that has an enquiry form. If the URL carries
+// ?sent=1 (FormSubmit's _next redirect landing back here after a real,
+// successful delivery), show the confirmation and strip the marker so a
+// refresh doesn't repeat it.
+function checkEnquirySentRedirect(formId) {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("sent") !== "1") return;
+  const form = document.getElementById(formId);
+  const confirmEl = (form && form.querySelector(".enquiry-confirm")) || document.getElementById("enquiry-confirm");
+  if (confirmEl) {
+    confirmEl.classList.remove("error");
+    confirmEl.textContent = L().enquirySent;
+    confirmEl.classList.add("show");
   }
-
-  fetch(ENQUIRY_ENDPOINT, { method: "POST", headers, body })
-    .then(async res => {
-      // FormSubmit returns HTTP 200 even when it isn't actually delivering —
-      // e.g. while the target address is still pending its one-time
-      // activation click — so the real signal is the JSON body, not the
-      // HTTP status.
-      let payload = null;
-      try { payload = await res.json(); } catch (e) { /* non-JSON response */ }
-      if (!res.ok || (payload && String(payload.success) === "false")) {
-        throw new Error((payload && payload.message) || "enquiry submission failed");
-      }
-      if (confirmEl) {
-        confirmEl.classList.remove("error");
-        confirmEl.textContent = L().enquirySent;
-        confirmEl.classList.add("show");
-      }
-      form.reset();
-      const dzText = form.querySelector("[data-field='dropzone-text']");
-      if (dzText) dzText.textContent = dzText.dataset.default || dzText.textContent;
-    })
-    .catch(() => {
-      if (confirmEl) {
-        confirmEl.textContent = L().enquiryFailed;
-        confirmEl.classList.add("show", "error");
-      }
-    });
+  params.delete("sent");
+  const query = params.toString();
+  history.replaceState(null, "", window.location.pathname + (query ? "?" + query : "") + window.location.hash);
 }
 
 // ---------------------------------------------------------------- photo lightbox
@@ -568,10 +557,12 @@ function initPartDetail() {
   const form = document.getElementById("enquiry-form");
   if (form) {
     form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      sendEnquiry(form, "Price request: " + part.name, "Part: " + part.name + " (" + (part.partNo || part.id) + ") — " + window.location.href);
+      // No required fields on this form (quantity/serial are both
+      // optional) — just attach context and let it submit natively.
+      prepareEnquirySubmit(form, "Price request: " + part.name, "Part: " + part.name + " (" + (part.partNo || part.id) + ") — " + window.location.href);
     });
   }
+  checkEnquirySentRedirect("enquiry-form");
 }
 
 // ---------------------------------------------------------------- machine detail page
@@ -643,22 +634,30 @@ function initMachineDetail() {
   const form = document.getElementById("enquiry-form");
   if (form) {
     form.addEventListener("submit", (e) => {
-      e.preventDefault();
       const confirmEl = document.getElementById("enquiry-confirm");
-      if (!validateRequired(form, ["name", "phone", "email"], confirmEl)) return;
-      sendEnquiry(form, "Price request: " + m.name, "Machine: " + m.name + " (" + m.id + ") — " + window.location.href);
+      if (!validateRequired(form, ["name", "phone", "email"], confirmEl)) {
+        e.preventDefault();
+        return;
+      }
+      prepareEnquirySubmit(form, "Price request: " + m.name, "Machine: " + m.name + " (" + m.id + ") — " + window.location.href);
+      // Valid — no preventDefault, let it submit natively.
     });
   }
+  checkEnquirySentRedirect("enquiry-form");
 }
 
 // ---------------------------------------------------------------- generic enquiry forms (spare-parts drop zone, about page, contact band)
 function initGenericEnquiryForm(formId, subject) {
   const form = document.getElementById(formId);
   if (!form) return;
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    sendEnquiry(form, subject || "New enquiry — kms-imm-spareparts.com", window.location.href);
+  // Required fields here (about's name/contact/message, spare-parts'
+  // machine) use plain HTML5 `required` — the browser blocks the submit
+  // event itself until they're filled, so this listener only ever runs on
+  // an already-valid form. Just attach context and let it submit natively.
+  form.addEventListener("submit", () => {
+    prepareEnquirySubmit(form, subject || "New enquiry — kms-imm-spareparts.com", window.location.href);
   });
+  checkEnquirySentRedirect(formId);
 
   // Photo/list drop zone: show the chosen filename in place of the prompt.
   const fileInput = form.querySelector("input[type='file']");
