@@ -335,6 +335,8 @@ figure.duotone.blueprint { overflow: visible; }
 .address-map-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 @media (max-width: 700px) { .address-map-grid { grid-template-columns: 1fr; } }
 .address-map-grid .map { min-height: 160px; }
+.map-embed { min-height: 160px; border: 1px solid var(--color-divider); overflow: hidden; }
+.map-embed iframe { display: block; }
 
 /* ---------------------------------------------------------------- enquiry confirmation */
 .enquiry-confirm {
