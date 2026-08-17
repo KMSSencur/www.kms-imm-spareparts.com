@@ -42,6 +42,7 @@ const LABELS = {
     partNoLabel: "PART NO.",
     enquirySent: "Thanks — your enquiry has been sent. We answer within two working days, or call " + PHONE + ".",
     enquiryFailed: "Something went wrong sending that — please call us instead at " + PHONE + ".",
+    fillMissingFields: "Please fill in the missing information — it's marked below.",
     chooseFile: "Choose a file",
     machinePhoto: "machine photo",
     partPhoto: "part photograph"
@@ -70,6 +71,7 @@ const LABELS = {
     partNoLabel: "ŠT. DELA",
     enquirySent: "Hvala — vaše povpraševanje je bilo posredovano. Odgovorimo v dveh delovnih dneh, ali pokličite " + PHONE + ".",
     enquiryFailed: "Prišlo je do napake pri pošiljanju — prosimo, pokličite nas na " + PHONE + ".",
+    fillMissingFields: "Prosimo, izpolnite manjkajoče podatke — označeni so spodaj.",
     chooseFile: "Izberite datoteko",
     machinePhoto: "fotografija stroja",
     partPhoto: "fotografija dela"
@@ -92,6 +94,32 @@ function initMobileMenu() {
   const panel = document.querySelector(".mobile-panel");
   if (!burger || !panel) return;
   burger.addEventListener("click", () => panel.classList.toggle("open"));
+}
+
+// ---------------------------------------------------------------- required-field validation
+// Blocks submission (returns false) and marks each empty required field
+// with .invalid if any of `names` is blank; clears marks and returns true
+// otherwise. The mark clears itself as soon as the visitor types.
+function validateRequired(form, names, confirmEl) {
+  let allFilled = true;
+  names.forEach(name => {
+    const el = form.elements[name];
+    if (!el) return;
+    const empty = !el.value.trim();
+    el.classList.toggle("invalid", empty);
+    if (empty) {
+      allFilled = false;
+      el.addEventListener("input", function clearInvalid() {
+        el.classList.remove("invalid");
+        el.removeEventListener("input", clearInvalid);
+      });
+    }
+  });
+  if (!allFilled && confirmEl) {
+    confirmEl.textContent = L().fillMissingFields;
+    confirmEl.classList.add("show", "error");
+  }
+  return allFilled;
 }
 
 // ---------------------------------------------------------------- enquiry submission
@@ -616,6 +644,8 @@ function initMachineDetail() {
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
+      const confirmEl = document.getElementById("enquiry-confirm");
+      if (!validateRequired(form, ["name", "phone", "email"], confirmEl)) return;
       sendEnquiry(form, "Price request: " + m.name, "Machine: " + m.name + " (" + m.id + ") — " + window.location.href);
     });
   }

@@ -343,6 +343,7 @@ figure.duotone.blueprint { overflow: visible; }
 }
 .enquiry-confirm.show { display: block; }
 .enquiry-confirm.error { background: color-mix(in srgb, #b3261e 12%, var(--color-surface)); color: #7a1f19; }
+.input.invalid { border-color: #b3261e; background: color-mix(in srgb, #b3261e 6%, var(--color-surface)); }
 
 /* ---------------------------------------------------------------- responsive header / nav */
 @media (max-width: 900px) {
