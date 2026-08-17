@@ -327,6 +327,7 @@ figure.duotone.blueprint { overflow: visible; }
 
 /* ---------------------------------------------------------------- about */
 .about-photo { height: 180px; }
+.about-photo img { object-fit: cover; }
 .contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: var(--space-6); }
 @media (max-width: 700px) { .contact-cards { grid-template-columns: 1fr; } }
 .contact-card-title { font: 500 10px "IBM Plex Mono", monospace; letter-spacing: .12em; opacity: .5; }
