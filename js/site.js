@@ -647,14 +647,21 @@ function initMachineDetail() {
 }
 
 // ---------------------------------------------------------------- generic enquiry forms (spare-parts drop zone, about page, contact band)
-function initGenericEnquiryForm(formId, subject) {
+// requiredFields is optional: when given, uses the same custom
+// validateRequired() marking/message as the machine-detail form instead of
+// relying on plain HTML5 `required` (which about's form still uses, since
+// the browser's own validation already blocks an invalid submit event).
+function initGenericEnquiryForm(formId, subject, requiredFields) {
   const form = document.getElementById(formId);
   if (!form) return;
-  // Required fields here (about's name/contact/message, spare-parts'
-  // machine) use plain HTML5 `required` — the browser blocks the submit
-  // event itself until they're filled, so this listener only ever runs on
-  // an already-valid form. Just attach context and let it submit natively.
-  form.addEventListener("submit", () => {
+  form.addEventListener("submit", (e) => {
+    if (requiredFields) {
+      const confirmEl = form.querySelector(".enquiry-confirm");
+      if (!validateRequired(form, requiredFields, confirmEl)) {
+        e.preventDefault();
+        return;
+      }
+    }
     prepareEnquirySubmit(form, subject || "New enquiry — kms-imm-spareparts.com", window.location.href);
   });
   checkEnquirySentRedirect(formId);

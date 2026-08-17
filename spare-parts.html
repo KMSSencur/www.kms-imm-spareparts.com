@@ -93,9 +93,14 @@
           <span data-field="dropzone-text">drop zone — photo of the part, a scan of the parts list, or a spreadsheet</span>
         </label>
         <div class="row" style="gap:8px;margin-top:12px">
-          <input class="input" name="machine" placeholder="Your machine — e.g. KM 200 / 1000 CX, 2014" required>
-          <button class="btn btn-primary" type="submit">Send</button>
+          <input class="input" name="name" placeholder="Your name">
+          <input class="input" name="phone" type="tel" placeholder="Phone">
+          <input class="input" name="email" type="email" placeholder="Email">
         </div>
+        <div class="row" style="gap:8px">
+          <textarea class="input" name="message" placeholder="Message — e.g. your machine and what you need" style="min-height:70px;width:100%"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Send</button>
         <div class="mono" style="font-size:10px;opacity:.55;margin-top:8px">WE ANSWER WITHIN TWO WORKING DAYS</div>
         <div class="enquiry-confirm"></div>
       </form>
@@ -131,7 +136,7 @@
 <script>
   initCategoryBrowser("category-browser");
   initPartSearchRedirect("part-search-form");
-  initGenericEnquiryForm("photo-enquiry-form", "Spare parts photo/list enquiry");
+  initGenericEnquiryForm("photo-enquiry-form", "Spare parts photo/list enquiry", ["name", "phone", "email"]);
 </script>
 </body>
 </html>
