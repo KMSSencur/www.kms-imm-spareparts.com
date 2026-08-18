@@ -164,6 +164,19 @@ const MACHINES = [
     placeholder: true
   },
   {
+    id: "mch-km130-750cx-2006",
+    name: "KM 130 - 750 CX",
+    category: "Injection moulding",
+    make: "KraussMaffei",
+    year: 2006,
+    clampingForceKN: 1300,
+    location: "Šenčur, SI",
+    status: "Inspected",
+    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel and safety guarding.",
+    price: "Price on request",
+    placeholder: true
+  },
+  {
     id: "mch-km150-700-160cz",
     name: "KM 150 - 700 - 160 CZ",
     category: "Injection moulding",
