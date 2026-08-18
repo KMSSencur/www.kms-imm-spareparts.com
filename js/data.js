@@ -174,9 +174,11 @@ const MACHINES = [
     clampingForceKN: 1300,
     location: "Šenčur, SI",
     status: "Inspected",
+    image: "/images/mch-km130-380cx-front.jpg",
+    gallery: ["/images/mch-km130-380cx-rear.jpg"],
     description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel and safety guarding.",
     price: "Price on request",
-    placeholder: true
+    placeholder: false
   },
   {
     id: "mch-km150-700-160cz",
