@@ -62,7 +62,7 @@ const MACHINES = [
     name: "KM 130 - 750 CX",
     category: "Injection moulding",
     make: "KraussMaffei",
-    year: 2008,
+    year: 2006,
     clampingForceKN: 1300,
     location: "Šenčur, SI",
     status: "Inspected",
