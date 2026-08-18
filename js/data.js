@@ -83,7 +83,7 @@ const MACHINES = [
     status: "Inspected",
     image: "/images/mch-km50-55cx-rear.jpg",
     gallery: ["/images/mch-km50-55cx-wide.jpg", "/images/mch-km50-55cx-front.jpg", "/images/mch-km50-55cx-panel.jpg"],
-    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel.",
+    description: "Machine KraussMaffei KM 50 - 55 CX\nClamping force kN: 500\nClearance between tie bars (h x v) mm: 370 x 370\nMould opening stroke mm: 400\nMould height min. mm: 200\nDaylight mm: 600\nEjector stroke mm: 100\nEjector force, forward/backward kN: 23 / 10\nScrew diameter mm: 15\nL/D ratio: 20.0\nInjection pressure bar: 2600\nStroke volume cm³: 14\nControl version: MC5\nScreen text: German, Slovene\nCondition: Checked, ready to work\n\nEquipment:\n• Wear resistant plasticizer, surcharge\n• 6 x hotrunner control circuits\n• Signal interface for handling unit acc. to EUROMAP 67",
     price: "Price on request",
     placeholder: false
   },
