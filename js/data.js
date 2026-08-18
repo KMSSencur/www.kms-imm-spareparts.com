@@ -186,7 +186,7 @@ const MACHINES = [
     status: "Inspected",
     image: "/images/mch-km130-380cx-front.jpg",
     gallery: ["/images/mch-km130-380cx-rear.jpg"],
-    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel.",
+    description: "Machine KraussMaffei KM 130 - 380 CX\nClamping force kN: 1300\nClearance between tie bars (h x v) mm: 470 x 470\nMould opening stroke mm: 600\nMould height min. mm: 300\nDaylight mm: 900\nEjector stroke mm: 150\nEjector force, forward/backward kN: 23 / 10\nScrew diameter mm: 40\nL/D ratio: 20.0\nInjection pressure bar: 1860\nStroke volume cm³: 201\nControl version: MC5\nScreen text: German, Slovene\nCondition: Checked, ready to work\n\nEquipment:\n• Wear resistant plasticizer, surcharge\n• 1 x pneumatic valve on moving platen for blow function\n• Signal interface for handling unit acc. to EUROMAP 67\n• Pressure accumulator for increased injection capacity\n• 1 x hydraulic core pull system on moving platen\n• Potential-free contact for signal \"plasticizing\" on socket HAN 3 A\n• 1 x additional temperature control zone for nozzle heaters\n• PV-closed loop control, inj.speed, holding and back pressure",
     price: "Price on request",
     placeholder: false
   },
