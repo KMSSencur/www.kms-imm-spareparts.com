@@ -215,7 +215,7 @@ const MACHINES = [
     status: "New",
     image: "/images/mch-km250-1400pa-render.jpg",
     gallery: ["/images/mch-km250-1400pa-wrapped.jpg"],
-    description: "Large-tonnage injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet.",
+    description: "Machine KraussMaffei KM 250 - 1400 PA (100% electric)\nClamping force kN: 2500\nClearance between tie bars (h x v) mm: 720 x 670\nMould opening stroke mm: 550\nMould height min.-max. mm: 250 - 600\nDaylight mm: 1150\nEjector stroke mm: 200\nEjector force, forward/backward kN: 47 / 47\nScrew diameter mm: 60\nL/D ratio: 20.0\nInjection pressure bar: 2006\nStroke volume cm³: 679\nControl version: MC Agile\nScreen text: German, Slovene\nCondition: Checked, ready to work\n\nEquipment:\n• Wear resistant plasticizer, surcharge\n• BluePower - Complete insulation of plasticizing cylinder for lower energy consumption\n• 1 x pneumatic valve on moving platen for blow function\n• Pneumatic control for one hotrunner\n• Electrical interface for external hydraulic power pack\n• Water battery 4-fold without electromagnetic shut-off valve, with thermometers, incl. hose connections\n• Potential-free contact for signal \"plasticizing\" on socket HAN 3 A\n• APC plus\n• Signal interface for handling unit acc. to EUROMAP 67",
     price: "Price on request",
     placeholder: false
   },
