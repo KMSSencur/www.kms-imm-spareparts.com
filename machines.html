@@ -68,17 +68,6 @@
       <label class="radio"><input type="radio" name="mk" value="all" checked><span class="dot"></span>All makes</label>
       <div id="make-options"></div>
     </div>
-    <div class="filter-group">
-      <div class="filter-title">CLAMPING FORCE</div>
-      <div class="force-slider" id="force-slider">
-        <div class="force-slider-track"></div>
-        <div class="force-slider-range" id="force-slider-range"></div>
-        <input type="range" id="force-min" class="force-slider-input" aria-label="Minimum clamping force">
-        <input type="range" id="force-max" class="force-slider-input" aria-label="Maximum clamping force">
-      </div>
-      <div class="force-slider-ticks" id="force-ticks"></div>
-      <div class="range-hint" id="force-hint"></div>
-    </div>
     <button id="clear-filters" class="btn btn-secondary btn-block">Clear all filters</button>
   </aside>
 
@@ -93,6 +82,17 @@
           <label class="seg-opt"><input type="radio" name="srt" value="force" checked>Force</label>
         </span>
       </div>
+    </div>
+    <div class="force-panel">
+      <div class="filter-title">CLAMPING FORCE</div>
+      <div class="force-slider force-slider-lg" id="force-slider">
+        <div class="force-slider-track"></div>
+        <div class="force-slider-range" id="force-slider-range"></div>
+        <input type="range" id="force-min" class="force-slider-input" aria-label="Minimum clamping force">
+        <input type="range" id="force-max" class="force-slider-input" aria-label="Maximum clamping force">
+      </div>
+      <div class="force-slider-ticks" id="force-ticks"></div>
+      <div class="range-hint" id="force-hint"></div>
     </div>
     <div class="chips-row">
       <span id="machines-count" class="result-count"></span>
