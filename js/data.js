@@ -200,7 +200,7 @@ const MACHINES = [
     location: "Šenčur, SI",
     status: "Inspected",
     image: "/images/mch-km150-700-160cz-wide.jpg",
-    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel.",
+    description: "Machine KraussMaffei KM 150 - 700 - 160 CZ\nClamping force kN: 1500\nClearance between tie bars (h x v) mm: 500 x 500\nMould opening stroke mm: 600\nMould height min. mm: 300\nDaylight mm: 900\nEjector stroke mm: 150\nEjector force, forward/backward kN: 22 / 10\n\nInjection unit 1:\nScrew diameter mm: 50\nL/D ratio: 20.0\nInjection pressure bar: 1892\nStroke volume cm³: 377\n\nInjection unit 2:\nScrew diameter mm: 30\nL/D ratio: 23.0\nInjection pressure bar: 2025\nStroke volume cm³: 74\n\nControl version: MC5\nScreen text: German, Slovene\nCondition: Checked, ready to work\n\nEquipment:\n• Wear resistant plasticizer, surcharge\n• 1 x pneumatic valve on moving platen for blow function\n• 1 x pneumatic valve on fixed platen for blow function\n• 1 x hydraulic core pull system on moving platen\n• Signal interface for handling unit acc. to EUROMAP 12\n• PV-closed loop control, inj. speed, holding and back pressure",
     price: "Price on request",
     placeholder: false
   },
