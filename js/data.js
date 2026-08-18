@@ -109,7 +109,8 @@ const MACHINES = [
     clampingForceKN: 800,
     location: "Šenčur, SI",
     status: "New",
-    image: "/images/mch-km80-380pa-wide.jpg",
+    image: "/images/mch-km250-1400pa-render.jpg",
+    gallery: ["/images/mch-km80-380pa-wide.jpg"],
     description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel and safety guarding.",
     price: "Price on request",
     placeholder: false
