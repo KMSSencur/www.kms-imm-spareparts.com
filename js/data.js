@@ -83,7 +83,7 @@ const MACHINES = [
     status: "Inspected",
     image: "/images/mch-km50-55cx-rear.jpg",
     gallery: ["/images/mch-km50-55cx-wide.jpg", "/images/mch-km50-55cx-front.jpg", "/images/mch-km50-55cx-panel.jpg"],
-    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel and safety guarding.",
+    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel.",
     price: "Price on request",
     placeholder: false
   },
@@ -98,7 +98,7 @@ const MACHINES = [
     status: "Inspected",
     image: "/images/mch-km50-160c1-wide.jpg",
     gallery: ["/images/mch-km50-160c1-side.jpg", "/images/mch-km50-160c1-panel.jpg"],
-    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel and safety guarding.",
+    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel.",
     price: "Price on request",
     placeholder: false
   },
@@ -113,7 +113,7 @@ const MACHINES = [
     status: "New",
     image: "/images/mch-km250-1400pa-render.jpg",
     gallery: ["/images/mch-km80-380pa-wide.jpg"],
-    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel and safety guarding.",
+    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel.",
     price: "Price on request",
     placeholder: false
   },
@@ -127,7 +127,7 @@ const MACHINES = [
     location: "Šenčur, SI",
     status: "Inspected",
     image: "/images/mch-km80-390c1-2005-wide.jpg",
-    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel and safety guarding.",
+    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel.",
     price: "Price on request",
     placeholder: false
   },
@@ -142,7 +142,7 @@ const MACHINES = [
     status: "Inspected",
     image: "/images/mch-km80-390c1-2002-front.jpg",
     gallery: ["/images/mch-km80-390c1-2002-rear.jpg", "/images/mch-km80-390c1-2002-panel.jpg"],
-    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel and safety guarding.",
+    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel.",
     price: "Price on request",
     placeholder: false
   },
@@ -157,7 +157,7 @@ const MACHINES = [
     status: "Inspected",
     image: "/images/mch-km100-180cx-wide.jpg",
     gallery: ["/images/mch-km100-180cx-panel.jpg", "/images/mch-km100-180cx-rear.jpg", "/images/mch-km100-180cx-front.jpg"],
-    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel and safety guarding.",
+    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel.",
     price: "Price on request",
     placeholder: false
   },
@@ -171,7 +171,7 @@ const MACHINES = [
     location: "Šenčur, SI",
     status: "Inspected",
     image: "/images/mch-km250-1400pa-render.jpg",
-    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel and safety guarding.",
+    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel.",
     price: "Price on request",
     placeholder: false
   },
@@ -186,7 +186,7 @@ const MACHINES = [
     status: "Inspected",
     image: "/images/mch-km130-380cx-front.jpg",
     gallery: ["/images/mch-km130-380cx-rear.jpg"],
-    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel and safety guarding.",
+    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel.",
     price: "Price on request",
     placeholder: false
   },
@@ -200,7 +200,7 @@ const MACHINES = [
     location: "Šenčur, SI",
     status: "Inspected",
     image: "/images/mch-km150-700-160cz-wide.jpg",
-    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel and safety guarding.",
+    description: "Complete injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet with operator panel.",
     price: "Price on request",
     placeholder: false
   },
@@ -215,7 +215,7 @@ const MACHINES = [
     status: "New",
     image: "/images/mch-km250-1400pa-render.jpg",
     gallery: ["/images/mch-km250-1400pa-wrapped.jpg"],
-    description: "Large-tonnage injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet and safety guarding.",
+    description: "Large-tonnage injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet.",
     price: "Price on request",
     placeholder: false
   },
@@ -230,7 +230,7 @@ const MACHINES = [
     status: "Inspected",
     image: "/images/mch-km280-1400c3-front.jpg",
     gallery: ["/images/mch-km280-1400c3-panel.jpg", "/images/mch-km280-1400c3-rear.jpg"],
-    description: "Large-tonnage injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet and safety guarding.",
+    description: "Large-tonnage injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet.",
     price: "Price on request",
     placeholder: false
   },
@@ -243,7 +243,7 @@ const MACHINES = [
     clampingForceKN: 3000,
     location: "Šenčur, SI",
     status: "Inspected",
-    description: "Large-tonnage injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet and safety guarding.",
+    description: "Large-tonnage injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet.",
     price: "Price on request",
     placeholder: true
   }
