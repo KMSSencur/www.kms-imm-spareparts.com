@@ -358,11 +358,11 @@ function initMachinesListing() {
     const makeChecked = document.querySelector('input[name="mk"]:checked');
     const make = makeChecked ? makeChecked.value : "all";
     const sortChecked = document.querySelector('input[name="srt"]:checked');
-    const sort = sortChecked ? sortChecked.value : "newest";
+    const sort = sortChecked ? sortChecked.value : "force";
 
     let list = MACHINES.filter(m => make === "all" || m.make === make);
     if (sort === "year") list = list.slice().sort((a, b) => b.year - a.year);
-    else if (sort === "force") list = list.slice().sort((a, b) => (b.clampingForceKN || 0) - (a.clampingForceKN || 0));
+    else if (sort === "force") list = list.slice().sort((a, b) => (a.clampingForceKN || 0) - (b.clampingForceKN || 0));
 
     grid.innerHTML = "";
     if (list.length === 0) {
