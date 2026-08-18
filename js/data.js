@@ -59,7 +59,7 @@ function machineCategoryLabel(m, lang) {
 const MACHINES = [
   {
     id: "mch-km130-750cx",
-    name: "KM130-750 CX",
+    name: "KM 130 - 750 CX",
     category: "Injection moulding",
     make: "KraussMaffei",
     year: 2008,
@@ -68,13 +68,13 @@ const MACHINES = [
     status: "Inspected",
     image: "/images/mch-km130-750cx-wide.jpg",
     gallery: ["/images/mch-km130-750cx-panel.jpg", "/images/mch-km130-750cx-rear.jpg"],
-    description: "Machine KraussMaffei KM130-750 CX\nClamping force kN: 1300\nClearance between tie bars (h x v) mm: 470 x 470\nMould opening stroke mm: 600\nMould height min. mm: 300\nDaylight mm: 900\nEjector stroke mm: 150\nEjector force, forward/backward kN: 23 / 10\nScrew diameter mm: 45\nL/D ratio: 22.4\nInjection pressure bar: 2336\nStroke volume cm³: 318\nControl version: MC5\nScreen text: German, Slovene\nCondition: Checked, ready to work\n\nEquipment:\n• Wear resistant plasticizer, surcharge\n• 1 x pneumatic valve on moving platen for blow function\n• Signal interface for handling unit acc. to EUROMAP 12\n• Conveyor control including CEE socket 16 A\n• Mechanical robot interface according to Euromap 18\n• Hydraulic core pull system 2-fold at moving platen\n• Water battery 8-fold\n• Combination of sockets consisting 3 x Schuko socket 16 A, 2 x CEE socket 16 A, 1 x CEE socket 32 A\n• Signal interface for handling unit acc. to Euromap 67 incl. reject signal and power socket CEE 16 A\n• Quality statistics\n• PV-closed loop control for injection speed, holding pressure and back pressure as well as switch over to hold pressure by hydraulic pressure",
+    description: "Machine KraussMaffei KM 130 - 750 CX\nClamping force kN: 1300\nClearance between tie bars (h x v) mm: 470 x 470\nMould opening stroke mm: 600\nMould height min. mm: 300\nDaylight mm: 900\nEjector stroke mm: 150\nEjector force, forward/backward kN: 23 / 10\nScrew diameter mm: 45\nL/D ratio: 22.4\nInjection pressure bar: 2336\nStroke volume cm³: 318\nControl version: MC5\nScreen text: German, Slovene\nCondition: Checked, ready to work\n\nEquipment:\n• Wear resistant plasticizer, surcharge\n• 1 x pneumatic valve on moving platen for blow function\n• Signal interface for handling unit acc. to EUROMAP 12\n• Conveyor control including CEE socket 16 A\n• Mechanical robot interface according to Euromap 18\n• Hydraulic core pull system 2-fold at moving platen\n• Water battery 8-fold\n• Combination of sockets consisting 3 x Schuko socket 16 A, 2 x CEE socket 16 A, 1 x CEE socket 32 A\n• Signal interface for handling unit acc. to Euromap 67 incl. reject signal and power socket CEE 16 A\n• Quality statistics\n• PV-closed loop control for injection speed, holding pressure and back pressure as well as switch over to hold pressure by hydraulic pressure",
     price: "Price on request",
     placeholder: false
   },
   {
     id: "mch-km50-55cx",
-    name: "KM50-55 CX",
+    name: "KM 50 - 55 CX",
     category: "Injection moulding",
     make: "KraussMaffei",
     year: 2008,
@@ -87,7 +87,7 @@ const MACHINES = [
   },
   {
     id: "mch-km50-160c1",
-    name: "KM50/160C1",
+    name: "KM 50 - 160 C1",
     category: "Injection moulding",
     make: "KraussMaffei",
     year: 2002,
@@ -100,7 +100,7 @@ const MACHINES = [
   },
   {
     id: "mch-km80-380pa",
-    name: "KM80 / 380 PA",
+    name: "KM 80 - 380 PA",
     category: "Injection moulding",
     make: "KraussMaffei",
     year: "New",
@@ -113,7 +113,7 @@ const MACHINES = [
   },
   {
     id: "mch-km80-390c1-2005",
-    name: "KM80-390 C1",
+    name: "KM 80 - 390 C1",
     category: "Injection moulding",
     make: "KraussMaffei",
     year: 2005,
@@ -126,7 +126,7 @@ const MACHINES = [
   },
   {
     id: "mch-km80-390c1-2002",
-    name: "KM80-390 C1",
+    name: "KM 80 - 390 C1",
     category: "Injection moulding",
     make: "KraussMaffei",
     year: 2002,
@@ -139,7 +139,7 @@ const MACHINES = [
   },
   {
     id: "mch-km100-180cx",
-    name: "KM100-180 CX",
+    name: "KM 100 - 180 CX",
     category: "Injection moulding",
     make: "KraussMaffei",
     year: 2014,
@@ -152,7 +152,7 @@ const MACHINES = [
   },
   {
     id: "mch-km120-380pacn",
-    name: "KM120-380 PA CN",
+    name: "KM 120 - 380 PA CN",
     category: "Injection moulding",
     make: "KraussMaffei",
     year: 2021,
@@ -165,7 +165,7 @@ const MACHINES = [
   },
   {
     id: "mch-km150-700-160cz",
-    name: "KM 150/700/160 CZ",
+    name: "KM 150 - 700 - 160 CZ",
     category: "Injection moulding",
     make: "KraussMaffei",
     year: 2005,
@@ -178,7 +178,7 @@ const MACHINES = [
   },
   {
     id: "mch-km250-1400pa",
-    name: "KM250/1400 PA",
+    name: "KM 250 - 1400 PA",
     category: "Injection moulding",
     make: "KraussMaffei",
     year: "New",
@@ -191,7 +191,7 @@ const MACHINES = [
   },
   {
     id: "mch-km280-1400c3",
-    name: "KM280-1400C3",
+    name: "KM 280 - 1400 C3",
     category: "Injection moulding",
     make: "KraussMaffei",
     year: 2003,
@@ -204,7 +204,7 @@ const MACHINES = [
   },
   {
     id: "mch-km300-1400c2",
-    name: "KM300-1400 C2",
+    name: "KM 300 - 1400 C2",
     category: "Injection moulding",
     make: "KraussMaffei",
     year: 2001,
