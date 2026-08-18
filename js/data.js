@@ -142,7 +142,7 @@ const MACHINES = [
     status: "Inspected",
     image: "/images/mch-km80-390c1-2002-front.jpg",
     gallery: ["/images/mch-km80-390c1-2002-rear.jpg", "/images/mch-km80-390c1-2002-panel.jpg"],
-    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel.",
+    description: "Machine KraussMaffei KM 80 - 390 C1\nClamping force kN: 800\nClearance between tie bars (h x v) mm: 405 x 405\nMould opening stroke mm: 500\nMould height min. mm: 250\nDaylight mm: 750\nEjector stroke mm: 150\nEjector force, forward/backward kN: 22 / 10\nScrew diameter mm: 35\nL/D ratio: 23.0\nInjection pressure bar: 2429\nStroke volume cm³: 156\nControl version: MC4\nScreen text: German, Slovene\nCondition: Checked, ready to work\n\nEquipment:\n• Wear resistant plasticizer, surcharge\n• 1 x pneumatic valve on moving platen for blow function\n• 1 x hydraulic core pull system on moving platen\n• 6 x hotrunner control circuits\n• Signal interface for handling unit acc. to EUROMAP 12",
     price: "Price on request",
     placeholder: false
   },
