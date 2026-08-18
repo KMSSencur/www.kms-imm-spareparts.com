@@ -53,7 +53,6 @@ const LABELS = {
     chooseFile: "Choose a file",
     machinePhoto: "machine photo",
     partPhoto: "part photograph",
-    allLocations: "All locations",
     otherMake: "Other"
   },
   sl: {
@@ -84,7 +83,6 @@ const LABELS = {
     chooseFile: "Izberite datoteko",
     machinePhoto: "fotografija stroja",
     partPhoto: "fotografija dela",
-    allLocations: "Vse lokacije",
     otherMake: "Drugo"
   }
 };
@@ -353,16 +351,14 @@ function initLatestArrivals(containerId, count) {
 }
 
 // ---------------------------------------------------------------- machines listing (cards)
-// Known make/condition categories the business deals in — always shown in the
-// filter rail (even at a live count of 0) rather than only whichever ones
-// happen to be in stock right now, so e.g. "Other" doesn't disappear the
-// moment the last non-KraussMaffei machine sells.
+// Known make categories the business deals in — always shown in the filter
+// rail (even at a live count of 0) rather than only whichever ones happen to
+// be in stock right now, so e.g. "Other" doesn't disappear the moment the
+// last non-KraussMaffei machine sells.
 const MAKE_OPTIONS = ["KraussMaffei", "Other"];
-const CONDITION_OPTIONS = ["Inspected", "As seen", "Rebuilt", "New"];
 
 // "New" machines have no production year yet — treat them as one year newer
-// than the newest dated machine so sort/compare works, and always let them
-// through the year-range filter (matches "up to new machine" expectations).
+// than the newest dated machine so the Year sort orders them first.
 function machineYearValue(m, maxDatedYear) {
   return typeof m.year === "number" ? m.year : maxDatedYear + 1;
 }
@@ -374,7 +370,6 @@ function initMachinesListing() {
 
   const datedYears = MACHINES.map(m => m.year).filter(y => typeof y === "number");
   const maxDatedYear = datedYears.length ? Math.max(...datedYears) : new Date().getFullYear();
-  const minYear = datedYears.length ? Math.min(...datedYears) : maxDatedYear;
   const tons = MACHINES.filter(m => m.clampingForceKN).map(m => Math.round(m.clampingForceKN / 10));
   const minTons = tons.length ? Math.min(...tons) : 0;
   const maxTons = tons.length ? Math.max(...tons) : 0;
@@ -393,61 +388,16 @@ function initMachinesListing() {
     });
   }
 
-  // ---- CONDITION (multi-select toggle tags) ----
-  const selectedConditions = new Set();
-  const conditionEl = document.getElementById("condition-filter");
-  if (conditionEl) {
-    conditionEl.innerHTML = "";
-    CONDITION_OPTIONS.forEach(status => {
-      const tag = document.createElement("button");
-      tag.type = "button";
-      tag.className = "tag tag-outline";
-      tag.textContent = status;
-      tag.addEventListener("click", () => {
-        if (selectedConditions.has(status)) { selectedConditions.delete(status); tag.className = "tag tag-outline"; }
-        else { selectedConditions.add(status); tag.className = "tag tag-accent"; }
-        render();
-      });
-      conditionEl.appendChild(tag);
-    });
-  }
-
-  // ---- LOCATION (select, options from live data) ----
-  const locationEl = document.getElementById("location-filter");
-  if (locationEl) {
-    locationEl.innerHTML = "";
-    const allOpt = document.createElement("option");
-    allOpt.value = "all";
-    allOpt.textContent = L().allLocations;
-    locationEl.appendChild(allOpt);
-    Array.from(new Set(MACHINES.map(m => m.location))).sort().forEach(loc => {
-      const opt = document.createElement("option");
-      opt.value = loc;
-      opt.textContent = loc;
-      locationEl.appendChild(opt);
-    });
-    locationEl.addEventListener("change", render);
-  }
-
-  // ---- CLAMPING FORCE / YEAR range inputs, pre-filled with the live range ----
+  // ---- CLAMPING FORCE range inputs, pre-filled with the live range ----
   const forceMinEl = document.getElementById("force-min");
   const forceMaxEl = document.getElementById("force-max");
-  const yearMinEl = document.getElementById("year-min");
-  const yearMaxEl = document.getElementById("year-max");
   if (forceMinEl && forceMaxEl) {
     forceMinEl.value = minTons; forceMaxEl.value = maxTons;
     forceMinEl.addEventListener("change", render);
     forceMaxEl.addEventListener("change", render);
   }
-  if (yearMinEl && yearMaxEl) {
-    yearMinEl.value = minYear; yearMaxEl.value = maxDatedYear;
-    yearMinEl.addEventListener("change", render);
-    yearMaxEl.addEventListener("change", render);
-  }
   const forceHint = document.getElementById("force-hint");
   if (forceHint) forceHint.textContent = `range ${minTons} – ${maxTons} t`;
-  const yearHint = document.getElementById("year-hint");
-  if (yearHint) yearHint.textContent = `range ${minYear} – ${datedYears.length < MACHINES.length ? "New" : maxDatedYear}`;
 
   function render() {
     const makeChecked = document.querySelector('input[name="mk"]:checked');
@@ -456,19 +406,13 @@ function initMachinesListing() {
     const sort = sortChecked ? sortChecked.value : "force";
     const forceMin = forceMinEl && forceMinEl.value !== "" ? Number(forceMinEl.value) : minTons;
     const forceMax = forceMaxEl && forceMaxEl.value !== "" ? Number(forceMaxEl.value) : maxTons;
-    const yearMin = yearMinEl && yearMinEl.value !== "" ? Number(yearMinEl.value) : minYear;
-    const yearMax = yearMaxEl && yearMaxEl.value !== "" ? Number(yearMaxEl.value) : maxDatedYear + 1;
-    const location = locationEl ? locationEl.value : "all";
 
     let list = MACHINES.filter(m => {
       if (make !== "all" && m.make !== make) return false;
-      if (selectedConditions.size && !selectedConditions.has(m.status)) return false;
-      if (location !== "all" && m.location !== location) return false;
       if (m.clampingForceKN) {
         const t = Math.round(m.clampingForceKN / 10);
         if (t < forceMin || t > forceMax) return false;
       }
-      if (typeof m.year === "number" && (m.year < yearMin || m.year > yearMax)) return false;
       return true;
     });
     if (sort === "year") list = list.slice().sort((a, b) => machineYearValue(b, maxDatedYear) - machineYearValue(a, maxDatedYear));
@@ -493,11 +437,7 @@ function initMachinesListing() {
   if (clearBtn) clearBtn.addEventListener("click", () => {
     const all = document.querySelector('input[name="mk"][value="all"]');
     if (all) all.checked = true;
-    selectedConditions.clear();
-    if (conditionEl) conditionEl.querySelectorAll(".tag").forEach(t => t.className = "tag tag-outline");
-    if (locationEl) locationEl.value = "all";
     if (forceMinEl && forceMaxEl) { forceMinEl.value = minTons; forceMaxEl.value = maxTons; }
-    if (yearMinEl && yearMaxEl) { yearMinEl.value = minYear; yearMaxEl.value = maxDatedYear; }
     render();
   });
 
