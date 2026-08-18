@@ -113,7 +113,7 @@ const MACHINES = [
     status: "New",
     image: "/images/mch-km250-1400pa-render.jpg",
     gallery: ["/images/mch-km80-380pa-wide.jpg"],
-    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel.",
+    description: "Machine KraussMaffei KM 80 - 380 PA (100% electric)\nClamping force kN: 800\nClearance between tie bars (h x v) mm: 470 x 420\nMould opening stroke mm: 350\nMould height min.-max. mm: 150 - 400\nDaylight mm: 750\nEjector stroke mm: 100\nEjector force, forward/backward kN: 22 / 22\nScrew diameter mm: 40\nL/D ratio: 20.0\nInjection pressure bar: 1860\nStroke volume cm³: 201\nControl version: MC Agile\nScreen text: German, Slovene\nCondition: Checked, ready to work\n\nEquipment:\n• Wear resistant plasticizer, surcharge\n• 1 x pneumatic valve on moving platen for blow function\n• 1 x pneumatic valve on fixed platen for blow function\n• Signal interface for handling unit acc. to EUROMAP 67",
     price: "Price on request",
     placeholder: false
   },
