@@ -618,7 +618,7 @@ function initMachineDetail() {
   setText("[data-field='kicker']", machineCategoryLabel(m, lang()));
   setText("[data-field='title']", m.name);
   setText("[data-field='meta']", [m.make, m.year].filter(Boolean).join(" · "));
-  setText("[data-field='year-label']", lang() === "sl" ? "Leto" : "Year");
+  setText("[data-field='year-label']", lang() === "sl" ? "Proizvodno leto" : "Production year");
   setText("[data-field='year-value']", m.year);
   setText("[data-field='force-label']", lang() === "sl" ? "Sila zapiranja" : "Clamping force");
   setText("[data-field='force-value']", m.clampingForceKN ? fmtForceTons(m.clampingForceKN) : "—");
