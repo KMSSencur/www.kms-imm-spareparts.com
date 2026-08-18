@@ -98,7 +98,7 @@ const MACHINES = [
     status: "Inspected",
     image: "/images/mch-km50-160c1-wide.jpg",
     gallery: ["/images/mch-km50-160c1-side.jpg", "/images/mch-km50-160c1-panel.jpg"],
-    description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel.",
+    description: "Machine KraussMaffei KM 50 - 160 C1\nClamping force kN: 500\nClearance between tie bars (h x v) mm: 321 x 321\nMould opening stroke mm: 350\nMould height min. mm: 200\nDaylight mm: 550\nEjector stroke mm: 100\nEjector force, forward/backward kN: 22 / 10\nScrew diameter mm: 30\nL/D ratio: 23.0\nInjection pressure bar: 2025\nStroke volume cm³: 74\nControl version: MC4\nScreen text: German, Slovene\nCondition: Checked, ready to work\n\nEquipment:\n• Wear resistant plasticizer, surcharge\n• 1 x pneumatic valve on moving platen for blow function\n• Conveyor control including Harting socket HAN 6 E\n• 1 x hydraulic core pull system on moving platen\n• Signal interface for handling unit acc. to EUROMAP 12",
     price: "Price on request",
     placeholder: false
   },
