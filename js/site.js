@@ -94,6 +94,11 @@ function fmtInt(n) {
   if (lang() === "sl") return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   return n.toLocaleString("en-US");
 }
+// Clamping force is stored in kN but always shown to customers in tons
+// (KMS convention: 1300 kN = 130 t, i.e. divide by 10).
+function fmtForceTons(kN) {
+  return fmtInt(Math.round(kN / 10)) + " t";
+}
 
 // ---------------------------------------------------------------- mobile menu
 function initMobileMenu() {
@@ -266,7 +271,7 @@ function machineCard(m) {
 
   const meta = document.createElement("div");
   meta.className = "meta-mono";
-  const bits = [m.year, m.clampingForceKN ? fmtInt(m.clampingForceKN) + " kN" : null, m.location].filter(Boolean);
+  const bits = [m.year, m.clampingForceKN ? fmtForceTons(m.clampingForceKN) : null, m.location].filter(Boolean);
   meta.textContent = bits.join(" · ");
   a.appendChild(meta);
 
@@ -396,7 +401,7 @@ function initMachinesTable() {
       <td class="thumb-cell"><div class="ph ${m.image ? "has-photo" : "duotone"}" style="width:100%;height:100%">${m.image ? `<img src="${m.image}" alt="${m.name}" loading="lazy">` : "photo"}</div></td>
       <td><strong>${m.name}</strong><div class="meta-mono">${machineCategoryLabel(m, lang())}</div></td>
       <td>${m.year}</td>
-      <td>${m.clampingForceKN ? fmtInt(m.clampingForceKN) + " kN" : "—"}</td>
+      <td>${m.clampingForceKN ? fmtForceTons(m.clampingForceKN) : "—"}</td>
       <td>${m.location}</td>
       <td><span class="tag ${statusTagClass[m.status] || "tag-neutral"}">${m.status}</span></td>
       <td><a class="btn btn-ghost" href="machine-detail.html?id=${encodeURIComponent(m.id)}">${L().enquire}</a></td>
@@ -616,7 +621,7 @@ function initMachineDetail() {
   setText("[data-field='year-label']", lang() === "sl" ? "Leto" : "Year");
   setText("[data-field='year-value']", m.year);
   setText("[data-field='force-label']", lang() === "sl" ? "Sila zapiranja" : "Clamping force");
-  setText("[data-field='force-value']", m.clampingForceKN ? fmtInt(m.clampingForceKN) + " kN" : "—");
+  setText("[data-field='force-value']", m.clampingForceKN ? fmtForceTons(m.clampingForceKN) : "—");
   setText("[data-field='location-label']", lang() === "sl" ? "Lokacija" : "Location");
   setText("[data-field='location-value']", m.location);
   setText("[data-field='condition-label']", L().condition);
