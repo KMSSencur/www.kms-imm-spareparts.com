@@ -368,6 +368,15 @@ function initMachinesListing() {
   if (!grid) return;
   const heading = document.getElementById("machines-count");
 
+  // ---- free-text search, pre-filled from ?q= (the home hero search lands
+  // here when the query matches a machine) ----
+  const qParam = new URLSearchParams(window.location.search).get("q") || "";
+  const searchEl = document.getElementById("machines-search");
+  if (searchEl) {
+    searchEl.value = qParam;
+    searchEl.addEventListener("input", render);
+  }
+
   const datedYears = MACHINES.map(m => m.year).filter(y => typeof y === "number");
   const maxDatedYear = datedYears.length ? Math.max(...datedYears) : new Date().getFullYear();
   // Distinct clamping-force values in stock (tons), ascending — e.g. [50, 80,
@@ -440,6 +449,7 @@ function initMachinesListing() {
     const sort = sortChecked ? sortChecked.value : "force";
     const forceMin = forceMinEl ? FORCE_VALUES[Number(forceMinEl.value)] : FORCE_VALUES[0];
     const forceMax = forceMaxEl ? FORCE_VALUES[Number(forceMaxEl.value)] : FORCE_VALUES[lastIdx];
+    const q = searchEl ? searchEl.value.trim() : qParam;
 
     let list = MACHINES.filter(m => {
       if (make !== "all" && m.make !== make) return false;
@@ -447,6 +457,7 @@ function initMachinesListing() {
         const t = Math.round(m.clampingForceKN / 10);
         if (t < forceMin || t > forceMax) return false;
       }
+      if (q && !matchesMachineSearch(m, q)) return false;
       return true;
     });
     if (sort === "year") list = list.slice().sort((a, b) => machineYearValue(b, maxDatedYear) - machineYearValue(a, maxDatedYear));
@@ -461,7 +472,11 @@ function initMachinesListing() {
     } else {
       list.forEach(m => grid.appendChild(machineCard(m)));
     }
-    if (heading) heading.textContent = L().results(list.length);
+    if (heading) {
+      heading.textContent = q
+        ? `${lang() === "sl" ? "Rezultati iskanja za" : "Search results for"} "${q}" (${list.length})`
+        : L().results(list.length);
+    }
   }
 
   document.querySelectorAll('input[name="mk"], input[name="srt"]').forEach(input => {
@@ -472,6 +487,7 @@ function initMachinesListing() {
     const all = document.querySelector('input[name="mk"][value="all"]');
     if (all) all.checked = true;
     if (forceMinEl && forceMaxEl) { forceMinEl.value = 0; forceMaxEl.value = lastIdx; updateForceVisual(); }
+    if (searchEl) searchEl.value = "";
     render();
   });
 
@@ -539,22 +555,41 @@ function initPartSearchRedirect(formId) {
 }
 
 // ---------------------------------------------------------------- home hero search
+// The hero box's own placeholder promises both ("Machine type, model or part
+// number") — so route to whichever catalog actually has a match, machines
+// first, falling back to the spare-parts catalog (which also handles the
+// "matches nothing" case with its existing empty state).
 function initHeroSearch(formId) {
   const form = document.getElementById(formId);
   if (!form) return;
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const q = form.querySelector("input").value.trim();
-    window.location.href = "category.html" + (q ? "?q=" + encodeURIComponent(q) : "");
+    if (!q) { window.location.href = "category.html"; return; }
+    const target = MACHINES.some(m => matchesMachineSearch(m, q)) ? "machines.html" : "category.html";
+    window.location.href = target + "?q=" + encodeURIComponent(q);
   });
 }
 
 // ---------------------------------------------------------------- category listing page
+// Strips spaces/dashes before comparing, so "KM280" matches "KM 280 - 1400 C3"
+// and "D3330" matches "D3-330" — customers rarely type a model's exact
+// punctuation, and stripping it never turns a real match into a miss.
+function normalizeSearch(s) {
+  return (s || "").toLowerCase().replace(/[\s-]+/g, "");
+}
+
 function matchesPartSearch(part, term) {
-  const t = term.trim().toLowerCase();
+  const t = normalizeSearch(term);
   if (!t) return true;
-  const haystack = [part.name, part.manufacturer, part.model, part.serialNo, part.partNo, part.description, part.subcategory]
-    .join(" ").toLowerCase();
+  const haystack = normalizeSearch([part.name, part.manufacturer, part.model, part.serialNo, part.partNo, part.description, part.subcategory].join(" "));
+  return haystack.includes(t);
+}
+
+function matchesMachineSearch(machine, term) {
+  const t = normalizeSearch(term);
+  if (!t) return true;
+  const haystack = normalizeSearch([machine.name, machine.make, machine.category, machine.location, machine.description].join(" "));
   return haystack.includes(t);
 }
 
