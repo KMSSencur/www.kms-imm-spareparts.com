@@ -66,25 +66,33 @@
     <div class="filter-group">
       <div class="filter-title">ZNAMKA</div>
       <label class="radio"><input type="radio" name="mk" value="all" checked><span class="dot"></span>Vse znamke</label>
-      <label class="radio"><input type="radio" name="mk" value="KraussMaffei"><span class="dot"></span>KraussMaffei <span class="count">(13)</span></label>
+      <div id="make-options"></div>
     </div>
     <div class="filter-group">
       <div class="filter-title">SILA ZAPIRANJA</div>
-      <div class="ph" style="height:34px">razpon 50 – 1 450 t</div>
+      <div class="range-inputs">
+        <input type="number" id="force-min" class="input" aria-label="Najmanjša sila zapiranja">
+        <span class="range-sep">–</span>
+        <input type="number" id="force-max" class="input" aria-label="Največja sila zapiranja">
+      </div>
+      <div class="range-hint" id="force-hint"></div>
     </div>
     <div class="filter-group">
       <div class="filter-title">LETO</div>
-      <div class="ph" style="height:34px">razpon 1998 – 2024</div>
+      <div class="range-inputs">
+        <input type="number" id="year-min" class="input" aria-label="Najzgodnejše leto izdelave">
+        <span class="range-sep">–</span>
+        <input type="number" id="year-max" class="input" aria-label="Najnovejše leto izdelave">
+      </div>
+      <div class="range-hint" id="year-hint"></div>
     </div>
     <div class="filter-group">
       <div class="filter-title">STANJE</div>
-      <div class="tags-wrap">
-        <span class="tag tag-accent">Pregledano</span><span class="tag tag-outline">Kot je</span><span class="tag tag-outline">Obnovljeno</span>
-      </div>
+      <div class="tags-wrap" id="condition-filter"></div>
     </div>
     <div class="filter-group">
       <div class="filter-title">LOKACIJA</div>
-      <div class="ph" style="height:34px">izbor</div>
+      <select id="location-filter" class="input"></select>
     </div>
     <button id="clear-filters" class="btn btn-secondary btn-block">Počisti vse filtre</button>
   </aside>

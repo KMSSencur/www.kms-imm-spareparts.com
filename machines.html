@@ -66,25 +66,33 @@
     <div class="filter-group">
       <div class="filter-title">MAKE</div>
       <label class="radio"><input type="radio" name="mk" value="all" checked><span class="dot"></span>All makes</label>
-      <label class="radio"><input type="radio" name="mk" value="KraussMaffei"><span class="dot"></span>KraussMaffei <span class="count">(13)</span></label>
+      <div id="make-options"></div>
     </div>
     <div class="filter-group">
       <div class="filter-title">CLAMPING FORCE</div>
-      <div class="ph" style="height:34px">range 50 – 1 450 t</div>
+      <div class="range-inputs">
+        <input type="number" id="force-min" class="input" aria-label="Minimum clamping force">
+        <span class="range-sep">–</span>
+        <input type="number" id="force-max" class="input" aria-label="Maximum clamping force">
+      </div>
+      <div class="range-hint" id="force-hint"></div>
     </div>
     <div class="filter-group">
       <div class="filter-title">YEAR</div>
-      <div class="ph" style="height:34px">range 1998 – 2024</div>
+      <div class="range-inputs">
+        <input type="number" id="year-min" class="input" aria-label="Minimum production year">
+        <span class="range-sep">–</span>
+        <input type="number" id="year-max" class="input" aria-label="Maximum production year">
+      </div>
+      <div class="range-hint" id="year-hint"></div>
     </div>
     <div class="filter-group">
       <div class="filter-title">CONDITION</div>
-      <div class="tags-wrap">
-        <span class="tag tag-accent">Inspected</span><span class="tag tag-outline">As seen</span><span class="tag tag-outline">Rebuilt</span>
-      </div>
+      <div class="tags-wrap" id="condition-filter"></div>
     </div>
     <div class="filter-group">
       <div class="filter-title">LOCATION</div>
-      <div class="ph" style="height:34px">select</div>
+      <select id="location-filter" class="input"></select>
     </div>
     <button id="clear-filters" class="btn btn-secondary btn-block">Clear all filters</button>
   </aside>
