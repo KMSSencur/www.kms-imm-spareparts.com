@@ -96,9 +96,10 @@ const MACHINES = [
     clampingForceKN: 500,
     location: "Šenčur, SI",
     status: "Inspected",
+    image: "/images/mch-km50-160c1-wide.jpg",
     description: "Compact injection moulding machine including clamping unit, injection unit, control cabinet with operator panel and safety guarding.",
     price: "Price on request",
-    placeholder: true
+    placeholder: false
   },
   {
     id: "mch-km80-380pa",
