@@ -370,9 +370,15 @@ function initMachinesListing() {
 
   const datedYears = MACHINES.map(m => m.year).filter(y => typeof y === "number");
   const maxDatedYear = datedYears.length ? Math.max(...datedYears) : new Date().getFullYear();
-  const tons = MACHINES.filter(m => m.clampingForceKN).map(m => Math.round(m.clampingForceKN / 10));
-  const minTons = tons.length ? Math.min(...tons) : 0;
-  const maxTons = tons.length ? Math.max(...tons) : 0;
+  // Distinct clamping-force values in stock (tons), ascending — e.g. [50, 80,
+  // 100, 120, 130, 150, 250, 280, 300]. The slider below steps through these
+  // catalog values by index (like the KraussMaffei marketplace filter) rather
+  // than a plain linear tonnage scale, so the tick labels land exactly on
+  // values that exist in stock instead of an arbitrary even spacing.
+  const FORCE_VALUES = Array.from(new Set(
+    MACHINES.filter(m => m.clampingForceKN).map(m => Math.round(m.clampingForceKN / 10))
+  )).sort((a, b) => a - b);
+  const lastIdx = Math.max(FORCE_VALUES.length - 1, 0);
 
   // ---- MAKE (radio + live count) ----
   const makeOptionsEl = document.getElementById("make-options");
@@ -388,24 +394,52 @@ function initMachinesListing() {
     });
   }
 
-  // ---- CLAMPING FORCE range inputs, pre-filled with the live range ----
+  // ---- CLAMPING FORCE dual-handle slider (index into FORCE_VALUES) ----
   const forceMinEl = document.getElementById("force-min");
   const forceMaxEl = document.getElementById("force-max");
-  if (forceMinEl && forceMaxEl) {
-    forceMinEl.value = minTons; forceMaxEl.value = maxTons;
-    forceMinEl.addEventListener("change", render);
-    forceMaxEl.addEventListener("change", render);
-  }
+  const forceRangeEl = document.getElementById("force-slider-range");
   const forceHint = document.getElementById("force-hint");
-  if (forceHint) forceHint.textContent = `range ${minTons} – ${maxTons} t`;
+  const forceTicksEl = document.getElementById("force-ticks");
+
+  if (forceTicksEl) {
+    forceTicksEl.innerHTML = "";
+    FORCE_VALUES.forEach(v => {
+      const span = document.createElement("span");
+      span.textContent = v;
+      forceTicksEl.appendChild(span);
+    });
+  }
+
+  function updateForceVisual() {
+    if (!forceMinEl || !forceMaxEl) return;
+    const minPct = lastIdx ? (Number(forceMinEl.value) / lastIdx) * 100 : 0;
+    const maxPct = lastIdx ? (Number(forceMaxEl.value) / lastIdx) * 100 : 100;
+    if (forceRangeEl) { forceRangeEl.style.left = minPct + "%"; forceRangeEl.style.right = (100 - maxPct) + "%"; }
+    if (forceHint) forceHint.textContent = `range ${FORCE_VALUES[Number(forceMinEl.value)]} – ${FORCE_VALUES[Number(forceMaxEl.value)]} t`;
+  }
+
+  if (forceMinEl && forceMaxEl) {
+    forceMinEl.min = forceMaxEl.min = 0;
+    forceMinEl.max = forceMaxEl.max = lastIdx;
+    forceMinEl.value = 0; forceMaxEl.value = lastIdx;
+    forceMinEl.addEventListener("input", () => {
+      if (Number(forceMinEl.value) > Number(forceMaxEl.value)) forceMinEl.value = forceMaxEl.value;
+      updateForceVisual(); render();
+    });
+    forceMaxEl.addEventListener("input", () => {
+      if (Number(forceMaxEl.value) < Number(forceMinEl.value)) forceMaxEl.value = forceMinEl.value;
+      updateForceVisual(); render();
+    });
+    updateForceVisual();
+  }
 
   function render() {
     const makeChecked = document.querySelector('input[name="mk"]:checked');
     const make = makeChecked ? makeChecked.value : "all";
     const sortChecked = document.querySelector('input[name="srt"]:checked');
     const sort = sortChecked ? sortChecked.value : "force";
-    const forceMin = forceMinEl && forceMinEl.value !== "" ? Number(forceMinEl.value) : minTons;
-    const forceMax = forceMaxEl && forceMaxEl.value !== "" ? Number(forceMaxEl.value) : maxTons;
+    const forceMin = forceMinEl ? FORCE_VALUES[Number(forceMinEl.value)] : FORCE_VALUES[0];
+    const forceMax = forceMaxEl ? FORCE_VALUES[Number(forceMaxEl.value)] : FORCE_VALUES[lastIdx];
 
     let list = MACHINES.filter(m => {
       if (make !== "all" && m.make !== make) return false;
@@ -437,7 +471,7 @@ function initMachinesListing() {
   if (clearBtn) clearBtn.addEventListener("click", () => {
     const all = document.querySelector('input[name="mk"][value="all"]');
     if (all) all.checked = true;
-    if (forceMinEl && forceMaxEl) { forceMinEl.value = minTons; forceMaxEl.value = maxTons; }
+    if (forceMinEl && forceMaxEl) { forceMinEl.value = 0; forceMaxEl.value = lastIdx; updateForceVisual(); }
     render();
   });
 

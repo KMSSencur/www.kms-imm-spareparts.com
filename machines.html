@@ -70,11 +70,13 @@
     </div>
     <div class="filter-group">
       <div class="filter-title">CLAMPING FORCE</div>
-      <div class="range-inputs">
-        <input type="number" id="force-min" class="input" aria-label="Minimum clamping force">
-        <span class="range-sep">–</span>
-        <input type="number" id="force-max" class="input" aria-label="Maximum clamping force">
+      <div class="force-slider" id="force-slider">
+        <div class="force-slider-track"></div>
+        <div class="force-slider-range" id="force-slider-range"></div>
+        <input type="range" id="force-min" class="force-slider-input" aria-label="Minimum clamping force">
+        <input type="range" id="force-max" class="force-slider-input" aria-label="Maximum clamping force">
       </div>
+      <div class="force-slider-ticks" id="force-ticks"></div>
       <div class="range-hint" id="force-hint"></div>
     </div>
     <button id="clear-filters" class="btn btn-secondary btn-block">Clear all filters</button>

@@ -229,10 +229,39 @@ figure.duotone.blueprint { overflow: visible; }
 .filter-group .count { opacity: .5; font-size: 10px; margin-left: 4px; }
 .filter-group .tags-wrap { display: flex; gap: 6px; flex-wrap: wrap; }
 .filter-group select.input { appearance: none; }
-.filter-group .range-inputs { display: flex; align-items: center; gap: 6px; }
-.filter-group .range-inputs .input { width: 0; flex: 1 1 0; min-height: 32px; padding: 5px 8px; font-size: 13px; }
-.filter-group .range-sep { opacity: .4; font-size: 12px; }
 .filter-group .range-hint { margin-top: 6px; font: 400 10px "IBM Plex Mono", monospace; opacity: .5; }
+
+/* ---- dual-handle clamping-force slider: two overlapping <input type=range>,
+   pointer-events disabled except on each thumb, sitting over a track + a
+   filled "range" bar whose left/right % is set from JS. ---- */
+.force-slider { position: relative; height: 20px; margin-top: 4px; }
+.force-slider-track {
+  position: absolute; top: 50%; left: 0; right: 0; height: 3px;
+  background: var(--color-divider); border-radius: 2px; transform: translateY(-50%);
+}
+.force-slider-range {
+  position: absolute; top: 50%; height: 3px; background: var(--color-accent);
+  border-radius: 2px; transform: translateY(-50%);
+}
+.force-slider-input {
+  position: absolute; top: 0; left: 0; width: 100%; height: 20px; margin: 0;
+  background: none; appearance: none; -webkit-appearance: none; pointer-events: none;
+}
+.force-slider-input::-webkit-slider-runnable-track { appearance: none; -webkit-appearance: none; height: 20px; background: none; }
+.force-slider-input::-webkit-slider-thumb {
+  appearance: none; -webkit-appearance: none; pointer-events: auto; margin-top: 4px;
+  width: 12px; height: 12px; border-radius: 50%; cursor: pointer;
+  background: var(--color-accent); border: 2px solid var(--color-bg);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+.force-slider-input::-moz-range-track { height: 20px; background: none; border: none; }
+.force-slider-input::-moz-range-thumb {
+  pointer-events: auto; width: 12px; height: 12px; border-radius: 50%; cursor: pointer;
+  background: var(--color-accent); border: 2px solid var(--color-bg);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+.force-slider-ticks { display: flex; justify-content: space-between; margin-top: 4px; }
+.force-slider-ticks span { font: 400 9px "IBM Plex Mono", monospace; opacity: .4; }
 
 .listing-main { padding: var(--space-4) 22px; }
 .listing-toolbar { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-2); gap: var(--space-3); flex-wrap: wrap; }
