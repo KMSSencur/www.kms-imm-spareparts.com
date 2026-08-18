@@ -243,9 +243,10 @@ const MACHINES = [
     clampingForceKN: 3000,
     location: "Šenčur, SI",
     status: "Inspected",
+    image: "/images/mch-km300-1400c2-front.jpg",
     description: "Large-tonnage injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet.",
     price: "Price on request",
-    placeholder: true
+    placeholder: false
   }
 ];
 
