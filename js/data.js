@@ -230,7 +230,7 @@ const MACHINES = [
     status: "Inspected",
     image: "/images/mch-km280-1400c3-front.jpg",
     gallery: ["/images/mch-km280-1400c3-panel.jpg", "/images/mch-km280-1400c3-rear.jpg"],
-    description: "Large-tonnage injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet.",
+    description: "Machine KraussMaffei KM 280 - 1400 C3\nClamping force kN: 2800\nClearance between tie bars (h x v) mm: 630 x 630\nMould opening stroke mm: 820\nMould height min. mm: 330\nDaylight mm: 1150\nEjector stroke mm: 200\nEjector force, forward/backward kN: 58 / 28\nScrew diameter mm: 55\nL/D ratio: 25.8\nInjection pressure bar: 2380\nStroke volume cm³: 570\nInjection rate: 1425 cm³/s\nControl version: MC4\nScreen text: German, Slovene\nCondition: Checked, ready to work\n\nEquipment:\n• HPS-UN mixing screw\n• 3 x pneumatic valve on moving platen for blow function\n• Pressure accumulator for increased injection capacity\n• 2 x hydraulic core pull system on moving platen\n• 1 x pneumatic core pull on moving platen\n• Potential-free contact for signal \"plasticizing\" on socket HAN 3 A\n• Signal interface for handling unit acc. to EUROMAP 12\n• PV-closed loop control, inj. speed, holding and back pressure",
     price: "Price on request",
     placeholder: false
   },
