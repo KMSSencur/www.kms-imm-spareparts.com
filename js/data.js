@@ -166,11 +166,11 @@ const MACHINES = [
     placeholder: true
   },
   {
-    id: "mch-km130-750cx-2006",
-    name: "KM 130 - 750 CX",
+    id: "mch-km130-380cx",
+    name: "KM 130 - 380 CX",
     category: "Injection moulding",
     make: "KraussMaffei",
-    year: 2006,
+    year: 2008,
     clampingForceKN: 1300,
     location: "Šenčur, SI",
     status: "Inspected",
