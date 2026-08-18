@@ -203,8 +203,8 @@ const MACHINES = [
     clampingForceKN: 2500,
     location: "Šenčur, SI",
     status: "New",
-    image: "/images/mch-km250-1400pa-wrapped.jpg",
-    gallery: ["/images/mch-km250-1400pa-render.jpg"],
+    image: "/images/mch-km250-1400pa-render.jpg",
+    gallery: ["/images/mch-km250-1400pa-wrapped.jpg"],
     description: "Large-tonnage injection moulding machine including clamping unit, injection unit, hydraulic power pack, control cabinet and safety guarding.",
     price: "Price on request",
     placeholder: false
