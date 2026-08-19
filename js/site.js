@@ -794,6 +794,22 @@ function initMachineDetail() {
   document.title = m.name + " — KMS";
   const setText = (sel, text) => { const n = root.querySelector(sel); if (n) n.textContent = text; };
 
+  // Breadcrumb reflects where this item actually lives — Other plastic
+  // equipment items link back through their category, not "Machines".
+  const breadcrumbEl = document.getElementById("detail-breadcrumb");
+  if (breadcrumbEl) {
+    const home = lang() === "sl" ? "/sl/index.html" : "/index.html";
+    const homeLabel = lang() === "sl" ? "Domov" : "Home";
+    if (m.category === "Other equipment") {
+      const oeLabel = lang() === "sl" ? "Druga plastična oprema" : "Other plastic equipment";
+      const catLabel = otherEquipmentCategoryLabel(m.subcategory, lang());
+      breadcrumbEl.innerHTML = `<a href="${home}">${homeLabel}</a> / <a href="other-equipment.html">${oeLabel}</a> / ${catLabel}`;
+    } else {
+      const machinesLabel = lang() === "sl" ? "Stroji" : "Machines";
+      breadcrumbEl.innerHTML = `<a href="${home}">${homeLabel}</a> / <a href="machines.html">${machinesLabel}</a>`;
+    }
+  }
+
   // All of this machine's photos, main photo first — the lightbox opened
   // from any of them (or a thumbnail) can page through the full set.
   const allPhotos = [m.image, ...(m.gallery || [])].filter(Boolean);
