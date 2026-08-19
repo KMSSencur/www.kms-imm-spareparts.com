@@ -269,17 +269,19 @@ const MACHINES = [
   // ---- other plastic equipment (sample listings, one per category) ----
   {
     id: "oeq-robots-01",
-    name: "Sample robot",
+    name: "Linear robot KraussMaffei LRX100 S",
     category: "Other equipment",
     subcategory: "robots",
-    make: "Other",
+    make: "KraussMaffei",
     year: null,
     clampingForceKN: null,
     location: "Šenčur, SI",
     status: "As seen",
-    description: "Placeholder listing — replace with a real item from your own inventory.",
+    image: "/images/oeq-robots-01-wide.jpg",
+    gallery: ["/images/oeq-robots-01-cabinet.jpg", "/images/oeq-robots-01-axis.jpg", "/images/oeq-robots-01-connector.jpg"],
+    description: "Robot equipment:\n• Software EasyControl\n• Horizontal stroke: 2500 mm\n• Vertical stroke: 1200 mm\n• Demolding stroke: 550 mm\n• Maximum payload: 10 kg\n• Vacuum circuit 2 x\n• Pressure circuit 2 x\n• Rotation pneumatic R1 (0 - 90°) and pneumatic R2 (0 - 90° - 180°)\n• 16 x digital inputs in cabinet\n• 8 x digital outputs in cabinet\n• Early start function\n• Indexing control of conveyor\n• Safety Pack; soft function\n• Reiser\n• Interface EUROMAP 67",
     price: "Price on request",
-    placeholder: true
+    placeholder: false
   },
   {
     id: "oeq-tempering-01",
