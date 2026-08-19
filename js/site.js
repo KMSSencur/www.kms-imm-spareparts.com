@@ -738,6 +738,19 @@ function initPartDetail() {
   document.title = part.name + " — KMS";
   const setText = (sel, text) => { const n = root.querySelector(sel); if (n) n.textContent = text; };
 
+  // Breadcrumb reflects the part's actual category (and subcategory, when it
+  // has one) instead of a generic "Catalog" link.
+  const breadcrumbEl = document.getElementById("detail-breadcrumb");
+  if (breadcrumbEl) {
+    const home = lang() === "sl" ? "/sl/index.html" : "/index.html";
+    const homeLabel = lang() === "sl" ? "Domov" : "Home";
+    const spareLabel = lang() === "sl" ? "Rezervni deli" : "Spare parts";
+    const subLabel = part.subcategory ? partSubcategoryLabel(part.category, part.subcategory, lang()) : null;
+    const thirdLabel = subLabel || partCategoryLabel(part.category, lang());
+    const thirdHref = "category.html?cat=" + encodeURIComponent(part.category) + (part.subcategory ? "&sub=" + encodeURIComponent(part.subcategory) : "");
+    breadcrumbEl.innerHTML = `<a href="${home}">${homeLabel}</a> / <a href="spare-parts.html">${spareLabel}</a> / <a href="${thirdHref}">${thirdLabel}</a>`;
+  }
+
   setText("[data-field='kicker']", partCategoryLabel(part.category, lang()) + " · " + (partSubcategoryLabel(part.category, part.subcategory, lang()) || part.subcategory));
   setText("[data-field='title']", part.name);
   setText("[data-field='partno']", `${L().partNoLabel} ${part.partNo || "—"}`);
