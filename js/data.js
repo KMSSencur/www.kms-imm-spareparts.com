@@ -40,6 +40,22 @@ function partSubcategoryLabel(catKey, subKey, lang) {
   return subKey || "";
 }
 
+// "Browse by category" taxonomy for the Other plastic equipment page — mirrors
+// PART_CATEGORIES' shape. Machines in this category (category: "Other
+// equipment") carry a matching `subcategory` value (e.g. "robots").
+const OTHER_EQUIPMENT_CATEGORIES = [
+  { key: "robots", label: "Robots", labelSl: "Roboti" },
+  { key: "tempering", label: "Tempering control units", labelSl: "Temperirne enote" },
+  { key: "dryers", label: "Dryers", labelSl: "Sušilniki" },
+  { key: "granulators", label: "Granulators", labelSl: "Mlini" },
+  { key: "other", label: "Other", labelSl: "Drugo" }
+];
+function otherEquipmentCategoryLabel(key, lang) {
+  const cat = OTHER_EQUIPMENT_CATEGORIES.find(c => c.key === key);
+  if (!cat) return key;
+  return lang === "sl" ? cat.labelSl : cat.label;
+}
+
 // ---- machines --------------------------------------------------------------
 // Sample listings — models and specs are the illustrative examples from the
 // design handoff (KraussMaffei-derived, for layout purposes). Replace with

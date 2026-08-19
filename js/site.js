@@ -524,7 +524,13 @@ function initOtherEquipmentListing() {
   const grid = document.getElementById("other-equipment-grid");
   if (!grid) return;
   const heading = document.getElementById("other-equipment-count");
-  const list = MACHINES.filter(m => m.category === "Other equipment");
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get("q") || "";
+  const sub = params.get("sub") || "";
+
+  let list = MACHINES.filter(m => m.category === "Other equipment");
+  if (q) list = list.filter(m => matchesMachineSearch(m, q));
+  else if (sub) list = list.filter(m => m.subcategory === sub);
 
   grid.innerHTML = "";
   if (list.length === 0) {
@@ -535,7 +541,37 @@ function initOtherEquipmentListing() {
   } else {
     list.forEach(m => grid.appendChild(machineCard(m)));
   }
-  if (heading) heading.textContent = L().results(list.length);
+  if (heading) {
+    if (q) heading.textContent = `${lang() === "sl" ? "Rezultati iskanja za" : "Search results for"} "${q}" (${list.length})`;
+    else if (sub) heading.textContent = `${otherEquipmentCategoryLabel(sub, lang())} (${list.length})`;
+    else heading.textContent = L().results(list.length);
+  }
+}
+
+// ---------------------------------------------------------------- other plastic equipment: category browser
+function initOtherEquipmentCategoryBrowser(containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = "";
+  OTHER_EQUIPMENT_CATEGORIES.forEach(cat => {
+    const count = MACHINES.filter(m => m.category === "Other equipment" && m.subcategory === cat.key).length;
+    const row = document.createElement("a");
+    row.className = "series-row";
+    row.href = "other-equipment.html?sub=" + encodeURIComponent(cat.key);
+    row.innerHTML = `<span class="nl series-name">${lang() === "sl" ? cat.labelSl : cat.label}</span><span class="series-count">${count} · ›</span>`;
+    el.appendChild(row);
+  });
+}
+
+// ---------------------------------------------------------------- other plastic equipment: search box
+function initOtherEquipmentSearchRedirect(formId) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const q = form.querySelector("input").value.trim();
+    window.location.href = "other-equipment.html" + (q ? "?q=" + encodeURIComponent(q) : "");
+  });
 }
 
 // ---------------------------------------------------------------- spare parts: category browser
