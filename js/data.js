@@ -264,6 +264,78 @@ const MACHINES = [
     description: "Machine KraussMaffei KM 300 - 1400 C2\nClamping force kN: 3000\nClearance between tie bars (h x v) mm: 630 x 630\nMould opening stroke mm: 820\nMould height min. mm: 330\nDaylight mm: 1150\nEjector stroke mm: 200\nEjector force, forward/backward kN: 58 / 28\nScrew diameter mm: 55\nL/D ratio: 23.0\nInjection pressure bar: 2380\nStroke volume cm³: 570\nControl version: MC4\nScreen text: German, Slovene\nCondition: Checked, ready to work\n\nEquipment:\n• Wear resistant plasticizer, surcharge\n• 2 x pneumatic valve on moving platen for blow function\n• Pressure accumulator for increased injection capacity\n• 1 x hydraulic core pull system on moving platen\n• Socket combination: 1 x 16 A, 2 x single phase\n• Potential-free contact for signal \"plasticizing\" on socket HAN 3 A\n• PV-closed loop control, inj. speed, holding and back pressure",
     price: "Price on request",
     placeholder: false
+  },
+
+  // ---- other plastic equipment (sample listings, one per category) ----
+  {
+    id: "oeq-robots-01",
+    name: "Sample robot",
+    category: "Other equipment",
+    subcategory: "robots",
+    make: "Other",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "As seen",
+    description: "Placeholder listing — replace with a real item from your own inventory.",
+    price: "Price on request",
+    placeholder: true
+  },
+  {
+    id: "oeq-tempering-01",
+    name: "Sample tempering control unit",
+    category: "Other equipment",
+    subcategory: "tempering",
+    make: "Other",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "As seen",
+    description: "Placeholder listing — replace with a real item from your own inventory.",
+    price: "Price on request",
+    placeholder: true
+  },
+  {
+    id: "oeq-dryers-01",
+    name: "Sample dryer",
+    category: "Other equipment",
+    subcategory: "dryers",
+    make: "Other",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "As seen",
+    description: "Placeholder listing — replace with a real item from your own inventory.",
+    price: "Price on request",
+    placeholder: true
+  },
+  {
+    id: "oeq-granulators-01",
+    name: "Sample granulator",
+    category: "Other equipment",
+    subcategory: "granulators",
+    make: "Other",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "As seen",
+    description: "Placeholder listing — replace with a real item from your own inventory.",
+    price: "Price on request",
+    placeholder: true
+  },
+  {
+    id: "oeq-other-01",
+    name: "Sample equipment",
+    category: "Other equipment",
+    subcategory: "other",
+    make: "Other",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "As seen",
+    description: "Placeholder listing — replace with a real item from your own inventory.",
+    price: "Price on request",
+    placeholder: true
   }
 ];
 

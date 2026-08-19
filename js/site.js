@@ -370,6 +370,11 @@ function initMachinesListing() {
   if (!grid) return;
   const heading = document.getElementById("machines-count");
 
+  // Other plastic equipment (robots, dryers, granulators, etc.) has its own
+  // dedicated page/filters and shouldn't appear (or inflate MAKE counts) on
+  // the main Machines listing.
+  const CORE_MACHINES = MACHINES.filter(m => m.category !== "Other equipment");
+
   // ---- free-text search, pre-filled from ?q= (the home hero search lands
   // here when the query matches a machine) ----
   const qParam = new URLSearchParams(window.location.search).get("q") || "";
@@ -379,7 +384,7 @@ function initMachinesListing() {
     searchEl.addEventListener("input", render);
   }
 
-  const datedYears = MACHINES.map(m => m.year).filter(y => typeof y === "number");
+  const datedYears = CORE_MACHINES.map(m => m.year).filter(y => typeof y === "number");
   const maxDatedYear = datedYears.length ? Math.max(...datedYears) : new Date().getFullYear();
   // Distinct clamping-force values in stock (tons), ascending — e.g. [50, 80,
   // 100, 120, 130, 150, 250, 280, 300]. The slider below steps through these
@@ -387,7 +392,7 @@ function initMachinesListing() {
   // than a plain linear tonnage scale, so the tick labels land exactly on
   // values that exist in stock instead of an arbitrary even spacing.
   const FORCE_VALUES = Array.from(new Set(
-    MACHINES.filter(m => m.clampingForceKN).map(m => Math.round(m.clampingForceKN / 10))
+    CORE_MACHINES.filter(m => m.clampingForceKN).map(m => Math.round(m.clampingForceKN / 10))
   )).sort((a, b) => a - b);
   const lastIdx = Math.max(FORCE_VALUES.length - 1, 0);
 
@@ -396,7 +401,7 @@ function initMachinesListing() {
   if (makeOptionsEl) {
     makeOptionsEl.innerHTML = "";
     MAKE_OPTIONS.forEach(make => {
-      const count = MACHINES.filter(m => m.make === make).length;
+      const count = CORE_MACHINES.filter(m => m.make === make).length;
       const label = document.createElement("label");
       label.className = "radio";
       const name = make === "Other" ? L().otherMake : make;
@@ -453,7 +458,7 @@ function initMachinesListing() {
     const forceMax = forceMaxEl ? FORCE_VALUES[Number(forceMaxEl.value)] : FORCE_VALUES[lastIdx];
     const q = searchEl ? searchEl.value.trim() : qParam;
 
-    let list = MACHINES.filter(m => {
+    let list = CORE_MACHINES.filter(m => {
       if (make !== "all" && m.make !== make) return false;
       if (m.clampingForceKN) {
         const t = Math.round(m.clampingForceKN / 10);
@@ -501,8 +506,9 @@ function initMachinesTable() {
   const tbody = document.getElementById("machines-tbody");
   if (!tbody) return;
   tbody.innerHTML = "";
+  const coreMachines = MACHINES.filter(m => m.category !== "Other equipment");
   const statusTagClass = { Inspected: "tag-accent", Rebuilt: "tag-accent-2", "As seen": "tag-neutral" };
-  MACHINES.forEach(m => {
+  coreMachines.forEach(m => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td class="thumb-cell"><div class="ph ${m.image ? "has-photo" : "duotone"}" style="width:100%;height:100%">${m.image ? `<img src="${m.image}" alt="${m.name}" loading="lazy">` : "photo"}</div></td>
@@ -516,7 +522,7 @@ function initMachinesTable() {
     tbody.appendChild(tr);
   });
   const showing = document.getElementById("table-showing");
-  if (showing) showing.textContent = L().showing(MACHINES.length, MACHINES.length);
+  if (showing) showing.textContent = L().showing(coreMachines.length, coreMachines.length);
 }
 
 // ---------------------------------------------------------------- other plastic equipment listing (cards)
@@ -637,9 +643,10 @@ function initPartSearchRedirect(formId) {
 
 // ---------------------------------------------------------------- home hero search
 // The hero box's own placeholder promises both ("Machine type, model or part
-// number") — so route to whichever catalog actually has a match, machines
-// first, falling back to the spare-parts catalog (which also handles the
-// "matches nothing" case with its existing empty state).
+// number") — so route to whichever catalog actually has a match: core
+// machines first, then other plastic equipment, falling back to the
+// spare-parts catalog (which also handles the "matches nothing" case with
+// its existing empty state).
 function initHeroSearch(formId) {
   const form = document.getElementById(formId);
   if (!form) return;
@@ -647,7 +654,9 @@ function initHeroSearch(formId) {
     e.preventDefault();
     const q = form.querySelector("input").value.trim();
     if (!q) { window.location.href = "category.html"; return; }
-    const target = MACHINES.some(m => matchesMachineSearch(m, q)) ? "machines.html" : "category.html";
+    let target = "category.html";
+    if (MACHINES.some(m => m.category !== "Other equipment" && matchesMachineSearch(m, q))) target = "machines.html";
+    else if (MACHINES.some(m => m.category === "Other equipment" && matchesMachineSearch(m, q))) target = "other-equipment.html";
     window.location.href = target + "?q=" + encodeURIComponent(q);
   });
 }
