@@ -343,6 +343,21 @@ const MACHINES = [
     placeholder: true
   },
   {
+    id: "oeq-granulators-02",
+    name: "High-speed granulator MATSUI SMG-030",
+    category: "Other equipment",
+    subcategory: "granulators",
+    make: "Matsui",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "New",
+    image: "/images/oeq-granulators-02-wide.jpg",
+    description: "Motor power: 2.2 kW\nNumber of rotating blades: 3\nNumber of fixed blades: 2\nSieve with 8 mm diameter holes\nMaximum capacity: 30 kg/hour\nGrinding chamber size: 10 L\nRotational speed: 480 revolutions per minute\nInput chamber dimensions:\n• Length = 240 mm\n• Width = 245 mm\nHeight of the feed chamber: 1500 mm\nDimensions of the grinding chamber:\n• Length = 240 mm\n• Rotor width = 170 mm\nWeight of the granulator: 254 kg",
+    price: "Price on request",
+    placeholder: false
+  },
+  {
     id: "oeq-other-01",
     name: "Sample equipment",
     category: "Other equipment",
