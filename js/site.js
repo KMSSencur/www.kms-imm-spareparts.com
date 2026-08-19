@@ -53,7 +53,8 @@ const LABELS = {
     chooseFile: "Choose a file",
     machinePhoto: "machine photo",
     partPhoto: "part photograph",
-    otherMake: "Other"
+    otherMake: "Other",
+    noOtherEquipment: "We don't have any other plastic equipment listed online yet — call us or send an enquiry and we'll check current stock for you."
   },
   sl: {
     priceOnRequest: "Cena na zahtevo",
@@ -83,7 +84,8 @@ const LABELS = {
     chooseFile: "Izberite datoteko",
     machinePhoto: "fotografija stroja",
     partPhoto: "fotografija dela",
-    otherMake: "Drugo"
+    otherMake: "Drugo",
+    noOtherEquipment: "Trenutno na spletu še nimamo objavljene druge plastične opreme — pokličite nas ali pošljite povpraševanje in preverimo trenutno zalogo."
   }
 };
 
@@ -515,6 +517,25 @@ function initMachinesTable() {
   });
   const showing = document.getElementById("table-showing");
   if (showing) showing.textContent = L().showing(MACHINES.length, MACHINES.length);
+}
+
+// ---------------------------------------------------------------- other plastic equipment listing
+function initOtherEquipmentListing() {
+  const grid = document.getElementById("other-equipment-grid");
+  if (!grid) return;
+  const heading = document.getElementById("other-equipment-count");
+  const list = MACHINES.filter(m => m.category === "Other equipment");
+
+  grid.innerHTML = "";
+  if (list.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "text-muted";
+    empty.textContent = L().noOtherEquipment;
+    grid.appendChild(empty);
+  } else {
+    list.forEach(m => grid.appendChild(machineCard(m)));
+  }
+  if (heading) heading.textContent = L().results(list.length);
 }
 
 // ---------------------------------------------------------------- spare parts: category browser

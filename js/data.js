@@ -50,7 +50,8 @@ function partSubcategoryLabel(catKey, subKey, lang) {
 const MACHINE_CATEGORY_SL = {
   "Injection moulding": "Brizganje plastike",
   "Extrusion": "Ekstruzija",
-  "Automation": "Avtomatizacija"
+  "Automation": "Avtomatizacija",
+  "Other equipment": "Druga oprema"
 };
 function machineCategoryLabel(m, lang) {
   return (lang === "sl" && MACHINE_CATEGORY_SL[m.category]) || m.category;
