@@ -834,6 +834,12 @@ function initMachineDetail() {
   setText("[data-field='meta']", [m.make, m.year].filter(Boolean).join(" · "));
   setText("[data-field='year-label']", lang() === "sl" ? "Proizvodno leto" : "Production year");
   setText("[data-field='year-value']", m.year);
+  // Clamping force isn't a meaningful spec for other plastic equipment
+  // (robots, dryers, tempering units, granulators) — hide the whole row
+  // there rather than showing a permanent "—".
+  const forceLabelEl = root.querySelector("[data-field='force-label']");
+  const forceRow = forceLabelEl ? forceLabelEl.closest("tr") : null;
+  if (forceRow) forceRow.style.display = m.category === "Other equipment" ? "none" : "";
   setText("[data-field='force-label']", lang() === "sl" ? "Sila zapiranja" : "Clamping force");
   setText("[data-field='force-value']", m.clampingForceKN ? fmtForceTons(m.clampingForceKN) : "—");
   setText("[data-field='location-label']", lang() === "sl" ? "Lokacija" : "Location");

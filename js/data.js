@@ -287,10 +287,10 @@ const MACHINES = [
     category: "Other equipment",
     subcategory: "tempering",
     make: "Single",
-    year: null,
+    year: 2024,
     clampingForceKN: null,
     location: "Šenčur, SI",
-    status: "As seen",
+    status: "New",
     description: "Equipment description:\nMedium: water\nMax. temperature: 200 °C\nHeating capacity: 18 kW\nCooling capacity: 120 kW\nMax. flow rate: 73 l/min\nMax. pressure: 3.7 bar\nInterface for 20 mA\nInterface Euromap 82.1 (OPC UA)",
     price: "Price on request",
     placeholder: false
