@@ -497,9 +497,14 @@ const PARTS = [
     leadTime: "On request", description: "Placeholder listing — replace with a real hydraulic valve from your own inventory.", price: "Price on request", placeholder: true },
 
   // Other
-  { id: "prt-oth-001", name: "Sample Other Item", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000005",
-    category: "other", subcategory: "Miscellaneous", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true }
+  { id: "prt-oth-001", name: "Filter 51 525 75 784", partNo: "51 525 75 784", manufacturer: "Mann+Hummel", model: "51 525 75 784", serialNo: "SN-40/01",
+    category: "other", subcategory: "Miscellaneous", condition: "New", fits: "Hydraulic filter housing — max. pressure 40 bar, max. temperature 120 °C, volume 2 l — confirm fitment with our team.",
+    leadTime: "From stock", description: "Mann+Hummel hydraulic filter housing, type 51 525 75 784. Max. pressure: 40 bar. Max. temperature: 120 °C. Volume: 2 l. Filter insert: 51 525 55 274.",
+    image: "/images/1_filter 1.jpg", gallery: ["/images/1_filter 2.jpg"], price: "Price on request", placeholder: false },
+  { id: "prt-oth-002", name: "Filter G 07 XPA", partNo: "G 07 XPA", manufacturer: "Zander", model: "G 07 XPA", serialNo: "—",
+    category: "other", subcategory: "Miscellaneous", condition: "New", fits: "Compressed-air filter unit — max. pressure 16 bar, max. temperature 1–40 °C, volume 0.65 l — confirm fitment with our team.",
+    leadTime: "From stock", description: "Zander compressed-air filter unit, model G 07 XPA. Filter element: 1140 XP. Max. pressure: 16 bar. Max. temperature: 1–40 °C. Volume: 0.65 l.",
+    image: "/images/2_filter 1.jpg", gallery: ["/images/2_filter 2.jpg"], price: "Price on request", placeholder: false }
 ];
 
 function findPartById(id) { return PARTS.find(p => p.id === id) || null; }

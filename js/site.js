@@ -302,8 +302,16 @@ function partCard(p) {
   a.appendChild(corners());
 
   const ph = document.createElement("div");
-  ph.className = "ph duotone";
-  ph.textContent = L().partPhoto;
+  // Real photos show at their original resolution and colour (no duotone
+  // tint) so buyers see the actual part; only placeholders get the tint.
+  ph.className = p.image ? "ph has-photo" : "ph duotone";
+  if (p.image) {
+    const img = document.createElement("img");
+    img.src = p.image; img.alt = p.name; img.loading = "lazy";
+    ph.appendChild(img);
+  } else {
+    ph.textContent = L().partPhoto;
+  }
   a.appendChild(ph);
 
   const kicker = document.createElement("div");
@@ -751,6 +759,41 @@ function initPartDetail() {
     breadcrumbEl.innerHTML = `<a href="${home}">${homeLabel}</a> / <a href="spare-parts.html">${spareLabel}</a> / <a href="${thirdHref}">${thirdLabel}</a>`;
   }
 
+  // All of this part's photos, main photo first — the lightbox opened from
+  // any of them (or a thumbnail) can page through the full set.
+  const allPhotos = [part.image, ...(part.gallery || [])].filter(Boolean);
+
+  const photoText = root.querySelector("[data-field='photo-text']");
+  if (part.image && photoText) {
+    const img = document.createElement("img");
+    img.src = part.image; img.alt = part.name;
+    photoText.replaceWith(img);
+    const photoWrap = root.querySelector(".main-photo");
+    if (photoWrap) {
+      photoWrap.classList.remove("duotone");
+      photoWrap.classList.add("has-photo");
+      photoWrap.addEventListener("click", () => openLightbox(allPhotos, 0, part.name));
+    }
+  } else if (photoText) {
+    photoText.textContent = L().partPhoto;
+  }
+
+  // Thumb row only ever shows real photos — no placeholder slots for
+  // photos that don't exist yet.
+  const thumbRow = root.querySelector(".thumb-row");
+  if (thumbRow) {
+    thumbRow.innerHTML = "";
+    (part.gallery || []).forEach((src, i) => {
+      const thumb = document.createElement("div");
+      thumb.className = "ph has-photo";
+      const img = document.createElement("img");
+      img.src = src; img.alt = part.name + " " + (i + 2);
+      thumb.appendChild(img);
+      thumb.addEventListener("click", () => openLightbox(allPhotos, i + 1, part.name));
+      thumbRow.appendChild(thumb);
+    });
+  }
+
   setText("[data-field='kicker']", partCategoryLabel(part.category, lang()) + " · " + (partSubcategoryLabel(part.category, part.subcategory, lang()) || part.subcategory));
   setText("[data-field='title']", part.name);
   setText("[data-field='partno']", `${L().partNoLabel} ${part.partNo || "—"}`);
@@ -789,8 +832,6 @@ function initPartDetail() {
   const form = document.getElementById("enquiry-form");
   if (form) {
     form.addEventListener("submit", (e) => {
-      // No required fields on this form (quantity/serial are both
-      // optional) — just attach context and let it submit natively.
       prepareEnquirySubmit(form, "Price request: " + part.name, "Part: " + part.name + " (" + (part.partNo || part.id) + ") — " + window.location.href);
     });
   }

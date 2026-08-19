@@ -65,11 +65,9 @@
   <div class="detail-grid">
     <div class="detail-media">
       <div class="ph duotone blueprint main-photo">
-        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>fotografija dela
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><span data-field="photo-text">fotografija dela</span>
       </div>
-      <div class="thumb-row">
-        <div class="ph">1</div><div class="ph">2</div><div class="ph">3</div>
-      </div>
+      <div class="thumb-row"></div>
     </div>
     <div class="detail-content">
       <div class="kicker" data-field="kicker"></div>
@@ -94,8 +92,12 @@
         <input type="hidden" name="_next" value="">
         <input type="hidden" name="_captcha" value="false">
         <div class="row">
-          <input class="input qty" name="quantity" placeholder="Količina" type="number" min="1" value="1">
-          <input class="input" name="machine_serial" placeholder="Serijska št. stroja (neobvezno)">
+          <input class="input" name="name" placeholder="Vaše ime">
+          <input class="input" name="phone" type="tel" placeholder="Telefon">
+          <input class="input" name="email" type="email" placeholder="E-pošta">
+        </div>
+        <div class="row">
+          <textarea class="input" name="message" placeholder="Sporočilo" style="min-height:70px;width:100%"></textarea>
         </div>
         <button class="btn btn-primary btn-block" type="submit" data-field="request-price-btn"></button>
         <div class="or-call" data-field="or-call"></div>
