@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Other Plastic Equipment — KMS Used Machines</title>
-<meta name="description" content="Robots, tempering control units, dryers, granulators and other plastics-processing equipment. Browse by category or send us a photo of what you need.">
+<meta name="description" content="Browse used robots, tempering control units, dryers, granulators and other plastics-processing equipment in stock at KMS.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -61,58 +61,36 @@
   </div>
 </div>
 
-<main class="container" style="padding-top:28px;padding-bottom:0">
-  <h1>Other plastic equipment</h1>
-  <p class="lead" style="margin:0 0 20px;max-width:520px;text-align:left">Robots, tempering control units, dryers, granulators and other plastics-processing equipment. If you do not know the exact model, a photo is usually enough.</p>
+<main class="container listing-layout">
+  <aside class="filter-rail">
+    <div class="filter-group">
+      <div class="filter-title">BROWSE BY CATEGORY</div>
+      <label class="radio"><input type="radio" name="oecat" value="all" checked><span class="dot"></span>All categories</label>
+      <div id="other-equipment-cat-options"></div>
+    </div>
+    <button id="other-equipment-clear-filters" class="btn btn-secondary btn-block">Clear all filters</button>
+  </aside>
 
-  <form id="other-equipment-search-form" class="blueprint search-panel" style="margin:0 0 22px;text-align:left;max-width:none">
-    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-    <div class="row">
-      <input class="input" placeholder="Equipment type or model — e.g. robot, dryer, granulator">
-      <button class="btn btn-primary" type="submit">Check availability</button>
+  <div class="listing-main">
+    <div class="field" style="max-width:420px;margin-bottom:14px">
+      <label for="other-equipment-search">Search equipment</label>
+      <input id="other-equipment-search" class="input" type="search" placeholder="Equipment type, model, make or description...">
     </div>
-    <div class="mono" style="font-size:10px;opacity:.55;margin-top:8px">TIP — SEARCH ALSO MATCHES MAKE AND DESCRIPTION</div>
-  </form>
-
-  <div class="route-grid" style="margin-bottom:28px">
-    <div class="blueprint" style="padding:18px">
-      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      <div class="kicker">Route 2</div>
-      <h2 style="font-size:20px;margin:6px 0 10px">Browse by category</h2>
-      <div id="other-equipment-categories" class="series-list"></div>
+    <div class="listing-toolbar">
+      <h1>Other plastic equipment</h1>
+      <div class="sort-row">
+        <span class="sort-label">SORT</span>
+        <span class="seg">
+          <label class="seg-opt"><input type="radio" name="oesrt" value="newest" checked>Newest</label>
+          <label class="seg-opt"><input type="radio" name="oesrt" value="year">Year</label>
+        </span>
+      </div>
     </div>
-    <div class="blueprint" style="padding:18px;display:flex;flex-direction:column">
-      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      <div class="kicker">Route 3</div>
-      <h2 style="font-size:20px;margin:6px 0 10px">Send a photo or a list</h2>
-      <form id="other-equipment-photo-form" style="display:flex;flex-direction:column;flex:1" method="POST" action="https://formsubmit.co/marko.lamovsek@kms.si" enctype="multipart/form-data">
-        <input type="hidden" name="_subject" value="Other plastic equipment enquiry">
-        <input type="hidden" name="context" value="">
-        <input type="hidden" name="_next" value="">
-        <input type="hidden" name="_captcha" value="false">
-        <label class="ph dropzone">
-          <input type="file" id="other-equipment-file-input" name="attachment" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx" style="display:none">
-          <span data-field="dropzone-text">drop zone — photo of the equipment, a scan of a list, or a spreadsheet</span>
-        </label>
-        <div class="row" style="gap:8px;margin-top:12px">
-          <input class="input" name="name" placeholder="Your name">
-          <input class="input" name="phone" type="tel" placeholder="Phone">
-          <input class="input" name="email" type="email" placeholder="Email">
-        </div>
-        <div class="row" style="gap:8px">
-          <textarea class="input" name="message" placeholder="Message — e.g. what equipment you need" style="min-height:70px;width:100%"></textarea>
-        </div>
-        <button class="btn btn-primary" type="submit">Send</button>
-        <div class="mono" style="font-size:10px;opacity:.55;margin-top:8px">WE ANSWER WITHIN TWO WORKING DAYS</div>
-        <div class="enquiry-confirm"></div>
-      </form>
+    <div class="chips-row">
+      <span id="other-equipment-count" class="result-count"></span>
     </div>
+    <div id="other-equipment-grid" class="card-grid cols-3"></div>
   </div>
-
-  <div class="chips-row">
-    <span id="other-equipment-count" class="result-count"></span>
-  </div>
-  <div id="other-equipment-grid" class="card-grid cols-3" style="margin-bottom:32px"></div>
 </main>
 
 <section class="contact-band">
@@ -140,11 +118,6 @@
 
 <script src="/js/data.js"></script>
 <script src="/js/site.js"></script>
-<script>
-  initOtherEquipmentCategoryBrowser("other-equipment-categories");
-  initOtherEquipmentSearchRedirect("other-equipment-search-form");
-  initGenericEnquiryForm("other-equipment-photo-form", "Other plastic equipment enquiry", ["name", "phone", "email"]);
-  initOtherEquipmentListing();
-</script>
+<script>initOtherEquipmentListing();</script>
 </body>
 </html>

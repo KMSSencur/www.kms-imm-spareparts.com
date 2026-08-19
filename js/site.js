@@ -519,59 +519,83 @@ function initMachinesTable() {
   if (showing) showing.textContent = L().showing(MACHINES.length, MACHINES.length);
 }
 
-// ---------------------------------------------------------------- other plastic equipment listing
+// ---------------------------------------------------------------- other plastic equipment listing (cards)
+// Same layout/behavior as initMachinesListing (search box, sort, card grid,
+// clear-all), but the sidebar filters by OTHER_EQUIPMENT_CATEGORIES'
+// subcategory instead of make, and there's no clamping-force slider —
+// tonnage isn't a meaningful axis for robots/dryers/granulators/etc.
 function initOtherEquipmentListing() {
   const grid = document.getElementById("other-equipment-grid");
   if (!grid) return;
   const heading = document.getElementById("other-equipment-count");
-  const params = new URLSearchParams(window.location.search);
-  const q = params.get("q") || "";
-  const sub = params.get("sub") || "";
 
-  let list = MACHINES.filter(m => m.category === "Other equipment");
-  if (q) list = list.filter(m => matchesMachineSearch(m, q));
-  else if (sub) list = list.filter(m => m.subcategory === sub);
-
-  grid.innerHTML = "";
-  if (list.length === 0) {
-    const empty = document.createElement("p");
-    empty.className = "text-muted";
-    empty.textContent = L().noOtherEquipment;
-    grid.appendChild(empty);
-  } else {
-    list.forEach(m => grid.appendChild(machineCard(m)));
+  const qParam = new URLSearchParams(window.location.search).get("q") || "";
+  const searchEl = document.getElementById("other-equipment-search");
+  if (searchEl) {
+    searchEl.value = qParam;
+    searchEl.addEventListener("input", render);
   }
-  if (heading) {
-    if (q) heading.textContent = `${lang() === "sl" ? "Rezultati iskanja za" : "Search results for"} "${q}" (${list.length})`;
-    else if (sub) heading.textContent = `${otherEquipmentCategoryLabel(sub, lang())} (${list.length})`;
-    else heading.textContent = L().results(list.length);
+
+  const datedYears = MACHINES.filter(m => m.category === "Other equipment").map(m => m.year).filter(y => typeof y === "number");
+  const maxDatedYear = datedYears.length ? Math.max(...datedYears) : new Date().getFullYear();
+
+  // ---- CATEGORY (radio + live count) ----
+  const catOptionsEl = document.getElementById("other-equipment-cat-options");
+  if (catOptionsEl) {
+    catOptionsEl.innerHTML = "";
+    OTHER_EQUIPMENT_CATEGORIES.forEach(cat => {
+      const count = MACHINES.filter(m => m.category === "Other equipment" && m.subcategory === cat.key).length;
+      const label = document.createElement("label");
+      label.className = "radio";
+      const name = lang() === "sl" ? cat.labelSl : cat.label;
+      label.innerHTML = `<input type="radio" name="oecat" value="${cat.key}"><span class="dot"></span>${name} <span class="count">(${count})</span>`;
+      catOptionsEl.appendChild(label);
+    });
   }
-}
 
-// ---------------------------------------------------------------- other plastic equipment: category browser
-function initOtherEquipmentCategoryBrowser(containerId) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  el.innerHTML = "";
-  OTHER_EQUIPMENT_CATEGORIES.forEach(cat => {
-    const count = MACHINES.filter(m => m.category === "Other equipment" && m.subcategory === cat.key).length;
-    const row = document.createElement("a");
-    row.className = "series-row";
-    row.href = "other-equipment.html?sub=" + encodeURIComponent(cat.key);
-    row.innerHTML = `<span class="nl series-name">${lang() === "sl" ? cat.labelSl : cat.label}</span><span class="series-count">${count} · ›</span>`;
-    el.appendChild(row);
-  });
-}
+  function render() {
+    const catChecked = document.querySelector('input[name="oecat"]:checked');
+    const cat = catChecked ? catChecked.value : "all";
+    const sortChecked = document.querySelector('input[name="oesrt"]:checked');
+    const sort = sortChecked ? sortChecked.value : "newest";
+    const q = searchEl ? searchEl.value.trim() : qParam;
 
-// ---------------------------------------------------------------- other plastic equipment: search box
-function initOtherEquipmentSearchRedirect(formId) {
-  const form = document.getElementById(formId);
-  if (!form) return;
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const q = form.querySelector("input").value.trim();
-    window.location.href = "other-equipment.html" + (q ? "?q=" + encodeURIComponent(q) : "");
+    let list = MACHINES.filter(m => {
+      if (m.category !== "Other equipment") return false;
+      if (cat !== "all" && m.subcategory !== cat) return false;
+      if (q && !matchesMachineSearch(m, q)) return false;
+      return true;
+    });
+    if (sort === "year") list = list.slice().sort((a, b) => machineYearValue(b, maxDatedYear) - machineYearValue(a, maxDatedYear));
+
+    grid.innerHTML = "";
+    if (list.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "text-muted";
+      empty.textContent = q || cat !== "all" ? L().noResults : L().noOtherEquipment;
+      grid.appendChild(empty);
+    } else {
+      list.forEach(m => grid.appendChild(machineCard(m)));
+    }
+    if (heading) {
+      heading.textContent = q
+        ? `${lang() === "sl" ? "Rezultati iskanja za" : "Search results for"} "${q}" (${list.length})`
+        : L().results(list.length);
+    }
+  }
+
+  document.querySelectorAll('input[name="oecat"], input[name="oesrt"]').forEach(input => {
+    input.addEventListener("change", render);
   });
+  const clearBtn = document.getElementById("other-equipment-clear-filters");
+  if (clearBtn) clearBtn.addEventListener("click", () => {
+    const all = document.querySelector('input[name="oecat"][value="all"]');
+    if (all) all.checked = true;
+    if (searchEl) searchEl.value = "";
+    render();
+  });
+
+  render();
 }
 
 // ---------------------------------------------------------------- spare parts: category browser
