@@ -431,19 +431,10 @@ const MACHINES = [
 const PARTS = [
 
   // Electronics > Drives
-  { id: "prt-drv-001", name: "Drive-Electronic 4-20/4QT", partNo: "4-20/4QT", manufacturer: "Drive-Electronic", model: "4-20/4QT", serialNo: "SN-DE42041",
-    category: "electronics", subcategory: "drives", condition: "Refurbished", fits: "General-purpose servo drive replacement — confirm cabinet fit with our team.",
-    leadTime: "From stock", description: "Servo drive unit, tested and refurbished. Suitable as a like-for-like replacement on legacy motion-control installations.",
-    price: "Price on request", placeholder: false },
-  { id: "prt-drv-002", name: "Sample Drive Unit 2", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000006",
-    category: "electronics", subcategory: "drives", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
-  { id: "prt-drv-003", name: "Sample Drive Unit 3", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000007",
-    category: "electronics", subcategory: "drives", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
-  { id: "prt-drv-004", name: "Sample Drive Unit 4", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000008",
-    category: "electronics", subcategory: "drives", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
+  { id: "prt-drv-002", name: "SIEMENS SIMODRIVE LT-MODUL 400A WAC", partNo: "6SN1125-1AA00-0KA0", manufacturer: "Siemens", model: "SIMODRIVE LT-MODUL 400A WAC", serialNo: "SN-T-P82023853",
+    category: "electronics", subcategory: "drives", condition: "Used", fits: "SIMODRIVE power module — confirm cabinet fit before ordering.",
+    leadTime: "From stock", description: "",
+    image: "/images/drive 1_2.jpg", gallery: ["/images/drive 1_1.jpg"], price: "Price on request", placeholder: false },
 
   // Electronics > IPC
   { id: "prt-ipc-001", name: "B&R Panel PC APC910", partNo: "APC910", manufacturer: "B&R", model: "APC910", serialNo: "SN-BRN117001",

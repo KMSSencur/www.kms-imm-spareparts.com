@@ -77,13 +77,19 @@
         <span class="tag tag-accent" data-field="stock-tag"></span>
         <span class="tag tag-neutral" data-field="original-tag"></span>
       </div>
-      <table class="table spec-table">
-        <tbody>
-          <tr><td data-field="condition-label"></td><td data-field="condition-value"></td></tr>
-          <tr><td data-field="leadtime-label"></td><td data-field="leadtime-value"></td></tr>
-          <tr><td data-field="price-label"></td><td data-field="price-value"></td></tr>
-        </tbody>
-      </table>
+      <div class="spec-desc-grid">
+        <table class="table spec-table">
+          <tbody>
+            <tr><td data-field="condition-label"></td><td data-field="condition-value"></td></tr>
+            <tr><td data-field="leadtime-label"></td><td data-field="leadtime-value"></td></tr>
+            <tr><td data-field="price-label"></td><td data-field="price-value"></td></tr>
+          </tbody>
+        </table>
+        <div class="machine-description">
+          <div class="often-together-title" data-field="description-label"></div>
+          <p data-field="description-value"></p>
+        </div>
+      </div>
       <form id="enquiry-form" class="blueprint enquiry-box" method="POST" action="https://formsubmit.co/marko.lamovsek@kms.si">
         <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
         <input type="hidden" name="_subject" value="">

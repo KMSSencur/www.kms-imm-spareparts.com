@@ -799,6 +799,8 @@ function initPartDetail() {
   setText("[data-field='condition-label']", L().condition);
   setText("[data-field='leadtime-label']", L().leadTime);
   setText("[data-field='price-label']", L().price);
+  setText("[data-field='description-label']", lang() === "sl" ? "OPIS DELA" : "PART DESCRIPTION");
+  setText("[data-field='description-value']", part.description || "—");
   setText("[data-field='or-call']", L().orCall(PHONE));
   setText("[data-field='request-price-btn']", L().requestPrice);
 
