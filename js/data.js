@@ -421,20 +421,6 @@ const MACHINES = [
     description: "Number of sections of larger blades: 4\nNumber of sections of smaller blades: 5\nRotational speed: 25 rpm\nMotor power: 2 kW\nDimensions of the feed chamber:\n• Length = 420 mm\n• Width = 260 mm\nHeight of the feed chamber: 1,605 mm\nGrinding chamber dimensions:\n• Length = 449 mm\n• Rotor width = 262 mm\nMaximum capacity: 20 kg/hour\nMaximum feed piece dimensions: 435 x 240 x 120 mm\nMaximum feed piece diameter: 9 mm\n\nOperating description:\n• Rotor rotation stops and reverses in the event of detected overload, followed by rotor restart (enables more efficient grinding)\n• Automatic adjustment to optimal speed (if no grinding force is detected, the machine automatically switches to ECOmode with slow rotation)\n• Setting time intervals",
     price: "Price on request",
     placeholder: false
-  },
-  {
-    id: "oeq-other-01",
-    name: "Sample equipment",
-    category: "Other equipment",
-    subcategory: "other",
-    make: "Other",
-    year: null,
-    clampingForceKN: null,
-    location: "Šenčur, SI",
-    status: "As seen",
-    description: "Placeholder listing — replace with a real item from your own inventory.",
-    price: "Price on request",
-    placeholder: true
   }
 ];
 
@@ -488,12 +474,18 @@ const PARTS = [
     leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
 
   // Electronics > Motor
-  { id: "prt-mot-001", name: "Allen-Bradley Servo Motor", partNo: "SERVOMOTOR", manufacturer: "Allen-Bradley", model: "SERVOMOTOR", serialNo: "SN-AB-SM01",
-    category: "electronics", subcategory: "motor", condition: "Used", fits: "Standard servo motion axis — confirm shaft/flange before ordering.",
-    leadTime: "From stock", description: "Servo motor, tested and ready for installation, sourced from surplus stock.", price: "Price on request", placeholder: false },
-  { id: "prt-mot-002", name: "Sample Motor 2", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000015",
-    category: "electronics", subcategory: "motor", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
+  { id: "prt-mot-001", name: "Servomotor SIEMENS 1FT6108-8AC71-4DH0", partNo: "1FT6108-8AC71-4DH0", manufacturer: "Siemens", model: "1FT6108-8AC71-4DH0", serialNo: "SN-H6626943601001",
+    category: "electronics", subcategory: "motor", condition: "Used", fits: "3~ servo motor — confirm shaft/flange and encoder before ordering.",
+    leadTime: "From stock", description: "",
+    image: "/images/servo 1_2.jpg", gallery: ["/images/servo 1_1.jpg"], price: "Price on request", placeholder: false },
+  { id: "prt-mot-002", name: "Servomotor SIEMENS 1FT6108-8WC71-6AG0", partNo: "1FT6108-8WC71-6AG0", manufacturer: "Siemens", model: "1FT6108-8WC71-6AG0", serialNo: "SN-S629015701001",
+    category: "electronics", subcategory: "motor", condition: "Used", fits: "3~ brushless servo motor — confirm shaft/flange and encoder before ordering.",
+    leadTime: "From stock", description: "",
+    image: "/images/servo 1_4.jpg", gallery: ["/images/servo 1_3.jpg"], price: "Price on request", placeholder: false },
+  { id: "prt-mot-003", name: "Servomotor KraussMaffei GNA 180 SN-271P (No. 11705682)", partNo: "GNA 180 SN-271P", manufacturer: "KraussMaffei", model: "GNA 180 SN-271P", serialNo: "SN-11705682",
+    category: "electronics", subcategory: "motor", condition: "Used", fits: "Berstorff G-Motor — confirm shaft/flange before ordering.",
+    leadTime: "From stock", description: "",
+    image: "/images/servo 1_6.jpg", gallery: ["/images/servo 1_5.jpg"], price: "Price on request", placeholder: false },
 
   // Electronics > PLC
   { id: "prt-plc-001", name: "PLC Direct D3-330 CPU", partNo: "D3-330", manufacturer: "PLC Direct", model: "D3-330", serialNo: "SN-PD3330",

@@ -41,7 +41,6 @@ const LABELS = {
     noResults: "No items found. Try a different search term or browse a category above.",
     inStock: (loc) => `In stock, ${loc}`,
     originalPart: "Original part",
-    fits: "Fits",
     condition: "Condition",
     leadTime: "Lead time",
     price: "Price",
@@ -71,7 +70,6 @@ const LABELS = {
     noResults: "Ni najdenih izdelkov. Poskusite drug iskalni niz ali izberite kategorijo zgoraj.",
     inStock: (loc) => `Na zalogi, ${loc}`,
     originalPart: "Originalni del",
-    fits: "Ustreza",
     condition: "Stanje",
     leadTime: "Dobavni čas",
     price: "Cena",
@@ -795,11 +793,9 @@ function initPartDetail() {
   setText("[data-field='kicker']", partCategoryLabel(part.category, lang()) + " · " + (partSubcategoryLabel(part.category, part.subcategory, lang()) || part.subcategory));
   setText("[data-field='title']", part.name);
   setText("[data-field='partno']", `${L().partNoLabel} ${part.partNo || "—"}`);
-  setText("[data-field='fits-value']", part.fits);
   setText("[data-field='condition-value']", part.condition);
   setText("[data-field='leadtime-value']", part.leadTime);
   setText("[data-field='price-value']", part.price);
-  setText("[data-field='fits-label']", L().fits);
   setText("[data-field='condition-label']", L().condition);
   setText("[data-field='leadtime-label']", L().leadTime);
   setText("[data-field='price-label']", L().price);
