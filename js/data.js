@@ -284,6 +284,21 @@ const MACHINES = [
     placeholder: false
   },
   {
+    id: "oeq-robots-02",
+    name: "SEPRO PICKER SR 55",
+    category: "Other equipment",
+    subcategory: "robots",
+    make: "Sepro",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "As seen",
+    image: "/images/oeq-robots-02-wide.jpg",
+    description: "Robot equipment:\n• Strip stroke: 0 - 75 mm\n• Vertical stroke: 0 - 550 mm\n• Swing angle: 50° - 90°\n• Maximum load: 1 kg\n• Vacuum circuit 1 x\n• Wrist rotation 90° - rotation axis parallel to main arm axis\n• 4 x digital inputs\n• 4 x digital outputs\n• Software MPA 2P\n• Euromap 67",
+    price: "Price on request",
+    placeholder: false
+  },
+  {
     id: "oeq-tempering-01",
     name: "SINGLE TCU WP4-200-18-120",
     category: "Other equipment",
