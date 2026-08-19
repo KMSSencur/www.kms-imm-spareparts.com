@@ -37,7 +37,6 @@ const LABELS = {
     clearFilters: "Clear all filters",
     requestPrice: "Request a price",
     orCall: (phone) => `OR CALL ${phone}`,
-    oftenTogether: "OFTEN ORDERED TOGETHER",
     checkAvailability: "Check availability",
     noResults: "No items found. Try a different search term or browse a category above.",
     inStock: (loc) => `In stock, ${loc}`,
@@ -68,7 +67,6 @@ const LABELS = {
     clearFilters: "Počisti vse filtre",
     requestPrice: "Povprašaj za ceno",
     orCall: (phone) => `ALI POKLIČITE ${phone}`,
-    oftenTogether: "POGOSTO NAROČENO SKUPAJ",
     checkAvailability: "Preveri razpoložljivost",
     noResults: "Ni najdenih izdelkov. Poskusite drug iskalni niz ali izberite kategorijo zgoraj.",
     inStock: (loc) => `Na zalogi, ${loc}`,
@@ -806,28 +804,12 @@ function initPartDetail() {
   setText("[data-field='leadtime-label']", L().leadTime);
   setText("[data-field='price-label']", L().price);
   setText("[data-field='or-call']", L().orCall(PHONE));
-  setText("[data-field='often-together-title']", L().oftenTogether);
   setText("[data-field='request-price-btn']", L().requestPrice);
 
   const stockTag = root.querySelector("[data-field='stock-tag']");
   if (stockTag) stockTag.textContent = part.placeholder ? L().sample : L().inStock("Šenčur");
   const origTag = root.querySelector("[data-field='original-tag']");
   if (origTag) origTag.textContent = L().originalPart;
-
-  const together = document.getElementById("often-together-grid");
-  if (together) {
-    together.innerHTML = "";
-    const sameSub = PARTS.filter(p => p.category === part.category && p.subcategory === part.subcategory && p.id !== part.id);
-    const sameCat = PARTS.filter(p => p.category === part.category && p.id !== part.id);
-    const relatedList = (sameSub.length >= 3 ? sameSub : sameCat).slice(0, 3);
-    relatedList.forEach(p => {
-      const a = document.createElement("a");
-      a.className = "ph";
-      a.href = "part-detail.html?id=" + encodeURIComponent(p.id);
-      a.textContent = p.name;
-      together.appendChild(a);
-    });
-  }
 
   const form = document.getElementById("enquiry-form");
   if (form) {
