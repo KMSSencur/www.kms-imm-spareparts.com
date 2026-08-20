@@ -617,41 +617,98 @@ function initOtherEquipmentListing() {
   render();
 }
 
-// ---------------------------------------------------------------- spare parts: category browser
-function initCategoryBrowser(containerId) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  el.innerHTML = "";
-  PART_CATEGORIES.forEach(cat => {
-    const count = PARTS.filter(p => p.category === cat.key).length;
-    const row = document.createElement("a");
-    row.className = "series-row";
-    row.href = "category.html?cat=" + encodeURIComponent(cat.key);
-    row.innerHTML = `<span class="nl series-name">${lang() === "sl" ? cat.labelSl : cat.label}</span><span class="series-count">${count} · ›</span>`;
-    el.appendChild(row);
-    if (cat.submenus) {
-      cat.submenus.forEach(sub => {
-        const subCount = PARTS.filter(p => p.category === cat.key && p.subcategory === sub.key).length;
-        const subRow = document.createElement("a");
-        subRow.className = "series-row";
-        subRow.style.paddingLeft = "16px";
-        subRow.href = "category.html?cat=" + encodeURIComponent(cat.key) + "&sub=" + encodeURIComponent(sub.key);
-        subRow.innerHTML = `<span class="nl series-name text-muted">${lang() === "sl" ? sub.labelSl : sub.label}</span><span class="series-count">${subCount} · ›</span>`;
-        el.appendChild(subRow);
-      });
-    }
-  });
-}
+// ---------------------------------------------------------------- spare parts listing (filter rail + live grid)
+// Mirrors initOtherEquipmentListing's shape: a radio filter rail (flattened,
+// with Electronics' submenus indented under it) driving a live search +
+// category filter over the same card grid used everywhere else.
+function initPartsListing() {
+  const grid = document.getElementById("parts-grid");
+  if (!grid) return;
+  const heading = document.getElementById("parts-count");
 
-// ---------------------------------------------------------------- spare parts: part-number search box
-function initPartSearchRedirect(formId) {
-  const form = document.getElementById(formId);
-  if (!form) return;
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const q = form.querySelector("input").value.trim();
-    window.location.href = "category.html" + (q ? "?q=" + encodeURIComponent(q) : "");
+  const urlParams = new URLSearchParams(window.location.search);
+  const qParam = urlParams.get("q") || "";
+  const catParam = urlParams.get("cat");
+  const subParam = urlParams.get("sub");
+  const searchEl = document.getElementById("parts-search");
+  if (searchEl) {
+    searchEl.value = qParam;
+    searchEl.addEventListener("input", render);
+  }
+
+  // ---- CATEGORY (radio + live count) ----
+  const catOptionsEl = document.getElementById("parts-cat-options");
+  if (catOptionsEl) {
+    catOptionsEl.innerHTML = "";
+    PART_CATEGORIES.forEach(cat => {
+      const count = PARTS.filter(p => p.category === cat.key).length;
+      const label = document.createElement("label");
+      label.className = "radio";
+      const name = lang() === "sl" ? cat.labelSl : cat.label;
+      label.innerHTML = `<input type="radio" name="pcat" value="${cat.key}"><span class="dot"></span>${name} <span class="count">(${count})</span>`;
+      catOptionsEl.appendChild(label);
+      if (cat.submenus) {
+        cat.submenus.forEach(sub => {
+          const subCount = PARTS.filter(p => p.category === cat.key && p.subcategory === sub.key).length;
+          const subLabel = document.createElement("label");
+          subLabel.className = "radio";
+          subLabel.style.paddingLeft = "16px";
+          const subName = lang() === "sl" ? sub.labelSl : sub.label;
+          subLabel.innerHTML = `<input type="radio" name="pcat" value="${cat.key}:${sub.key}"><span class="dot"></span>${subName} <span class="count">(${subCount})</span>`;
+          catOptionsEl.appendChild(subLabel);
+        });
+      }
+    });
+  }
+
+  // A ?cat=&sub= link (e.g. from a part-detail breadcrumb, or a bookmark)
+  // pre-selects that radio instead of defaulting to "All categories".
+  if (catParam) {
+    const value = subParam ? `${catParam}:${subParam}` : catParam;
+    const match = document.querySelector(`input[name="pcat"][value="${CSS.escape(value)}"]`)
+      || document.querySelector(`input[name="pcat"][value="${CSS.escape(catParam)}"]`);
+    if (match) match.checked = true;
+  }
+
+  function render() {
+    const catChecked = document.querySelector('input[name="pcat"]:checked');
+    const catValue = catChecked ? catChecked.value : "all";
+    const q = searchEl ? searchEl.value.trim() : qParam;
+
+    let list = PARTS;
+    if (q) {
+      list = list.filter(p => matchesPartSearch(p, q));
+    } else if (catValue !== "all") {
+      const [cat, sub] = catValue.split(":");
+      list = list.filter(p => p.category === cat && (!sub || p.subcategory === sub));
+    }
+
+    grid.innerHTML = "";
+    if (list.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "text-muted";
+      empty.textContent = L().noResults;
+      grid.appendChild(empty);
+    } else {
+      list.forEach(p => grid.appendChild(partCard(p)));
+    }
+    if (heading) {
+      heading.textContent = q
+        ? `${lang() === "sl" ? "Rezultati iskanja za" : "Search results for"} "${q}" (${list.length})`
+        : L().results(list.length);
+    }
+  }
+
+  document.querySelectorAll('input[name="pcat"]').forEach(input => input.addEventListener("change", render));
+  const clearBtn = document.getElementById("parts-clear-filters");
+  if (clearBtn) clearBtn.addEventListener("click", () => {
+    const all = document.querySelector('input[name="pcat"][value="all"]');
+    if (all) all.checked = true;
+    if (searchEl) searchEl.value = "";
+    render();
   });
+
+  render();
 }
 
 // ---------------------------------------------------------------- home hero search
@@ -760,7 +817,7 @@ function initPartDetail() {
     const spareLabel = lang() === "sl" ? "Rezervni deli" : "Spare parts";
     const subLabel = part.subcategory ? partSubcategoryLabel(part.category, part.subcategory, lang()) : null;
     const thirdLabel = subLabel || partCategoryLabel(part.category, lang());
-    const thirdHref = "category.html?cat=" + encodeURIComponent(part.category) + (part.subcategory ? "&sub=" + encodeURIComponent(part.subcategory) : "");
+    const thirdHref = "spare-parts.html?cat=" + encodeURIComponent(part.category) + (part.subcategory ? "&sub=" + encodeURIComponent(part.subcategory) : "");
     breadcrumbEl.innerHTML = `<a href="${home}">${homeLabel}</a> / <a href="spare-parts.html">${spareLabel}</a> / <a href="${thirdHref}">${thirdLabel}</a>`;
   }
 

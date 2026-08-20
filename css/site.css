@@ -301,16 +301,6 @@ figure.duotone.blueprint { overflow: visible; }
 .table-wrap { overflow-x: auto; }
 
 /* ---------------------------------------------------------------- spare parts */
-.route-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 780px) { .route-grid { grid-template-columns: 1fr; } }
-.series-list .series-row {
-  display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--color-divider);
-  text-decoration: none; color: inherit;
-}
-.series-list .series-row:last-child { border-bottom: none; }
-.series-list .series-row:hover .series-name { color: var(--color-accent); }
-.series-list { border-top: 1px solid var(--color-divider); }
-.series-count { font: 400 10px "IBM Plex Mono", monospace; opacity: .5; }
 .dropzone { flex: 1; min-height: 110px; cursor: pointer; }
 .dropzone:hover { border-color: var(--color-accent); }
 
