@@ -31,7 +31,7 @@ img { display: block; max-width: 100%; }
   flex-wrap: wrap;
 }
 .utility-bar .cert { letter-spacing: .08em; }
-.utility-bar .right { display: flex; align-items: center; gap: var(--space-4); }
+.utility-bar .right { display: flex; align-items: center; gap: var(--space-4); margin-left: auto; }
 .utility-bar .phone { color: #fff; }
 
 /* ---------------------------------------------------------------- language switch */
@@ -372,8 +372,6 @@ figure.duotone.blueprint { overflow: visible; }
   .nav-primary { display: none; }
   .burger { display: flex; }
   .header-cta { display: none; }
-  .lang-switch { display: none; }
-  .lang-switch-mobile { display: inline-flex; }
   .mobile-panel.open {
     display: block; background: #fff; border-top: 1px solid var(--color-divider);
     padding: var(--space-3) 22px var(--space-4);
