@@ -463,6 +463,12 @@ const PARTS = [
     leadTime: "From stock", description: "Wear resistant plasticizer (bimetallic) consisting of:\n• Cylinder\n• Screw\n• RSP\n• Complete heating system with heating connection",
     image: "/images/SP250 fi30.jpg", price: "Price on request", placeholder: false },
 
+  // Hydraulic valves
+  { id: "prt-hyd-001", name: "Proportional valve for closing and opening mold KM 200-1400 C2", partNo: "6438716", manufacturer: "KraussMaffei", model: "6438716", serialNo: "—",
+    category: "hydraulic", subcategory: "Proportional valve", condition: "Used", fits: "KraussMaffei KM 200-1400 C2 mould clamping unit — confirm fitment with our team.",
+    leadTime: "From stock", description: "Proportional directional valve for mould closing and opening, KraussMaffei KM 200-1400 C2. Part no. 6438716.",
+    image: "/images/Proporcionalni ventil.jpg", price: "Price on request", placeholder: false },
+
   // Other
   { id: "prt-oth-001", name: "Filter 51 525 75 784", partNo: "51 525 75 784", manufacturer: "Mann+Hummel", model: "51 525 75 784", serialNo: "SN-40/01",
     category: "other", subcategory: "Other", condition: "New", fits: "Hydraulic filter housing — max. pressure 40 bar, max. temperature 120 °C, volume 2 l — confirm fitment with our team.",
@@ -471,7 +477,11 @@ const PARTS = [
   { id: "prt-oth-002", name: "Filter G 07 XPA", partNo: "G 07 XPA", manufacturer: "Zander", model: "G 07 XPA", serialNo: "—",
     category: "other", subcategory: "Other", condition: "New", fits: "Compressed-air filter unit — max. pressure 16 bar, max. temperature 1–40 °C, volume 0.65 l — confirm fitment with our team.",
     leadTime: "From stock", description: "Zander compressed-air filter unit, model G 07 XPA. Filter element: 1140 XP. Max. pressure: 16 bar. Max. temperature: 1–40 °C. Volume: 0.65 l.",
-    image: "/images/2_filter 1.jpg", gallery: ["/images/2_filter 2.jpg"], price: "Price on request", placeholder: false }
+    image: "/images/2_filter 1.jpg", gallery: ["/images/2_filter 2.jpg"], price: "Price on request", placeholder: false },
+  { id: "prt-oth-003", name: "TE 500 heating zone control card with relay board (6 x hotrunner control circuits)", partNo: "TE500/1", manufacturer: "Unknown", model: "TE500/1", serialNo: "—",
+    category: "other", subcategory: "Other", condition: "Used", fits: "Hotrunner temperature control system — confirm compatibility with our team.",
+    leadTime: "From stock", description: "TE 500 heating zone control card with relay board. Relay board with 6 x hotrunner control circuits.",
+    image: "/images/20260820_111351.jpg", price: "Price on request", placeholder: false }
 ];
 
 function findPartById(id) { return PARTS.find(p => p.id === id) || null; }
