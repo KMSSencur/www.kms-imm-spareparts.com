@@ -18,7 +18,6 @@ const PART_CATEGORIES = [
       { key: "ipc", label: "IPC", labelSl: "IPC" },
       { key: "hmi", label: "HMI", labelSl: "HMI" },
       { key: "motor", label: "Motor", labelSl: "Motorji" },
-      { key: "plc", label: "PLC", labelSl: "PLC" },
       { key: "powersupply", label: "Power supply", labelSl: "Napajalniki" }
   ]},
   { key: "plasticizing", label: "Plasticizing units & screws", labelSl: "Plastifikacijske enote in vijaki" },
@@ -436,34 +435,6 @@ const PARTS = [
     leadTime: "From stock", description: "",
     image: "/images/drive 1_2.jpg", gallery: ["/images/drive 1_1.jpg"], price: "Price on request", placeholder: false },
 
-  // Electronics > IPC
-  { id: "prt-ipc-001", name: "B&R Panel PC APC910", partNo: "APC910", manufacturer: "B&R", model: "APC910", serialNo: "SN-BRN117001",
-    category: "electronics", subcategory: "ipc", condition: "Used", fits: "Panel-mount industrial PC — confirm cutout size before ordering.",
-    leadTime: "From stock", description: "Industrial panel PC pulled from service, screen and mainboard tested and working.", price: "Price on request", placeholder: false },
-  { id: "prt-ipc-002", name: "Sample IPC Unit 2", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000009",
-    category: "electronics", subcategory: "ipc", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
-  { id: "prt-ipc-003", name: "Sample IPC Unit 3", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000010",
-    category: "electronics", subcategory: "ipc", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
-  { id: "prt-ipc-004", name: "Sample IPC Unit 4", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000011",
-    category: "electronics", subcategory: "ipc", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
-
-  // Electronics > HMI
-  { id: "prt-hmi-001", name: "Schneider Electric Magelis HMIDT651", partNo: "HMIDT651", manufacturer: "Schneider Electric", model: "HMIDT651", serialNo: "SN-SEHMIDT651",
-    category: "electronics", subcategory: "hmi", condition: "Refurbished", fits: "Magelis GTU-series control cabinets.",
-    leadTime: "From stock", description: "Magelis GTU advanced touchscreen, 12.1\" WXGA (1280x800) colour touch display.", price: "Price on request", placeholder: false },
-  { id: "prt-hmi-002", name: "Sample HMI Panel 2", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000012",
-    category: "electronics", subcategory: "hmi", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
-  { id: "prt-hmi-003", name: "Sample HMI Panel 3", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000013",
-    category: "electronics", subcategory: "hmi", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
-  { id: "prt-hmi-004", name: "Sample HMI Panel 4", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000014",
-    category: "electronics", subcategory: "hmi", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
-
   // Electronics > Motor
   { id: "prt-mot-001", name: "Servomotor SIEMENS 1FT6108-8AC71-4DH0", partNo: "1FT6108-8AC71-4DH0", manufacturer: "Siemens", model: "1FT6108-8AC71-4DH0", serialNo: "SN-H6626943601001",
     category: "electronics", subcategory: "motor", condition: "Used", fits: "3~ servo motor — confirm shaft/flange and encoder before ordering.",
@@ -478,45 +449,27 @@ const PARTS = [
     leadTime: "From stock", description: "",
     image: "/images/servo 1_6.jpg", gallery: ["/images/servo 1_5.jpg"], price: "Price on request", placeholder: false },
 
-  // Electronics > PLC
-  { id: "prt-plc-001", name: "PLC Direct D3-330 CPU", partNo: "D3-330", manufacturer: "PLC Direct", model: "D3-330", serialNo: "SN-PD3330",
-    category: "electronics", subcategory: "plc", condition: "Refurbished", fits: "Automation Direct DL305-series PLC rack.",
-    leadTime: "From stock", description: "DL330 CPU module for the Automation Direct DL305-series PLC rack. 1 year warranty.", price: "Price on request", placeholder: false },
-  { id: "prt-plc-002", name: "Sample PLC Module 2", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000016",
-    category: "electronics", subcategory: "plc", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
-  { id: "prt-plc-003", name: "Sample PLC Module 3", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000017",
-    category: "electronics", subcategory: "plc", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
-  { id: "prt-plc-004", name: "Sample PLC Module 4", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000018",
-    category: "electronics", subcategory: "plc", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real item from your own inventory.", price: "Price on request", placeholder: true },
-
-  // Electronics > Power supply
-  { id: "prt-psu-001", name: "Industrial Power Supply AA1", partNo: "POWERSUPPLYAA1", manufacturer: "Unknown", model: "POWERSUPPLYAA1", serialNo: "SN-PSAA1",
-    category: "electronics", subcategory: "powersupply", condition: "Used", fits: "General-purpose control-cabinet installation.",
-    leadTime: "From stock", description: "General-purpose industrial power supply unit for control-cabinet installation.", price: "Price on request", placeholder: false },
-
   // Plasticizing units & screws
-  { id: "prt-psc-001", name: "Sample Plasticizing Unit", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000002",
-    category: "plasticizing", subcategory: "Plasticizing units", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real plasticizing unit from your own inventory.", price: "Price on request", placeholder: true },
-  { id: "prt-psc-002", name: "Sample Barrel Screw", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000003",
-    category: "plasticizing", subcategory: "Screws", condition: "New", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real screw from your own inventory.", price: "Price on request", placeholder: true },
-
-  // Hydraulic valves
-  { id: "prt-hyd-001", name: "Sample Hydraulic Directional Valve", partNo: "—", manufacturer: "Manufacturer name", model: "Model number", serialNo: "SN-000004",
-    category: "hydraulic", subcategory: "Directional valve", condition: "Used", fits: "Fitment to be confirmed — replace with a real catalog item.",
-    leadTime: "On request", description: "Placeholder listing — replace with a real hydraulic valve from your own inventory.", price: "Price on request", placeholder: true },
+  { id: "prt-psc-001", name: "Plasticizing unit KraussMaffei SP750 Ø50 mm", partNo: "SP750 Ø50", manufacturer: "KraussMaffei", model: "SP750 Ø50", serialNo: "—",
+    category: "plasticizing", subcategory: "Plasticizing units", condition: "Checked", fits: "KraussMaffei SP750 injection unit — confirm cylinder/screw diameter before ordering.",
+    leadTime: "From stock", description: "Wear resistant plasticizer (bimetallic) consisting of:\n• Cylinder\n• Screw\n• RSP\n• Complete heating system with heating connection\n• BluePower - Complete insulation of plasticizing cylinder for lower energy consumption",
+    image: "/images/SP750 fi 50.jpg", price: "Price on request", placeholder: false },
+  { id: "prt-psc-002", name: "Plasticizing unit KraussMaffei SP750 Ø40 mm", partNo: "SP750 Ø40", manufacturer: "KraussMaffei", model: "SP750 Ø40", serialNo: "—",
+    category: "plasticizing", subcategory: "Plasticizing units", condition: "Checked", fits: "KraussMaffei SP750 injection unit — confirm cylinder/screw diameter before ordering.",
+    leadTime: "From stock", description: "Wear resistant plasticizer (bimetallic) consisting of:\n• Cylinder\n• Screw\n• RSP\n• Complete heating system with heating connection\n• BluePower - Complete insulation of plasticizing cylinder for lower energy consumption",
+    image: "/images/SP750 fi40.jpg", price: "Price on request", placeholder: false },
+  { id: "prt-psc-003", name: "Plasticizing unit KraussMaffei SP250 Ø30 mm", partNo: "SP250 Ø30", manufacturer: "KraussMaffei", model: "SP250 Ø30", serialNo: "—",
+    category: "plasticizing", subcategory: "Plasticizing units", condition: "Checked", fits: "KraussMaffei SP250 injection unit — confirm cylinder/screw diameter before ordering.",
+    leadTime: "From stock", description: "Wear resistant plasticizer (bimetallic) consisting of:\n• Cylinder\n• Screw\n• RSP\n• Complete heating system with heating connection",
+    image: "/images/SP250 fi30.jpg", price: "Price on request", placeholder: false },
 
   // Other
   { id: "prt-oth-001", name: "Filter 51 525 75 784", partNo: "51 525 75 784", manufacturer: "Mann+Hummel", model: "51 525 75 784", serialNo: "SN-40/01",
-    category: "other", subcategory: "Miscellaneous", condition: "New", fits: "Hydraulic filter housing — max. pressure 40 bar, max. temperature 120 °C, volume 2 l — confirm fitment with our team.",
+    category: "other", subcategory: "Other", condition: "New", fits: "Hydraulic filter housing — max. pressure 40 bar, max. temperature 120 °C, volume 2 l — confirm fitment with our team.",
     leadTime: "From stock", description: "Mann+Hummel hydraulic filter housing, type 51 525 75 784. Max. pressure: 40 bar. Max. temperature: 120 °C. Volume: 2 l. Filter insert: 51 525 55 274.",
     image: "/images/1_filter 1.jpg", gallery: ["/images/1_filter 2.jpg"], price: "Price on request", placeholder: false },
   { id: "prt-oth-002", name: "Filter G 07 XPA", partNo: "G 07 XPA", manufacturer: "Zander", model: "G 07 XPA", serialNo: "—",
-    category: "other", subcategory: "Miscellaneous", condition: "New", fits: "Compressed-air filter unit — max. pressure 16 bar, max. temperature 1–40 °C, volume 0.65 l — confirm fitment with our team.",
+    category: "other", subcategory: "Other", condition: "New", fits: "Compressed-air filter unit — max. pressure 16 bar, max. temperature 1–40 °C, volume 0.65 l — confirm fitment with our team.",
     leadTime: "From stock", description: "Zander compressed-air filter unit, model G 07 XPA. Filter element: 1140 XP. Max. pressure: 16 bar. Max. temperature: 1–40 °C. Volume: 0.65 l.",
     image: "/images/2_filter 1.jpg", gallery: ["/images/2_filter 2.jpg"], price: "Price on request", placeholder: false }
 ];

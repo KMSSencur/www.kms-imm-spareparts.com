@@ -539,7 +539,9 @@ function initOtherEquipmentListing() {
   if (!grid) return;
   const heading = document.getElementById("other-equipment-count");
 
-  const qParam = new URLSearchParams(window.location.search).get("q") || "";
+  const urlParams = new URLSearchParams(window.location.search);
+  const qParam = urlParams.get("q") || "";
+  const catParam = urlParams.get("cat");
   const searchEl = document.getElementById("other-equipment-search");
   if (searchEl) {
     searchEl.value = qParam;
@@ -561,6 +563,13 @@ function initOtherEquipmentListing() {
       label.innerHTML = `<input type="radio" name="oecat" value="${cat.key}"><span class="dot"></span>${name} <span class="count">(${count})</span>`;
       catOptionsEl.appendChild(label);
     });
+  }
+
+  // A ?cat= link (e.g. from a detail-page breadcrumb) pre-selects that
+  // category's radio instead of defaulting to "All categories".
+  if (catParam) {
+    const match = document.querySelector(`input[name="oecat"][value="${CSS.escape(catParam)}"]`);
+    if (match) match.checked = true;
   }
 
   function render() {
@@ -837,7 +846,8 @@ function initMachineDetail() {
     if (m.category === "Other equipment") {
       const oeLabel = lang() === "sl" ? "Druga plastična oprema" : "Other plastic equipment";
       const catLabel = otherEquipmentCategoryLabel(m.subcategory, lang());
-      breadcrumbEl.innerHTML = `<a href="${home}">${homeLabel}</a> / <a href="other-equipment.html">${oeLabel}</a> / ${catLabel}`;
+      const catHref = "other-equipment.html?cat=" + encodeURIComponent(m.subcategory);
+      breadcrumbEl.innerHTML = `<a href="${home}">${homeLabel}</a> / <a href="other-equipment.html">${oeLabel}</a> / <a href="${catHref}">${catLabel}</a>`;
     } else {
       const machinesLabel = lang() === "sl" ? "Stroji" : "Machines";
       breadcrumbEl.innerHTML = `<a href="${home}">${homeLabel}</a> / <a href="machines.html">${machinesLabel}</a>`;
