@@ -288,17 +288,12 @@ figure.duotone.blueprint { overflow: visible; }
 }
 
 /* ---------------------------------------------------------------- dense table listing */
-.filter-bar-dense {
-  padding: var(--space-3); display: grid; grid-template-columns: repeat(5, 1fr) auto; gap: var(--space-3); align-items: end;
-}
-@media (max-width: 900px) {
-  .filter-bar-dense { grid-template-columns: repeat(2, 1fr); }
-  .filter-bar-dense .btn { grid-column: 1 / -1; }
-}
 .table-foot { display: flex; justify-content: space-between; align-items: center; margin-top: var(--space-4); gap: var(--space-3); flex-wrap: wrap; }
 .table-foot .showing { font: 400 11px "IBM Plex Mono", monospace; opacity: .5; }
 .thumb-cell { width: 54px; height: 34px; }
 .table-wrap { overflow-x: auto; }
+.row-link { cursor: pointer; }
+.row-link:hover { background: var(--color-accent-100); }
 
 /* ---------------------------------------------------------------- spare parts */
 .dropzone { flex: 1; min-height: 110px; cursor: pointer; }

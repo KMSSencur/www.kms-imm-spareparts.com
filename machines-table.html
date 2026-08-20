@@ -59,32 +59,51 @@
   </div>
 </div>
 
-<main class="container" style="padding-top:20px;padding-bottom:40px">
-  <h1>All machines in stock</h1>
+<main class="container listing-layout">
+  <aside class="filter-rail">
+    <div class="filter-group">
+      <div class="filter-title">MAKE</div>
+      <label class="radio"><input type="radio" name="mk" value="all" checked><span class="dot"></span>All makes</label>
+      <div id="make-options"></div>
+    </div>
+    <button id="clear-filters" class="btn btn-secondary btn-block">Clear all filters</button>
+  </aside>
 
-  <div class="blueprint filter-bar-dense" style="margin:16px 0 22px">
-    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-    <div class="field"><label>Category</label><div class="ph" style="height:34px">select</div></div>
-    <div class="field"><label>Make</label><div class="ph" style="height:34px">select</div></div>
-    <div class="field"><label>Year from</label><div class="ph" style="height:34px">select</div></div>
-    <div class="field"><label>Clamping force</label><div class="ph" style="height:34px">select</div></div>
-    <div class="field"><label>Location</label><div class="ph" style="height:34px">select</div></div>
-    <button class="btn btn-primary">Filter</button>
-  </div>
+  <div class="listing-main">
+    <div class="listing-toolbar">
+      <h1>All machines in stock</h1>
+      <div class="sort-row">
+        <span class="sort-label">SORT</span>
+        <span class="seg">
+          <label class="seg-opt"><input type="radio" name="srt" value="newest">Newest</label>
+          <label class="seg-opt"><input type="radio" name="srt" value="year">Year</label>
+          <label class="seg-opt"><input type="radio" name="srt" value="force" checked>Force</label>
+        </span>
+      </div>
+    </div>
 
-  <div class="table-wrap">
-    <table class="table">
-      <thead>
-        <tr><th></th><th>Machine</th><th>Year</th><th>Clamping force</th><th>Location</th><th>Status</th><th></th></tr>
-      </thead>
-      <tbody id="machines-tbody"></tbody>
-    </table>
-  </div>
-  <div class="table-foot">
-    <span id="table-showing" class="showing"></span>
-    <div class="row" style="gap:8px">
-      <button class="btn btn-secondary">Compare selected</button>
-      <button class="btn btn-secondary">Load more</button>
+    <div class="force-panel">
+      <div class="filter-title">CLAMPING FORCE</div>
+      <div class="force-slider force-slider-lg" id="force-slider">
+        <div class="force-slider-track"></div>
+        <div class="force-slider-range" id="force-slider-range"></div>
+        <input type="range" id="force-min" class="force-slider-input" aria-label="Minimum clamping force">
+        <input type="range" id="force-max" class="force-slider-input" aria-label="Maximum clamping force">
+      </div>
+      <div class="force-slider-ticks" id="force-ticks"></div>
+      <div class="range-hint" id="force-hint"></div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th></th><th>Machine</th><th>Year</th><th>Clamping force</th><th>Location</th><th>Status</th></tr>
+        </thead>
+        <tbody id="machines-tbody"></tbody>
+      </table>
+    </div>
+    <div class="table-foot">
+      <span id="table-showing" class="showing"></span>
     </div>
   </div>
 </main>

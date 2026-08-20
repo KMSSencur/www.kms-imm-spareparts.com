@@ -29,7 +29,6 @@ const LABELS = {
     priceOnRequest: "Price on request",
     sample: "Sample",
     details: "Details",
-    enquire: "Enquire",
     compareSelected: "Compare selected",
     loadMore: "Load more",
     showing: (n, total) => `Showing ${n} of ${total}`,
@@ -58,7 +57,6 @@ const LABELS = {
     priceOnRequest: "Cena na zahtevo",
     sample: "Vzorec",
     details: "Podrobnosti",
-    enquire: "Povpraševanje",
     compareSelected: "Primerjaj izbrano",
     loadMore: "Naloži več",
     showing: (n, total) => `Prikazanih ${n} od ${total}`,
@@ -509,24 +507,117 @@ function initMachinesListing() {
 function initMachinesTable() {
   const tbody = document.getElementById("machines-tbody");
   if (!tbody) return;
-  tbody.innerHTML = "";
   const coreMachines = MACHINES.filter(m => m.category !== "Other equipment");
   const statusTagClass = { Inspected: "tag-accent", Rebuilt: "tag-accent-2", "As seen": "tag-neutral" };
-  coreMachines.forEach(m => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td class="thumb-cell"><div class="ph ${m.image ? "has-photo" : "duotone"}" style="width:100%;height:100%">${m.image ? `<img src="${m.image}" alt="${m.name}" loading="lazy">` : "photo"}</div></td>
-      <td><strong>${m.name}</strong><div class="meta-mono">${machineCategoryLabel(m, lang())}</div></td>
-      <td>${m.year}</td>
-      <td>${m.clampingForceKN ? fmtForceTons(m.clampingForceKN) : "—"}</td>
-      <td>${m.location}</td>
-      <td><span class="tag ${statusTagClass[m.status] || "tag-neutral"}">${m.status}</span></td>
-      <td><a class="btn btn-ghost" href="machine-detail.html?id=${encodeURIComponent(m.id)}">${L().enquire}</a></td>
-    `;
-    tbody.appendChild(tr);
+  const datedYears = coreMachines.map(m => m.year).filter(y => typeof y === "number");
+  const maxDatedYear = datedYears.length ? Math.max(...datedYears) : new Date().getFullYear();
+
+  // ---- MAKE (radio + live count) ----
+  const makeOptionsEl = document.getElementById("make-options");
+  if (makeOptionsEl) {
+    makeOptionsEl.innerHTML = "";
+    MAKE_OPTIONS.forEach(make => {
+      const count = coreMachines.filter(m => m.make === make).length;
+      const label = document.createElement("label");
+      label.className = "radio";
+      const name = make === "Other" ? L().otherMake : make;
+      label.innerHTML = `<input type="radio" name="mk" value="${make}"><span class="dot"></span>${name} <span class="count">(${count})</span>`;
+      makeOptionsEl.appendChild(label);
+    });
+  }
+
+  // ---- CLAMPING FORCE dual-handle slider (index into FORCE_VALUES) ----
+  // Same catalog-value stepping as the card view's slider — see initMachinesListing.
+  const FORCE_VALUES = Array.from(new Set(
+    coreMachines.filter(m => m.clampingForceKN).map(m => Math.round(m.clampingForceKN / 10))
+  )).sort((a, b) => a - b);
+  const lastIdx = Math.max(FORCE_VALUES.length - 1, 0);
+
+  const forceMinEl = document.getElementById("force-min");
+  const forceMaxEl = document.getElementById("force-max");
+  const forceRangeEl = document.getElementById("force-slider-range");
+  const forceHint = document.getElementById("force-hint");
+  const forceTicksEl = document.getElementById("force-ticks");
+
+  if (forceTicksEl) {
+    forceTicksEl.innerHTML = "";
+    FORCE_VALUES.forEach(v => {
+      const span = document.createElement("span");
+      span.textContent = v;
+      forceTicksEl.appendChild(span);
+    });
+  }
+
+  function updateForceVisual() {
+    if (!forceMinEl || !forceMaxEl) return;
+    const minPct = lastIdx ? (Number(forceMinEl.value) / lastIdx) * 100 : 0;
+    const maxPct = lastIdx ? (Number(forceMaxEl.value) / lastIdx) * 100 : 100;
+    if (forceRangeEl) { forceRangeEl.style.left = minPct + "%"; forceRangeEl.style.right = (100 - maxPct) + "%"; }
+    if (forceHint) forceHint.textContent = `range ${FORCE_VALUES[Number(forceMinEl.value)]} – ${FORCE_VALUES[Number(forceMaxEl.value)]} t`;
+  }
+
+  if (forceMinEl && forceMaxEl) {
+    forceMinEl.min = forceMaxEl.min = 0;
+    forceMinEl.max = forceMaxEl.max = lastIdx;
+    forceMinEl.value = 0; forceMaxEl.value = lastIdx;
+    forceMinEl.addEventListener("input", () => {
+      if (Number(forceMinEl.value) > Number(forceMaxEl.value)) forceMinEl.value = forceMaxEl.value;
+      updateForceVisual(); render();
+    });
+    forceMaxEl.addEventListener("input", () => {
+      if (Number(forceMaxEl.value) < Number(forceMinEl.value)) forceMaxEl.value = forceMinEl.value;
+      updateForceVisual(); render();
+    });
+    updateForceVisual();
+  }
+
+  function render() {
+    const makeChecked = document.querySelector('input[name="mk"]:checked');
+    const make = makeChecked ? makeChecked.value : "all";
+    const forceMin = forceMinEl ? FORCE_VALUES[Number(forceMinEl.value)] : FORCE_VALUES[0];
+    const forceMax = forceMaxEl ? FORCE_VALUES[Number(forceMaxEl.value)] : FORCE_VALUES[lastIdx];
+    const sortChecked = document.querySelector('input[name="srt"]:checked');
+    const sort = sortChecked ? sortChecked.value : "force";
+
+    let list = coreMachines.filter(m => {
+      if (make !== "all" && m.make !== make) return false;
+      if (!m.clampingForceKN) return true;
+      const t = Math.round(m.clampingForceKN / 10);
+      return t >= forceMin && t <= forceMax;
+    });
+    if (sort === "year") list = list.slice().sort((a, b) => machineYearValue(b, maxDatedYear) - machineYearValue(a, maxDatedYear));
+    else if (sort === "force") list = list.slice().sort((a, b) => (a.clampingForceKN || 0) - (b.clampingForceKN || 0));
+
+    tbody.innerHTML = "";
+    list.forEach(m => {
+      // The whole row opens the machine's detail page, same as clicking its
+      // card in the grid view — not just a single "Enquire" cell.
+      const tr = document.createElement("tr");
+      tr.className = "row-link";
+      tr.addEventListener("click", () => { window.location.href = "machine-detail.html?id=" + encodeURIComponent(m.id); });
+      tr.innerHTML = `
+        <td class="thumb-cell"><div class="ph ${m.image ? "has-photo" : "duotone"}" style="width:100%;height:100%">${m.image ? `<img src="${m.image}" alt="${m.name}" loading="lazy">` : "photo"}</div></td>
+        <td><strong>${m.name}</strong><div class="meta-mono">${machineCategoryLabel(m, lang())}</div></td>
+        <td>${m.year}</td>
+        <td>${m.clampingForceKN ? fmtForceTons(m.clampingForceKN) : "—"}</td>
+        <td>${m.location}</td>
+        <td><span class="tag ${statusTagClass[m.status] || "tag-neutral"}">${m.status}</span></td>
+      `;
+      tbody.appendChild(tr);
+    });
+    const showing = document.getElementById("table-showing");
+    if (showing) showing.textContent = L().showing(list.length, coreMachines.length);
+  }
+
+  document.querySelectorAll('input[name="mk"], input[name="srt"]').forEach(input => input.addEventListener("change", render));
+  const clearBtn = document.getElementById("clear-filters");
+  if (clearBtn) clearBtn.addEventListener("click", () => {
+    const all = document.querySelector('input[name="mk"][value="all"]');
+    if (all) all.checked = true;
+    if (forceMinEl && forceMaxEl) { forceMinEl.value = 0; forceMaxEl.value = lastIdx; updateForceVisual(); }
+    render();
   });
-  const showing = document.getElementById("table-showing");
-  if (showing) showing.textContent = L().showing(coreMachines.length, coreMachines.length);
+  render();
 }
 
 // ---------------------------------------------------------------- other plastic equipment listing (cards)
@@ -907,7 +998,10 @@ function initMachineDetail() {
       breadcrumbEl.innerHTML = `<a href="${home}">${homeLabel}</a> / <a href="other-equipment.html">${oeLabel}</a> / <a href="${catHref}">${catLabel}</a>`;
     } else {
       const machinesLabel = lang() === "sl" ? "Stroji" : "Machines";
-      breadcrumbEl.innerHTML = `<a href="${home}">${homeLabel}</a> / <a href="machines.html">${machinesLabel}</a>`;
+      // If the visitor arrived from the table view, "Machines" should return
+      // them there instead of always defaulting to the card view.
+      const machinesHref = document.referrer.includes("machines-table.html") ? "machines-table.html" : "machines.html";
+      breadcrumbEl.innerHTML = `<a href="${home}">${homeLabel}</a> / <a href="${machinesHref}">${machinesLabel}</a>`;
     }
   }
 

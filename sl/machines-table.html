@@ -59,32 +59,51 @@
   </div>
 </div>
 
-<main class="container" style="padding-top:20px;padding-bottom:40px">
-  <h1>Vsi stroji na zalogi</h1>
+<main class="container listing-layout">
+  <aside class="filter-rail">
+    <div class="filter-group">
+      <div class="filter-title">ZNAMKA</div>
+      <label class="radio"><input type="radio" name="mk" value="all" checked><span class="dot"></span>Vse znamke</label>
+      <div id="make-options"></div>
+    </div>
+    <button id="clear-filters" class="btn btn-secondary btn-block">Počisti vse filtre</button>
+  </aside>
 
-  <div class="blueprint filter-bar-dense" style="margin:16px 0 22px">
-    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-    <div class="field"><label>Kategorija</label><div class="ph" style="height:34px">izbor</div></div>
-    <div class="field"><label>Znamka</label><div class="ph" style="height:34px">izbor</div></div>
-    <div class="field"><label>Leto od</label><div class="ph" style="height:34px">izbor</div></div>
-    <div class="field"><label>Sila zapiranja</label><div class="ph" style="height:34px">izbor</div></div>
-    <div class="field"><label>Lokacija</label><div class="ph" style="height:34px">izbor</div></div>
-    <button class="btn btn-primary">Filtriraj</button>
-  </div>
+  <div class="listing-main">
+    <div class="listing-toolbar">
+      <h1>Vsi stroji na zalogi</h1>
+      <div class="sort-row">
+        <span class="sort-label">RAZVRSTI</span>
+        <span class="seg">
+          <label class="seg-opt"><input type="radio" name="srt" value="newest">Najnovejši</label>
+          <label class="seg-opt"><input type="radio" name="srt" value="year">Leto</label>
+          <label class="seg-opt"><input type="radio" name="srt" value="force" checked>Sila</label>
+        </span>
+      </div>
+    </div>
 
-  <div class="table-wrap">
-    <table class="table">
-      <thead>
-        <tr><th></th><th>Stroj</th><th>Leto</th><th>Sila zapiranja</th><th>Lokacija</th><th>Status</th><th></th></tr>
-      </thead>
-      <tbody id="machines-tbody"></tbody>
-    </table>
-  </div>
-  <div class="table-foot">
-    <span id="table-showing" class="showing"></span>
-    <div class="row" style="gap:8px">
-      <button class="btn btn-secondary">Primerjaj izbrano</button>
-      <button class="btn btn-secondary">Naloži več</button>
+    <div class="force-panel">
+      <div class="filter-title">SILA ZAPIRANJA</div>
+      <div class="force-slider force-slider-lg" id="force-slider">
+        <div class="force-slider-track"></div>
+        <div class="force-slider-range" id="force-slider-range"></div>
+        <input type="range" id="force-min" class="force-slider-input" aria-label="Najmanjša sila zapiranja">
+        <input type="range" id="force-max" class="force-slider-input" aria-label="Največja sila zapiranja">
+      </div>
+      <div class="force-slider-ticks" id="force-ticks"></div>
+      <div class="range-hint" id="force-hint"></div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th></th><th>Stroj</th><th>Leto</th><th>Sila zapiranja</th><th>Lokacija</th><th>Status</th></tr>
+        </thead>
+        <tbody id="machines-tbody"></tbody>
+      </table>
+    </div>
+    <div class="table-foot">
+      <span id="table-showing" class="showing"></span>
     </div>
   </div>
 </main>
