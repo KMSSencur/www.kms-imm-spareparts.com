@@ -466,6 +466,12 @@ const PARTS = [
     leadTime: "From stock", description: "",
     image: "/images/servo 1_6.jpg", gallery: ["/images/servo 1_5.jpg"], price: "Price on request", placeholder: false },
 
+  // Electronics > Power supply
+  { id: "prt-pow-001", name: "Power supply NT500 (MC4), HDB-60B-30, Schroff", partNo: "HDB-60B-30", manufacturer: "Schroff", model: "HDB-60B-30", serialNo: "5004600",
+    category: "electronics", subcategory: "powersupply", condition: "Used", fits: "KraussMaffei MC4 control system — confirm compatibility with our team.",
+    leadTime: "From stock", description: "No. 5004600",
+    image: "/images/20260820_110601.jpg", gallery: ["/images/20260820_110608.jpg"], price: "Price on request", placeholder: false },
+
   // Plasticizing units & screws
   { id: "prt-psc-001", name: "Plasticizing unit KraussMaffei SP750 Ø50 mm", partNo: "SP750 Ø50", manufacturer: "KraussMaffei", model: "SP750 Ø50", serialNo: "—",
     category: "plasticizing", subcategory: "Plasticizing units", condition: "Checked", fits: "KraussMaffei SP750 injection unit — confirm cylinder/screw diameter before ordering.",
