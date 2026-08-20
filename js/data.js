@@ -15,8 +15,7 @@
 const PART_CATEGORIES = [
   { key: "electronics", label: "Electronics", labelSl: "Elektronika", labelHr: "Elektronika", submenus: [
       { key: "drives", label: "Drives", labelSl: "Pogoni", labelHr: "Pogoni" },
-      { key: "ipc", label: "IPC", labelSl: "IPC", labelHr: "IPC" },
-      { key: "hmi", label: "HMI", labelSl: "HMI", labelHr: "HMI" },
+      { key: "ipc-hmi", label: "IPC & HMI", labelSl: "IPC & HMI", labelHr: "IPC & HMI" },
       { key: "motor", label: "Motor", labelSl: "Motorji", labelHr: "Motori" },
       { key: "powersupply", label: "Power supply", labelSl: "Napajalniki", labelHr: "Napajanja" }
   ]},
@@ -446,6 +445,12 @@ const PARTS = [
     category: "electronics", subcategory: "drives", condition: "Used", fits: "SIMODRIVE power module — confirm cabinet fit before ordering.",
     leadTime: "From stock", description: "",
     image: "/images/drive 1_2.jpg", gallery: ["/images/drive 1_1.jpg"], price: "Price on request", placeholder: false },
+
+  // Electronics > IPC & HMI
+  { id: "prt-ipc-001", name: "MC4 IPC with screen and keyboard", partNo: "5080338 / 5080343", manufacturer: "KraussMaffei", model: "MC4 IPC + FA560", serialNo: "—",
+    category: "electronics", subcategory: "ipc-hmi", condition: "Used", fits: "KraussMaffei MC4 control system — confirm compatibility with our team.",
+    leadTime: "From stock", description: "MC4 IPC (Pentium 300 CF) with screen (FA560) and keyboard.\nNo. 5080338 and 5080343",
+    image: "/images/20260820_110731.jpg", gallery: ["/images/20260820_110827.jpg", "/images/20260820_110839.jpg", "/images/20260820_111248.jpg"], price: "Price on request", placeholder: false },
 
   // Electronics > Motor
   { id: "prt-mot-001", name: "Servomotor SIEMENS 1FT6108-8AC71-4DH0", partNo: "1FT6108-8AC71-4DH0", manufacturer: "Siemens", model: "1FT6108-8AC71-4DH0", serialNo: "SN-H6626943601001",
