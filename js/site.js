@@ -1,9 +1,9 @@
 /*
   Shared site behaviour: mobile menu, card rendering, listings, search,
   filters, and detail-page population. Reads PRODUCTS/MACHINES from
-  js/data.js. One script, loaded by every EN and every SL page — dynamic
+  js/data.js. One script, loaded by every EN, SL and HR page — dynamic
   text (labels not baked into the page's own HTML) is looked up in LABELS
-  by document.documentElement.lang so the same script serves both trees.
+  by document.documentElement.lang so the same script serves all three trees.
 */
 
 const PHONE = "+386 51 251 441";
@@ -51,7 +51,18 @@ const LABELS = {
     machinePhoto: "machine photo",
     partPhoto: "part photograph",
     otherMake: "Other",
-    noOtherEquipment: "We don't have any other plastic equipment listed online yet — call us or send an enquiry and we'll check current stock for you."
+    noOtherEquipment: "We don't have any other plastic equipment listed online yet — call us or send an enquiry and we'll check current stock for you.",
+    searchResultsFor: "Search results for",
+    allSpareParts: "All spare parts",
+    home: "Home",
+    spareParts: "Spare parts",
+    otherPlasticEquipment: "Other plastic equipment",
+    machines: "Machines",
+    partDescriptionLabel: "PART DESCRIPTION",
+    equipmentDescriptionLabel: "EQUIPMENT DESCRIPTION",
+    productionYear: "Production year",
+    clampingForceLabel: "Clamping force",
+    locationLabel: "Location"
   },
   sl: {
     priceOnRequest: "Cena na zahtevo",
@@ -79,17 +90,76 @@ const LABELS = {
     machinePhoto: "fotografija stroja",
     partPhoto: "fotografija dela",
     otherMake: "Drugo",
-    noOtherEquipment: "Trenutno na spletu še nimamo objavljene druge plastične opreme — pokličite nas ali pošljite povpraševanje in preverimo trenutno zalogo."
+    noOtherEquipment: "Trenutno na spletu še nimamo objavljene druge plastične opreme — pokličite nas ali pošljite povpraševanje in preverimo trenutno zalogo.",
+    searchResultsFor: "Rezultati iskanja za",
+    allSpareParts: "Vsi rezervni deli",
+    home: "Domov",
+    spareParts: "Rezervni deli",
+    otherPlasticEquipment: "Druga plastična oprema",
+    machines: "Stroji",
+    partDescriptionLabel: "OPIS DELA",
+    equipmentDescriptionLabel: "OPIS OPREME",
+    productionYear: "Proizvodno leto",
+    clampingForceLabel: "Sila zapiranja",
+    locationLabel: "Lokacija"
+  },
+  hr: {
+    priceOnRequest: "Cijena na upit",
+    sample: "Uzorak",
+    details: "Detalji",
+    compareSelected: "Usporedi odabrano",
+    loadMore: "Učitaj više",
+    showing: (n, total) => `Prikazano ${n} od ${total}`,
+    results: (n) => `${n} rezultata`,
+    clearFilters: "Očisti sve filtre",
+    requestPrice: "Zatražite cijenu",
+    orCall: (phone) => `ILI NAZOVITE ${phone}`,
+    checkAvailability: "Provjeri dostupnost",
+    noResults: "Nema pronađenih artikala. Pokušajte s drugim pojmom za pretragu ili odaberite kategoriju iznad.",
+    inStock: (loc) => `Na zalihi, ${loc}`,
+    originalPart: "Originalni dio",
+    condition: "Stanje",
+    leadTime: "Rok isporuke",
+    price: "Cijena",
+    partNoLabel: "BROJ DIJELA",
+    enquirySent: "Hvala — vaš upit je poslan. Odgovaramo u roku od dva radna dana, ili nazovite " + PHONE + ".",
+    enquiryFailed: "Došlo je do pogreške prilikom slanja — molimo nazovite nas na " + PHONE + ".",
+    fillMissingFields: "Molimo popunite podatke koji nedostaju — označeni su ispod.",
+    chooseFile: "Odaberite datoteku",
+    machinePhoto: "fotografija stroja",
+    partPhoto: "fotografija dijela",
+    otherMake: "Ostalo",
+    noOtherEquipment: "Trenutno na webu još nemamo objavljenu drugu plastičnu opremu — nazovite nas ili pošaljite upit i provjerit ćemo trenutnu zalihu za vas.",
+    searchResultsFor: "Rezultati pretrage za",
+    allSpareParts: "Svi rezervni dijelovi",
+    home: "Početna",
+    spareParts: "Rezervni dijelovi",
+    otherPlasticEquipment: "Ostala plastična oprema",
+    machines: "Strojevi",
+    partDescriptionLabel: "OPIS DIJELA",
+    equipmentDescriptionLabel: "OPIS OPREME",
+    productionYear: "Proizvodna godina",
+    clampingForceLabel: "Sila zatvaranja",
+    locationLabel: "Lokacija"
   }
 };
 
-function lang() { return document.documentElement.lang === "sl" ? "sl" : "en"; }
+function lang() {
+  const l = document.documentElement.lang;
+  return (l === "sl" || l === "hr") ? l : "en";
+}
 function L() { return LABELS[lang()]; }
+// Root-relative path to each tree's home page — EN lives at the site root,
+// SL and HR are mirrored under /sl/ and /hr/ respectively.
+function homePath() {
+  const l = lang();
+  return l === "en" ? "/index.html" : "/" + l + "/index.html";
+}
 function fmtInt(n) {
   if (typeof n !== "number") return n;
-  // SL uses a space as the thousands separator (per the design brief);
-  // browsers' sl-SI ICU data is inconsistent, so this is done by hand.
-  if (lang() === "sl") return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  // SL/HR use a space as the thousands separator (per the design brief);
+  // browsers' sl-SI/hr-HR ICU data is inconsistent, so this is done by hand.
+  if (lang() !== "en") return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   return n.toLocaleString("en-US");
 }
 // Clamping force is stored in kN but always shown to customers in tons
@@ -483,7 +553,7 @@ function initMachinesListing() {
     }
     if (heading) {
       heading.textContent = q
-        ? `${lang() === "sl" ? "Rezultati iskanja za" : "Search results for"} "${q}" (${list.length})`
+        ? `${L().searchResultsFor} "${q}" (${list.length})`
         : L().results(list.length);
     }
   }
@@ -650,7 +720,7 @@ function initOtherEquipmentListing() {
       const count = MACHINES.filter(m => m.category === "Other equipment" && m.subcategory === cat.key).length;
       const label = document.createElement("label");
       label.className = "radio";
-      const name = lang() === "sl" ? cat.labelSl : cat.label;
+      const name = categoryLabelFor(cat, lang());
       label.innerHTML = `<input type="radio" name="oecat" value="${cat.key}"><span class="dot"></span>${name} <span class="count">(${count})</span>`;
       catOptionsEl.appendChild(label);
     });
@@ -689,7 +759,7 @@ function initOtherEquipmentListing() {
     }
     if (heading) {
       heading.textContent = q
-        ? `${lang() === "sl" ? "Rezultati iskanja za" : "Search results for"} "${q}" (${list.length})`
+        ? `${L().searchResultsFor} "${q}" (${list.length})`
         : L().results(list.length);
     }
   }
@@ -735,7 +805,7 @@ function initPartsListing() {
       const count = PARTS.filter(p => p.category === cat.key).length;
       const label = document.createElement("label");
       label.className = "radio";
-      const name = lang() === "sl" ? cat.labelSl : cat.label;
+      const name = categoryLabelFor(cat, lang());
       label.innerHTML = `<input type="radio" name="pcat" value="${cat.key}"><span class="dot"></span>${name} <span class="count">(${count})</span>`;
       catOptionsEl.appendChild(label);
       if (cat.submenus) {
@@ -744,7 +814,7 @@ function initPartsListing() {
           const subLabel = document.createElement("label");
           subLabel.className = "radio";
           subLabel.style.paddingLeft = "16px";
-          const subName = lang() === "sl" ? sub.labelSl : sub.label;
+          const subName = categoryLabelFor(sub, lang());
           subLabel.innerHTML = `<input type="radio" name="pcat" value="${cat.key}:${sub.key}"><span class="dot"></span>${subName} <span class="count">(${subCount})</span>`;
           catOptionsEl.appendChild(subLabel);
         });
@@ -785,7 +855,7 @@ function initPartsListing() {
     }
     if (heading) {
       heading.textContent = q
-        ? `${lang() === "sl" ? "Rezultati iskanja za" : "Search results for"} "${q}" (${list.length})`
+        ? `${L().searchResultsFor} "${q}" (${list.length})`
         : L().results(list.length);
     }
   }
@@ -878,10 +948,10 @@ function initCategoryPage() {
     }
 
     if (heading) {
-      if (q) heading.textContent = `${lang() === "sl" ? "Rezultati iskanja za" : "Search results for"} "${q}" (${list.length})`;
+      if (q) heading.textContent = `${L().searchResultsFor} "${q}" (${list.length})`;
       else if (catParam && subParam) heading.textContent = `${partCategoryLabel(catParam, lang())} · ${partSubcategoryLabel(catParam, subParam, lang())} (${list.length})`;
       else if (catParam) heading.textContent = `${partCategoryLabel(catParam, lang())} (${list.length})`;
-      else heading.textContent = `${lang() === "sl" ? "Vsi rezervni deli" : "All spare parts"} (${list.length})`;
+      else heading.textContent = `${L().allSpareParts} (${list.length})`;
     }
   }
 
@@ -903,9 +973,9 @@ function initPartDetail() {
   // has one) instead of a generic "Catalog" link.
   const breadcrumbEl = document.getElementById("detail-breadcrumb");
   if (breadcrumbEl) {
-    const home = lang() === "sl" ? "/sl/index.html" : "/index.html";
-    const homeLabel = lang() === "sl" ? "Domov" : "Home";
-    const spareLabel = lang() === "sl" ? "Rezervni deli" : "Spare parts";
+    const home = homePath();
+    const homeLabel = L().home;
+    const spareLabel = L().spareParts;
     const subLabel = part.subcategory ? partSubcategoryLabel(part.category, part.subcategory, lang()) : null;
     const thirdLabel = subLabel || partCategoryLabel(part.category, lang());
     const thirdHref = "spare-parts.html?cat=" + encodeURIComponent(part.category) + (part.subcategory ? "&sub=" + encodeURIComponent(part.subcategory) : "");
@@ -956,7 +1026,7 @@ function initPartDetail() {
   setText("[data-field='condition-label']", L().condition);
   setText("[data-field='leadtime-label']", L().leadTime);
   setText("[data-field='price-label']", L().price);
-  setText("[data-field='description-label']", lang() === "sl" ? "OPIS DELA" : "PART DESCRIPTION");
+  setText("[data-field='description-label']", L().partDescriptionLabel);
   setText("[data-field='description-value']", part.description || "—");
   setText("[data-field='or-call']", L().orCall(PHONE));
   setText("[data-field='request-price-btn']", L().requestPrice);
@@ -989,15 +1059,15 @@ function initMachineDetail() {
   // equipment items link back through their category, not "Machines".
   const breadcrumbEl = document.getElementById("detail-breadcrumb");
   if (breadcrumbEl) {
-    const home = lang() === "sl" ? "/sl/index.html" : "/index.html";
-    const homeLabel = lang() === "sl" ? "Domov" : "Home";
+    const home = homePath();
+    const homeLabel = L().home;
     if (m.category === "Other equipment") {
-      const oeLabel = lang() === "sl" ? "Druga plastična oprema" : "Other plastic equipment";
+      const oeLabel = L().otherPlasticEquipment;
       const catLabel = otherEquipmentCategoryLabel(m.subcategory, lang());
       const catHref = "other-equipment.html?cat=" + encodeURIComponent(m.subcategory);
       breadcrumbEl.innerHTML = `<a href="${home}">${homeLabel}</a> / <a href="other-equipment.html">${oeLabel}</a> / <a href="${catHref}">${catLabel}</a>`;
     } else {
-      const machinesLabel = lang() === "sl" ? "Stroji" : "Machines";
+      const machinesLabel = L().machines;
       // If the visitor arrived from the table view, "Machines" should return
       // them there instead of always defaulting to the card view.
       const machinesHref = document.referrer.includes("machines-table.html") ? "machines-table.html" : "machines.html";
@@ -1043,7 +1113,7 @@ function initMachineDetail() {
   setText("[data-field='kicker']", machineCategoryLabel(m, lang()));
   setText("[data-field='title']", m.name);
   setText("[data-field='meta']", [m.make, m.year].filter(Boolean).join(" · "));
-  setText("[data-field='year-label']", lang() === "sl" ? "Proizvodno leto" : "Production year");
+  setText("[data-field='year-label']", L().productionYear);
   setText("[data-field='year-value']", m.year);
   // Clamping force isn't a meaningful spec for other plastic equipment
   // (robots, dryers, tempering units, granulators) — hide the whole row
@@ -1051,15 +1121,15 @@ function initMachineDetail() {
   const forceLabelEl = root.querySelector("[data-field='force-label']");
   const forceRow = forceLabelEl ? forceLabelEl.closest("tr") : null;
   if (forceRow) forceRow.style.display = m.category === "Other equipment" ? "none" : "";
-  setText("[data-field='force-label']", lang() === "sl" ? "Sila zapiranja" : "Clamping force");
+  setText("[data-field='force-label']", L().clampingForceLabel);
   setText("[data-field='force-value']", m.clampingForceKN ? fmtForceTons(m.clampingForceKN) : "—");
-  setText("[data-field='location-label']", lang() === "sl" ? "Lokacija" : "Location");
+  setText("[data-field='location-label']", L().locationLabel);
   setText("[data-field='location-value']", m.location);
   setText("[data-field='condition-label']", L().condition);
   setText("[data-field='condition-value']", m.status);
   setText("[data-field='price-label']", L().price);
   setText("[data-field='price-value']", m.price);
-  setText("[data-field='description-label']", lang() === "sl" ? "OPIS OPREME" : "EQUIPMENT DESCRIPTION");
+  setText("[data-field='description-label']", L().equipmentDescriptionLabel);
   setText("[data-field='description-value']", m.description || "—");
   setText("[data-field='or-call']", L().orCall(PHONE));
   setText("[data-field='request-price-btn']", L().requestPrice);

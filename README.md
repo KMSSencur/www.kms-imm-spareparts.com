@@ -34,6 +34,7 @@ about.html                About & contact (also the #contact anchor target)
 service.html               Repair / on-site service
 
 sl/                        Slovenian mirror of every page above (same filenames)
+hr/                        Croatian mirror of every page above (same filenames)
 
 theme/kms-theme.css        Design tokens + component classes — copied verbatim
                           from the design handoff. Don't hand-edit colors/spacing
@@ -52,8 +53,8 @@ design/                    The original design handoff, unmodified, for referenc
 Everything renders from [`js/data.js`](js/data.js). Copy an existing object in
 `MACHINES` or `PARTS`, paste it as a new entry, edit the fields — it appears
 on the home page, listings, category browser and search automatically, in
-both languages. No other file needs to change. There's no cap on how many
-items you add.
+all three languages. No other file needs to change. There's no cap on how
+many items you add.
 
 ## What's real vs. sample data
 
@@ -78,24 +79,35 @@ items you add.
   `<img>` by setting an item's `image` field and updating the relevant markup
   once real photography exists.
 
-## Language (EN / SL)
+## Language (EN / SL / HR)
 
-English lives at the root, Slovenian is mirrored under `/sl/` — same
-filenames, so the language switch in the header just swaps `/` for `/sl/`
-(or back). This matches the design brief's routing spec.
+English lives at the root, Slovenian is mirrored under `/sl/`, Croatian
+under `/hr/` — same filenames in all three, so the language switch in the
+header just swaps the leading `/`, `/sl/` or `/hr/` segment. This matches
+the design brief's routing spec.
 
 **What's translated:** all page chrome — nav, headings, labels, form copy,
 footer — plus everything `js/site.js` renders dynamically (category names,
 "Sample" badge, "Price on request", table headers, etc.), including number
-formatting (SL uses a space as the thousands separator, per the brief).
+formatting (SL and HR both use a space as the thousands separator, per the
+brief). `lang()` in `js/site.js` resolves `document.documentElement.lang` to
+`"en"`, `"sl"` or `"hr"`, and every dynamic label is looked up per-language
+in the `LABELS` table (or via `labelSl`/`labelHr` fields on the category
+taxonomies in `js/data.js`).
 
 **What's not translated (yet):** the actual catalog *content* in
 `js/data.js` — product names, conditions, fitment notes, descriptions — is
-English-only on both language trees, since it's placeholder/sample data to
-begin with. When real inventory replaces the samples, either keep catalog
-text in one language for both trees, or add `nameSl`/`descriptionSl`-style
-fields and branch on `lang()` in `js/site.js` the same way `PART_CATEGORIES`
-already does.
+English-only on all three language trees, since it's placeholder/sample data
+to begin with. When real inventory replaces the samples, either keep catalog
+text in one language for all trees, or add `nameSl`/`nameHr`-style fields and
+branch on `lang()` in `js/site.js` the same way `PART_CATEGORIES` already
+does for its labels.
+
+Adding a fourth language means: a `LABELS.xx` block in `js/site.js`, a
+`labelXx` field on each `PART_CATEGORIES`/`OTHER_EQUIPMENT_CATEGORIES` entry
+and a `MACHINE_CATEGORY_XX` table in `js/data.js`, `lang()`/`homePath()`
+recognizing the new code, and a `/xx/` mirror of the 9 HTML pages with the
+switcher links updated on every existing page (EN, SL, HR and the new tree).
 
 ## Search
 

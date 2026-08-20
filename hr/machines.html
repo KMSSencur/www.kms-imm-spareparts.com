@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strojevi — KMS Rabljeni strojevi</title>
+<meta name="description" content="Pregledajte rabljene strojeve IMM za brizganje plastike i ostalu industrijsku opremu na zalihi kod KMS-a.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/theme/kms-theme.css">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="container">
+    <span class="cert">VAŠ POUZDANI PARTNER · SLOVENIJA</span>
+    <div class="right">
+      <a class="phone" href="tel:+38651251441">T +386 51 251 441</a>
+      <span class="lang-switch"><a href="/machines.html">EN</a><span style="opacity:.45">|</span><a href="/sl/machines.html">SL</a><span style="opacity:.45">|</span><a href="/hr/machines.html" class="active">HR</a></span>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/hr/index.html">
+      <span class="brand-mark">KMS</span>
+      <span><span class="brand-word">RABLJENI STROJEVI</span><span class="brand-sub">KMS d.o.o. · Šenčur</span></span>
+    </a>
+    <nav class="nav-primary">
+      <a href="machines.html" aria-current="page">Strojevi</a>
+      <a href="spare-parts.html">Rezervni dijelovi</a>
+      <a href="other-equipment.html">Ostala plastična oprema</a>
+      <a href="about.html">O nama</a>
+      <a href="about.html#contact">Kontakt</a>
+    </nav>
+    <a class="btn btn-primary blueprint header-cta" href="about.html#contact">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Upit
+    </a>
+    <button class="burger" aria-label="Izbornik"><span></span></button>
+  </div>
+  <div class="mobile-panel">
+    <a href="machines.html">Strojevi</a>
+    <a href="spare-parts.html">Rezervni dijelovi</a>
+    <a href="other-equipment.html">Ostala plastična oprema</a>
+    <a href="about.html">O nama</a>
+    <a href="about.html#contact">Kontakt</a>
+    <div class="lang-switch-mobile" style="margin-top:10px;font:400 11px 'IBM Plex Mono',monospace"><a href="/machines.html">EN</a> · <a href="/sl/machines.html">SL</a> · <a href="/hr/machines.html">HR</a></div>
+    <a class="btn btn-primary blueprint" href="about.html#contact"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Upit</a>
+  </div>
+</header>
+
+<div class="breadcrumb-bar">
+  <div class="container">
+    <span class="breadcrumb"><a href="/hr/index.html">Početna</a> / Strojevi</span>
+    <span class="breadcrumb-right">
+      <a href="machines.html">Kartice</a> · <a href="machines-table.html">Tablica</a>
+    </span>
+  </div>
+</div>
+
+<main class="container listing-layout">
+  <aside class="filter-rail">
+    <div class="filter-group">
+      <div class="filter-title">MARKA</div>
+      <label class="radio"><input type="radio" name="mk" value="all" checked><span class="dot"></span>Sve marke</label>
+      <div id="make-options"></div>
+    </div>
+    <button id="clear-filters" class="btn btn-secondary btn-block">Očisti sve filtre</button>
+  </aside>
+
+  <div class="listing-main">
+    <div class="field" style="max-width:420px;margin-bottom:14px">
+      <label for="machines-search">Pretraga strojeva</label>
+      <input id="machines-search" class="input" type="search" placeholder="Vrsta stroja, model, marka ili opis...">
+    </div>
+    <div class="listing-toolbar">
+      <h1>Svi strojevi</h1>
+      <div class="sort-row">
+        <span class="sort-label">SORTIRAJ</span>
+        <span class="seg">
+          <label class="seg-opt"><input type="radio" name="srt" value="newest">Najnoviji</label>
+          <label class="seg-opt"><input type="radio" name="srt" value="year">Godina</label>
+          <label class="seg-opt"><input type="radio" name="srt" value="force" checked>Sila</label>
+        </span>
+      </div>
+    </div>
+    <div class="force-panel">
+      <div class="filter-title">SILA ZATVARANJA</div>
+      <div class="force-slider force-slider-lg" id="force-slider">
+        <div class="force-slider-track"></div>
+        <div class="force-slider-range" id="force-slider-range"></div>
+        <input type="range" id="force-min" class="force-slider-input" aria-label="Minimalna sila zatvaranja">
+        <input type="range" id="force-max" class="force-slider-input" aria-label="Maksimalna sila zatvaranja">
+      </div>
+      <div class="force-slider-ticks" id="force-ticks"></div>
+      <div class="range-hint" id="force-hint"></div>
+    </div>
+    <div class="chips-row">
+      <span id="machines-count" class="result-count"></span>
+    </div>
+    <div id="machines-grid" class="card-grid cols-3"></div>
+  </div>
+</main>
+
+<section class="contact-band">
+  <div class="container">
+    <span class="nl" style="color:#fff">Tražite nešto specifično?</span>
+    <span class="stat-num" style="color:#fff;font-size:18px">Nazovite +386 51 251 441 ili <a href="about.html#contact" style="color:#fff;text-decoration:underline">pošaljite upit</a></span>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 KMS, d.o.o. · Šenčur, Slovenija</span>
+      <span class="lang-switch"><a href="/machines.html">EN</a> · <a href="/sl/machines.html">SL</a> · <a href="/hr/machines.html" class="active">HR</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/data.js"></script>
+<script src="/js/site.js"></script>
+<script>initMachinesListing();</script>
+</body>
+</html>

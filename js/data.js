@@ -13,28 +13,33 @@
 // ---- category taxonomy (used for the spare-parts "browse by category" cards
 //      and the filter rail) --------------------------------------------------
 const PART_CATEGORIES = [
-  { key: "electronics", label: "Electronics", labelSl: "Elektronika", submenus: [
-      { key: "drives", label: "Drives", labelSl: "Pogoni" },
-      { key: "ipc", label: "IPC", labelSl: "IPC" },
-      { key: "hmi", label: "HMI", labelSl: "HMI" },
-      { key: "motor", label: "Motor", labelSl: "Motorji" },
-      { key: "powersupply", label: "Power supply", labelSl: "Napajalniki" }
+  { key: "electronics", label: "Electronics", labelSl: "Elektronika", labelHr: "Elektronika", submenus: [
+      { key: "drives", label: "Drives", labelSl: "Pogoni", labelHr: "Pogoni" },
+      { key: "ipc", label: "IPC", labelSl: "IPC", labelHr: "IPC" },
+      { key: "hmi", label: "HMI", labelSl: "HMI", labelHr: "HMI" },
+      { key: "motor", label: "Motor", labelSl: "Motorji", labelHr: "Motori" },
+      { key: "powersupply", label: "Power supply", labelSl: "Napajalniki", labelHr: "Napajanja" }
   ]},
-  { key: "plasticizing", label: "Plasticizing units & screws", labelSl: "Plastifikacijske enote in vijaki" },
-  { key: "hydraulic", label: "Hydraulic valves", labelSl: "Hidravlični ventili" },
-  { key: "other", label: "Other", labelSl: "Drugo" }
+  { key: "plasticizing", label: "Plasticizing units & screws", labelSl: "Plastifikacijske enote in vijaki", labelHr: "Plastifikacijske jedinice i vijci" },
+  { key: "hydraulic", label: "Hydraulic valves", labelSl: "Hidravlični ventili", labelHr: "Hidraulički ventili" },
+  { key: "other", label: "Other", labelSl: "Drugo", labelHr: "Ostalo" }
 ];
 
+function categoryLabelFor(entry, lang) {
+  if (lang === "sl") return entry.labelSl;
+  if (lang === "hr") return entry.labelHr;
+  return entry.label;
+}
 function partCategoryLabel(catKey, lang) {
   const cat = PART_CATEGORIES.find(c => c.key === catKey);
   if (!cat) return catKey;
-  return lang === "sl" ? cat.labelSl : cat.label;
+  return categoryLabelFor(cat, lang);
 }
 function partSubcategoryLabel(catKey, subKey, lang) {
   const cat = PART_CATEGORIES.find(c => c.key === catKey);
   if (cat && cat.submenus) {
     const sub = cat.submenus.find(s => s.key === subKey);
-    if (sub) return lang === "sl" ? sub.labelSl : sub.label;
+    if (sub) return categoryLabelFor(sub, lang);
   }
   return subKey || "";
 }
@@ -43,16 +48,16 @@ function partSubcategoryLabel(catKey, subKey, lang) {
 // PART_CATEGORIES' shape. Machines in this category (category: "Other
 // equipment") carry a matching `subcategory` value (e.g. "robots").
 const OTHER_EQUIPMENT_CATEGORIES = [
-  { key: "robots", label: "Robots", labelSl: "Roboti" },
-  { key: "tempering", label: "Tempering control units", labelSl: "Temperirne enote" },
-  { key: "dryers", label: "Dryers", labelSl: "Sušilniki" },
-  { key: "granulators", label: "Granulators", labelSl: "Mlini" },
-  { key: "other", label: "Other", labelSl: "Drugo" }
+  { key: "robots", label: "Robots", labelSl: "Roboti", labelHr: "Roboti" },
+  { key: "tempering", label: "Tempering control units", labelSl: "Temperirne enote", labelHr: "Temperirne jedinice" },
+  { key: "dryers", label: "Dryers", labelSl: "Sušilniki", labelHr: "Sušilice" },
+  { key: "granulators", label: "Granulators", labelSl: "Mlini", labelHr: "Mlinovi" },
+  { key: "other", label: "Other", labelSl: "Drugo", labelHr: "Ostalo" }
 ];
 function otherEquipmentCategoryLabel(key, lang) {
   const cat = OTHER_EQUIPMENT_CATEGORIES.find(c => c.key === key);
   if (!cat) return key;
-  return lang === "sl" ? cat.labelSl : cat.label;
+  return categoryLabelFor(cat, lang);
 }
 
 // ---- machines --------------------------------------------------------------
@@ -68,8 +73,15 @@ const MACHINE_CATEGORY_SL = {
   "Automation": "Avtomatizacija",
   "Other equipment": "Druga oprema"
 };
+const MACHINE_CATEGORY_HR = {
+  "Injection moulding": "Brizganje plastike",
+  "Extrusion": "Ekstruzija",
+  "Automation": "Automatizacija",
+  "Other equipment": "Ostala oprema"
+};
 function machineCategoryLabel(m, lang) {
-  return (lang === "sl" && MACHINE_CATEGORY_SL[m.category]) || m.category;
+  const table = lang === "sl" ? MACHINE_CATEGORY_SL : lang === "hr" ? MACHINE_CATEGORY_HR : null;
+  return (table && table[m.category]) || m.category;
 }
 
 const MACHINES = [
