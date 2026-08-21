@@ -324,6 +324,22 @@ const MACHINES = [
     placeholder: false
   },
   {
+    id: "oeq-robots-03",
+    name: "Linear robot KraussMaffei LRX150",
+    category: "Other equipment",
+    subcategory: "robots",
+    make: "KraussMaffei",
+    year: 2014,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "Inspected",
+    image: "/images/robot LRX 150 1.jpg",
+    gallery: ["/images/robot LRX 150 2.jpg", "/images/robot LRX 150 3.jpg"],
+    description: "Robot equipment:\n• Horizontal stroke: 3.500 mm\n• Vertical stroke (telescopic): 1400 mm\n• Demolding stroke: 900 mm\n• Maximum payload: 15 kg\n• Vacuum circuit 4 x\n• Pressure circuit 2 x\n• Rotation pneumatic C (0 - 90°) and servo B (0 - 270°)\n• 8 x digital inputs in cabinet\n• 8 x digital outputs in cabinet\n• Early start function\n• Indexing control of conveyor\n• Safety Pack; soft function\n• Reiser",
+    price: "Price on request",
+    placeholder: false
+  },
+  {
     id: "oeq-tempering-01",
     name: "SINGLE TCU WP4-200-18-120",
     category: "Other equipment",
