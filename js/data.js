@@ -275,6 +275,21 @@ const MACHINES = [
     price: "Price on request",
     placeholder: false
   },
+  {
+    id: "mch-km300-1000cx",
+    name: "KM 300 - 1000 CX",
+    category: "Injection moulding",
+    make: "KraussMaffei",
+    year: 2018,
+    clampingForceKN: 3000,
+    location: "Šenčur, SI",
+    status: "Inspected",
+    image: "/images/IMG-20250922-WA0004.jpg",
+    gallery: ["/images/IMG-20250922-WA0001.jpg", "/images/IMG-20250922-WA0002.jpg", "/images/IMG-20250922-WA0003.jpg", "/images/IMG-20250922-WA0005.jpg"],
+    description: "Machine KraussMaffei KM300-1000 CX\nClamping force kN: 3000\nDistance between tie bars (h x v) mm: 630 x 630\nMould opening stroke mm: 820\nMould height min. mm: 330\nEjector stroke mm: 200\nScrew diameter mm: 55 (mixing HPS-M)\nL/D ratio: 20\nInjection pressure bar: 1904\nStroke volume cm³: 523\nControl version: MC6\nScreen text: Germany\nCondition: Checked, ready to work\n\nEquipment:\n• Anti-vibration levelling pads\n• Wear resistant plasticizer, surcharge\n• BluePower - Complete insulation of plasticizing cylinder for lower energy consumption\n• 3 x pneumatic valve on moving platen for blow function\n• 2 x pneumatic valve on fixed platen for blow function\n• Pneumatic control for one hotrunner\n• Mechanical robot interface according to EUROMAP 18\n• Pressure accumulator for increased injection capacity\n• Hydraulic core pull system 2-fold on moving platen\n• Twin check valves to maintain pressure on hydraulic core pulls\n• Pressure relief for hydraulic core pulls\n• 8 hotrunner control circuits\n• Combination of sockets (3 Sockets, single phase, 3 CEE sockets 16 A)\n• APC - Adaptive Process Control\n• BluePower - Monitoring of energy and power\n• Graph display and analysis package with 10 graphs\n• PV-closed loop control\n• Interface 20 mA for the data transfer between machine control and external water temperature controllers (TCU)\n• Interface for production data consisting of 5 potential free contacts inside the control cabinet\n\nKraussMaffei Linear Robot LRX 100:\n• Fully integrated control\n• X (horizontal stroke): 3000 mm\n• Y (demold stroke): 550 mm\n• Z (vertical stroke): 1200 mm telescopic\n• Maximum load: 10 kg\n• C (pneumatic): 0 - 90 degree\n• Safety package for guarding fence\n• Vacuum 4 x\n• Pressure circuit 4 x\n• Control cabinet preparation for connection of conveyor belt",
+    price: "Price on request",
+    placeholder: false
+  },
 
   // ---- other plastic equipment (sample listings, one per category) ----
   {
