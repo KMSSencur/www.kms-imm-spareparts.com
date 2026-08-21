@@ -356,6 +356,22 @@ const MACHINES = [
     placeholder: false
   },
   {
+    id: "oeq-robots-05",
+    name: "Linear robot SEPRO SR4030 A3",
+    category: "Other equipment",
+    subcategory: "robots",
+    make: "Sepro",
+    year: 2006,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "Inspected",
+    image: "/images/sepro SR4030 A3 1.jpg",
+    gallery: ["/images/sepro SR4030 A3 2.jpg"],
+    description: "Robot equipment:\n• Software VISUAL\n• Horizontal stroke: 2.500 mm\n• Vertical stroke: 1400 mm\n• Demolding stroke: 800 mm\n• Maximum payload: 12 kg\n• Vacuum and pressure circuit 2 x\n• Rotation pneumatic R1 (0 - 90°) and pneumatic R2 (0 - 90° - 180°)\n• 16 x digital inputs in cabinet\n• 16 x digital outputs in cabinet\n• Reiser\n• Interface EUROMAP 67",
+    price: "Price on request",
+    placeholder: false
+  },
+  {
     id: "oeq-tempering-01",
     name: "SINGLE TCU WP4-200-18-120",
     category: "Other equipment",
