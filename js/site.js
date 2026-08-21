@@ -62,7 +62,8 @@ const LABELS = {
     equipmentDescriptionLabel: "EQUIPMENT DESCRIPTION",
     productionYear: "Production year",
     clampingForceLabel: "Clamping force",
-    locationLabel: "Location"
+    locationLabel: "Location",
+    viewFullSize: "View full size"
   },
   sl: {
     priceOnRequest: "Cena na zahtevo",
@@ -101,7 +102,8 @@ const LABELS = {
     equipmentDescriptionLabel: "OPIS OPREME",
     productionYear: "Proizvodno leto",
     clampingForceLabel: "Sila zapiranja",
-    locationLabel: "Lokacija"
+    locationLabel: "Lokacija",
+    viewFullSize: "Poglej v polni velikosti"
   },
   hr: {
     priceOnRequest: "Cijena na upit",
@@ -140,7 +142,8 @@ const LABELS = {
     equipmentDescriptionLabel: "OPIS OPREME",
     productionYear: "Proizvodna godina",
     clampingForceLabel: "Sila zatvaranja",
-    locationLabel: "Lokacija"
+    locationLabel: "Lokacija",
+    viewFullSize: "Pogledaj u punoj veličini"
   }
 };
 
@@ -253,7 +256,21 @@ function openLightbox(images, startIndex, alt) {
   img.alt = alt || "";
   backdrop.appendChild(img);
 
-  function render() { img.src = images[index]; }
+  // The lightbox image itself is capped well below full size (so nav
+  // chrome always fits on screen) — this link is the visible "sign" that a
+  // full-resolution version is one click away, opened in a new tab.
+  const viewFullBtn = document.createElement("a");
+  viewFullBtn.className = "lightbox-viewfull";
+  viewFullBtn.target = "_blank";
+  viewFullBtn.rel = "noopener";
+  viewFullBtn.addEventListener("click", (e) => e.stopPropagation());
+  backdrop.appendChild(viewFullBtn);
+
+  function render() {
+    img.src = images[index];
+    viewFullBtn.href = images[index];
+    viewFullBtn.textContent = "⤢ " + L().viewFullSize;
+  }
   render();
 
   const closeBtn = document.createElement("button");
