@@ -421,7 +421,13 @@ function initLatestArrivals(containerId, count) {
   const el = document.getElementById(containerId);
   if (!el) return;
   el.innerHTML = "";
-  MACHINES.slice(0, count || 4).forEach(m => el.appendChild(machineCard(m)));
+  // "Latest arrivals" = the most recently added machines, newest first.
+  // Other plastic equipment (robots, dryers, etc.) has its own dedicated
+  // page and never belongs here. New stock is appended to the end of the
+  // core-machines run in js/data.js (before the "Other plastic equipment"
+  // block), so the last N core machines in array order are the newest.
+  const coreMachines = MACHINES.filter(m => m.category !== "Other equipment");
+  coreMachines.slice(-(count || 4)).reverse().forEach(m => el.appendChild(machineCard(m)));
 }
 
 // ---------------------------------------------------------------- machines listing (cards)
