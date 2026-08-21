@@ -63,7 +63,8 @@ const LABELS = {
     productionYear: "Production year",
     clampingForceLabel: "Clamping force",
     locationLabel: "Location",
-    viewFullSize: "View full size"
+    viewFullSize: "View full size",
+    fitToScreen: "Fit to screen"
   },
   sl: {
     priceOnRequest: "Cena na zahtevo",
@@ -103,7 +104,8 @@ const LABELS = {
     productionYear: "Proizvodno leto",
     clampingForceLabel: "Sila zapiranja",
     locationLabel: "Lokacija",
-    viewFullSize: "Poglej v polni velikosti"
+    viewFullSize: "Poglej v polni velikosti",
+    fitToScreen: "Prilagodi zaslonu"
   },
   hr: {
     priceOnRequest: "Cijena na upit",
@@ -143,7 +145,8 @@ const LABELS = {
     productionYear: "Proizvodna godina",
     clampingForceLabel: "Sila zatvaranja",
     locationLabel: "Lokacija",
-    viewFullSize: "Pogledaj u punoj veličini"
+    viewFullSize: "Pogledaj u punoj veličini",
+    fitToScreen: "Prilagodi zaslonu"
   }
 };
 
@@ -257,19 +260,28 @@ function openLightbox(images, startIndex, alt) {
   backdrop.appendChild(img);
 
   // The lightbox image itself is capped well below full size (so nav
-  // chrome always fits on screen) — this link is the visible "sign" that a
-  // full-resolution version is one click away, opened in a new tab.
-  const viewFullBtn = document.createElement("a");
+  // chrome always fits on screen) — this toggles it up to near-fullscreen
+  // in place, so visitors can still page through the rest of the photos
+  // (prev/next, arrow keys) while zoomed in, instead of losing that
+  // navigation by opening a separate full-res tab.
+  let zoomed = false;
+  const viewFullBtn = document.createElement("button");
   viewFullBtn.className = "lightbox-viewfull";
-  viewFullBtn.target = "_blank";
-  viewFullBtn.rel = "noopener";
-  viewFullBtn.addEventListener("click", (e) => e.stopPropagation());
+  viewFullBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    zoomed = !zoomed;
+    backdrop.classList.toggle("zoomed", zoomed);
+    updateViewFullLabel();
+  });
   backdrop.appendChild(viewFullBtn);
+
+  function updateViewFullLabel() {
+    viewFullBtn.textContent = zoomed ? "⤡ " + L().fitToScreen : "⤢ " + L().viewFullSize;
+  }
 
   function render() {
     img.src = images[index];
-    viewFullBtn.href = images[index];
-    viewFullBtn.textContent = "⤢ " + L().viewFullSize;
+    updateViewFullLabel();
   }
   render();
 
