@@ -183,8 +183,8 @@ figure.duotone.blueprint { overflow: visible; }
 .contact-band p { margin: 4px 0 0; font-size: 13px; opacity: .75; }
 .contact-band .right { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
 .contact-band .phone-big { font-family: var(--font-heading); font-weight: 600; font-size: 22px; }
-.contact-band .btn { background: #fff; color: var(--color-accent-900); }
-.contact-band .btn:hover { background: var(--color-accent-100); }
+.contact-band .btn { background: var(--color-cta); color: #fff; }
+.contact-band .btn:hover { background: var(--color-cta-600); }
 
 /* ---------------------------------------------------------------- footer */
 .site-footer { background: #fff; border-top: 1px solid var(--color-divider); }
