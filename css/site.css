@@ -251,7 +251,7 @@ figure.duotone.blueprint { overflow: visible; }
   box-shadow: 0 0 0 1px var(--color-cta);
 }
 .force-slider-ticks { display: flex; justify-content: space-between; margin-top: 4px; }
-.force-slider-ticks span { font: 400 9px "IBM Plex Mono", monospace; opacity: .4; }
+.force-slider-ticks span { font: 400 9px "IBM Plex Mono", monospace; color: var(--color-text); opacity: 1; }
 
 /* Full-width panel above the results grid (moved out of the narrow sidebar
    so the slider reads at catalog-page scale, not sidebar-widget scale). */
