@@ -7,6 +7,9 @@
   --color-text: #1d1f20;
   --color-accent: #2271b3; /* RAL 5015 Sky blue */
   --color-accent-2: #0079c1;
+  --color-cta: #ff7514; /* RAL 2003 Pastel orange — primary buttons */
+  --color-cta-600: #d96311;
+  --color-cta-700: #b3520e;
   --color-divider: color-mix(in srgb, #1d1f20 16%, transparent);
 
   /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
@@ -149,9 +152,9 @@ figcaption {
 }
 .btn svg { display: block; }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
-.btn-primary { background: var(--color-accent); color: var(--color-bg); }
-.btn-primary:hover { background: var(--color-accent-600); }
-.btn-primary:active { background: var(--color-accent-700); }
+.btn-primary { background: var(--color-cta); color: var(--color-bg); }
+.btn-primary:hover { background: var(--color-cta-600); }
+.btn-primary:active { background: var(--color-cta-700); }
 .btn-secondary { border-color: var(--color-divider); }
 .btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
 .btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
@@ -281,6 +284,6 @@ textarea.input { min-height: 90px; resize: vertical; }
 .card, .btn, .input, .tag, .seg, .dialog { border-radius: 0; }
 .card, .dialog { background: transparent; border: 1px solid var(--color-divider); }
 .btn { border: 1px solid var(--color-divider); }
-.btn-primary { border-color: var(--color-accent); }
+.btn-primary { border-color: var(--color-cta); }
 .btn-ghost { border-color: transparent; }
 
