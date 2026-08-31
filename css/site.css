@@ -93,11 +93,13 @@ img { display: block; max-width: 100%; }
 .hero-wrap { position: relative; overflow: hidden; }
 .hero-bg {
   position: absolute; inset: 0;
-  background-image: url("/images/hero-showroom.png");
+  background-image: url("/images/ozadnje.png");
   background-size: cover; background-position: center center;
-  filter: grayscale(0.5) contrast(1.05);
 }
-.hero-tint { position: absolute; inset: 0; background: var(--color-accent); mix-blend-mode: color; opacity: 0.35; }
+/* Shown in its original colours (no grayscale/tint) per request — the
+   overlay is kept in the markup but switched off here rather than
+   removing it from every language's index.html. */
+.hero-tint { display: none; }
 .hero-scrim {
   position: absolute; inset: 0;
   background: linear-gradient(180deg,
