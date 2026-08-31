@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;600&display=swap');
 
 :root {
-  --color-bg: #ffe6cc; /* warm orange tint, from KraussMaffei's brand orange #ff8300 */
-  --color-surface: #ffdab3;
+  --color-bg: #f4f5f6;
+  --color-surface: #eceef0;
   --color-text: #1d1f20;
   --color-accent: #0044fa; /* KMS logo blue */
   --color-accent-2: #0079c1;
