@@ -29,7 +29,7 @@
   --color-accent-600: #2d78b7;
   --color-accent-700: #2271b3;
   --color-accent-800: #1b5a8f;
-  --color-accent-900: #133e62;
+  --color-accent-900: #2271b3; /* RAL 5015 Sky blue — same flat value as --color-accent, for the utility bar and contact-band chrome */
 
   --color-accent-2-100: #e5f2fb;
   --color-accent-2-200: #bfdff6;
