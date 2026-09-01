@@ -513,7 +513,7 @@ const MACHINES = [
   },
   {
     id: "oeq-other-01",
-    name: "STÄUBLI RMI216.12.1104/JV multi-couplings (6 pcs)",
+    name: "STÄUBLI RMI 216.12.1104/JV multi-couplings (6 pcs)",
     category: "Other equipment",
     subcategory: "other",
     make: "Stäubli",
