@@ -173,6 +173,24 @@ function fmtInt(n) {
 function fmtForceTons(kN) {
   return fmtInt(Math.round(kN / 10)) + " t";
 }
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+// Description fields (equipment/part) sometimes hold a plain URL (e.g. a
+// YouTube link to a demo video). Render any http(s) URL as a real, clickable
+// link that opens in a new tab, instead of inert text.
+function setDescriptionHtml(el, text) {
+  if (!el) return;
+  const value = text || "—";
+  const urlPattern = /(https?:\/\/[^\s<]+)/g;
+  el.innerHTML = escapeHtml(value).replace(
+    urlPattern,
+    (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+  );
+}
 
 // ---------------------------------------------------------------- mobile menu
 function initMobileMenu() {
@@ -1062,7 +1080,7 @@ function initPartDetail() {
   setText("[data-field='leadtime-label']", L().leadTime);
   setText("[data-field='price-label']", L().price);
   setText("[data-field='description-label']", L().partDescriptionLabel);
-  setText("[data-field='description-value']", part.description || "—");
+  setDescriptionHtml(root.querySelector("[data-field='description-value']"), part.description);
   setText("[data-field='or-call']", L().orCall(PHONE));
   setText("[data-field='request-price-btn']", L().requestPrice);
 
@@ -1165,7 +1183,7 @@ function initMachineDetail() {
   setText("[data-field='price-label']", L().price);
   setText("[data-field='price-value']", m.price);
   setText("[data-field='description-label']", L().equipmentDescriptionLabel);
-  setText("[data-field='description-value']", m.description || "—");
+  setDescriptionHtml(root.querySelector("[data-field='description-value']"), m.description);
   setText("[data-field='or-call']", L().orCall(PHONE));
   setText("[data-field='request-price-btn']", L().requestPrice);
 
