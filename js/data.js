@@ -522,7 +522,7 @@ const MACHINES = [
     location: "Šenčur, SI",
     status: "Used",
     image: "/images/20260901_081245.jpg",
-    gallery: ["/images/20260901_081251.jpg"],
+    gallery: ["/images/20260901_081251.jpg", "/images/sklopka 1.jpg"],
     description: "",
     price: "Price on request",
     placeholder: false
