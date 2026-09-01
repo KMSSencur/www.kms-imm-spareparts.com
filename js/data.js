@@ -606,6 +606,38 @@ const MACHINES = [
     description: "",
     price: "Price on request",
     placeholder: false
+  },
+  {
+    id: "oeq-other-07",
+    name: "MATSUI Magnet stick",
+    category: "Other equipment",
+    subcategory: "other",
+    make: "Matsui",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "New",
+    image: "/images/magnet 1.jpg",
+    gallery: ["/images/magnet 2.jpg"],
+    description: "https://www.youtube.com/watch?v=tdbJ2fpmq-M",
+    price: "Price on request",
+    placeholder: false
+  },
+  {
+    id: "oeq-other-08",
+    name: "MATSUI Aero dust removal (ARV 38)",
+    category: "Other equipment",
+    subcategory: "other",
+    make: "Matsui",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "New",
+    image: "/images/ARV38 1.jpg",
+    gallery: ["/images/ARV38 2.jpg"],
+    description: "https://www.youtube.com/watch?v=UF7mKEUtTkU",
+    price: "Price on request",
+    placeholder: false
   }
 ];
 
