@@ -526,6 +526,22 @@ const MACHINES = [
     description: "",
     price: "Price on request",
     placeholder: false
+  },
+  {
+    id: "oeq-other-02",
+    name: "STÄUBLI RMI 212.20.1103/JV multi-couplings (8 pcs)",
+    category: "Other equipment",
+    subcategory: "other",
+    make: "Stäubli",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "Used",
+    image: "/images/20260901_081526.jpg",
+    gallery: ["/images/20260901_081531.jpg", "/images/sklopka 2.jpg"],
+    description: "",
+    price: "Price on request",
+    placeholder: false
   }
 ];
 
