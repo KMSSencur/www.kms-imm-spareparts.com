@@ -510,6 +510,22 @@ const MACHINES = [
     description: "Number of sections of larger blades: 4\nNumber of sections of smaller blades: 5\nRotational speed: 25 rpm\nMotor power: 2 kW\nDimensions of the feed chamber:\n• Length = 420 mm\n• Width = 260 mm\nHeight of the feed chamber: 1,605 mm\nGrinding chamber dimensions:\n• Length = 449 mm\n• Rotor width = 262 mm\nMaximum capacity: 20 kg/hour\nMaximum feed piece dimensions: 435 x 240 x 120 mm\nMaximum feed piece diameter: 9 mm\n\nOperating description:\n• Rotor rotation stops and reverses in the event of detected overload, followed by rotor restart (enables more efficient grinding)\n• Automatic adjustment to optimal speed (if no grinding force is detected, the machine automatically switches to ECOmode with slow rotation)\n• Setting time intervals",
     price: "Price on request",
     placeholder: false
+  },
+  {
+    id: "oeq-other-01",
+    name: "STÄUBLI RMI216.12.1104/JV multi-couplings (6 pcs)",
+    category: "Other equipment",
+    subcategory: "other",
+    make: "Stäubli",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "Used",
+    image: "/images/20260901_081245.jpg",
+    gallery: ["/images/20260901_081251.jpg"],
+    description: "",
+    price: "Price on request",
+    placeholder: false
   }
 ];
 
