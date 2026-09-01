@@ -373,7 +373,7 @@ const MACHINES = [
   },
   {
     id: "oeq-tempering-01",
-    name: "SINGLE TCU WP4-200-18-120",
+    name: "SINGLE TCU WP4-200-18-120 (2 pcs)",
     category: "Other equipment",
     subcategory: "tempering",
     make: "Single",
@@ -389,7 +389,7 @@ const MACHINES = [
   },
   {
     id: "oeq-tempering-02",
-    name: "gwk teco cs 90 (2 pcs.)",
+    name: "gwk teco cs 90 (2 pcs)",
     category: "Other equipment",
     subcategory: "tempering",
     make: "gwk",
