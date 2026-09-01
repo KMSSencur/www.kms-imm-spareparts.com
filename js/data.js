@@ -388,6 +388,22 @@ const MACHINES = [
     placeholder: false
   },
   {
+    id: "oeq-tempering-02",
+    name: "gwk teco cs 90 (2 pcs.)",
+    category: "Other equipment",
+    subcategory: "tempering",
+    make: "gwk",
+    year: 2002,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "Used",
+    image: "/images/20260828_103043.jpg",
+    gallery: ["/images/20260828_103056.jpg", "/images/20260828_103100.jpg"],
+    description: "Medium: water\nMax. temperature: 95 °C\nHeating capacity: 9 kW\nCooling capacity: 23 kW",
+    price: "Price on request",
+    placeholder: false
+  },
+  {
     id: "oeq-dryers-01",
     name: "Luxor SG 50/150 - ECOprotect Motan mobile drying system with dry air",
     category: "Other equipment",
