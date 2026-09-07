@@ -638,6 +638,26 @@ const MACHINES = [
     description: "https://www.youtube.com/watch?v=UF7mKEUtTkU",
     price: "Price on request",
     placeholder: false
+  },
+  {
+    id: "oeq-other-09",
+    name: "Mould temperature fluid supply connection (3-fold, 4-fold, 6-fold, 12-fold)",
+    category: "Other equipment",
+    subcategory: "other",
+    make: "",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "Used",
+    image: "/images/mould temp connection 6-fold.jpg",
+    gallery: [
+      "/images/mould temp connection 3-fold.jpg",
+      "/images/mould temp connection 4-fold.jpg",
+      "/images/mould temp connection 12-fold.jpg"
+    ],
+    description: "",
+    price: "Price on request",
+    placeholder: false
   }
 ];
 
