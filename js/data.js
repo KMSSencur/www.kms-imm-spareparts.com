@@ -690,6 +690,22 @@ const MACHINES = [
     description: "",
     price: "Price on request",
     placeholder: false
+  },
+  {
+    id: "oeq-robots-06",
+    name: "Linear robot SEPRO SR4020 S3",
+    category: "Other equipment",
+    subcategory: "robots",
+    make: "Sepro",
+    year: 2005,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "Used",
+    image: "/images/sepro SR4020 S3.jpg",
+    gallery: [],
+    description: "Robot equipment:\n• Software VISUAL\n• Horizontal stroke: 2.000 mm\n• Vertical stroke: 1100 mm\n• Demolding stroke: 600 mm\n• Maximum payload: 6 kg\n• Vacuum and pressure circuit 4 x\n• Rotation pneumatic R1 (0 - 90°) and pneumatic R2 (0 - 90° - 180°)\n• 16 x digital inputs in cabinet\n• 16 x digital outputs in cabinet\n• Reiser\n• Interface EUROMAP 67",
+    price: "Price on request",
+    placeholder: false
   }
 ];
 
