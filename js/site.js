@@ -592,7 +592,10 @@ function initMachinesListing() {
       if (q && !matchesMachineSearch(m, q)) return false;
       return true;
     });
-    if (sort === "year") list = list.slice().sort((a, b) => machineYearValue(b, maxDatedYear) - machineYearValue(a, maxDatedYear));
+    // "Newest" = most recently added, i.e. reverse of data.js array order
+    // (new stock is appended to the end — see initLatestArrivals above).
+    if (sort === "newest") list = list.slice().reverse();
+    else if (sort === "year") list = list.slice().sort((a, b) => machineYearValue(b, maxDatedYear) - machineYearValue(a, maxDatedYear));
     else if (sort === "force") list = list.slice().sort((a, b) => (a.clampingForceKN || 0) - (b.clampingForceKN || 0));
 
     grid.innerHTML = "";
@@ -708,7 +711,8 @@ function initMachinesTable() {
       const t = Math.round(m.clampingForceKN / 10);
       return t >= forceMin && t <= forceMax;
     });
-    if (sort === "year") list = list.slice().sort((a, b) => machineYearValue(b, maxDatedYear) - machineYearValue(a, maxDatedYear));
+    if (sort === "newest") list = list.slice().reverse();
+    else if (sort === "year") list = list.slice().sort((a, b) => machineYearValue(b, maxDatedYear) - machineYearValue(a, maxDatedYear));
     else if (sort === "force") list = list.slice().sort((a, b) => (a.clampingForceKN || 0) - (b.clampingForceKN || 0));
 
     tbody.innerHTML = "";
@@ -799,7 +803,8 @@ function initOtherEquipmentListing() {
       if (q && !matchesMachineSearch(m, q)) return false;
       return true;
     });
-    if (sort === "year") list = list.slice().sort((a, b) => machineYearValue(b, maxDatedYear) - machineYearValue(a, maxDatedYear));
+    if (sort === "newest") list = list.slice().reverse();
+    else if (sort === "year") list = list.slice().sort((a, b) => machineYearValue(b, maxDatedYear) - machineYearValue(a, maxDatedYear));
 
     grid.innerHTML = "";
     if (list.length === 0) {
