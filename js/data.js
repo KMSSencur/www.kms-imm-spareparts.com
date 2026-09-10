@@ -658,6 +658,38 @@ const MACHINES = [
     description: "",
     price: "Price on request",
     placeholder: false
+  },
+  {
+    id: "oeq-other-10",
+    name: "Conveyor (mm) 800 x 3100 x 1050",
+    category: "Other equipment",
+    subcategory: "other",
+    make: "",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "Used",
+    image: "/images/trak 1.jpg",
+    gallery: [],
+    description: "",
+    price: "Price on request",
+    placeholder: false
+  },
+  {
+    id: "oeq-other-11",
+    name: "Volumetric dosing MINICOLOR V-G1S",
+    category: "Other equipment",
+    subcategory: "other",
+    make: "Motan",
+    year: 2019,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "Used",
+    image: "/images/dozator.jpg",
+    gallery: [],
+    description: "",
+    price: "Price on request",
+    placeholder: false
   }
 ];
 
