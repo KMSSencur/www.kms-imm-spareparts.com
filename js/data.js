@@ -671,7 +671,7 @@ const MACHINES = [
     status: "Used",
     image: "/images/trak 1.jpg",
     gallery: [],
-    description: "",
+    description: "Conveyor dimensions (mm): 800 x 3100 x 1050",
     price: "Price on request",
     placeholder: false
   },
