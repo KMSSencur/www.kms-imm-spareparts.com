@@ -275,6 +275,21 @@ const MACHINES = [
     price: "Price on request",
     placeholder: false
   },
+  {
+    id: "mch-km100-380cx",
+    name: "KM 100 - 380 CX",
+    category: "Injection moulding",
+    make: "KraussMaffei",
+    year: 2006,
+    clampingForceKN: 1000,
+    location: "Šenčur, SI",
+    status: "Inspected",
+    image: "/images/Bandi 1.jpg",
+    gallery: ["/images/Bandi 2.jpg", "/images/Bandi 3.jpg"],
+    description: "Machine KraussMaffei KM100-380 CX\nClamping force kN: 1000\nClearance between tie bars (h x v) mm: 470 x 470\nMould opening stroke mm: 600\nMould height min. mm: 250\nDaylight mm: 850\nEjector stroke mm: 150\nEjector force, forward/backward kN: 23 / 10\nScrew diameter mm: 40\nL/D ratio: 20.0\nInjection pressure bar: 1860\nStroke volume cm³: 201\nControl version: MC5\nScreen text: German, Slovene\nCondition: Checked, ready to work\n\nEquipment:\n• Wear resistant plasticizer, surcharge\n• 1 x pneumatic valve on moving platen for blow function\n• Pneumatic control for one hotrunner\n• Conveyor control\n• Pressure accumulator for increased injection capacity\n• 1 x hydraulic core pull system on moving platen\n• Water battery 4-fold\n• 12 x hotrunner control circuits\n• Potential-free contact for signal \"plasticizing\" on socket HAN 3 A\n• Switch over to holding pressure depending on cavity pressure (Kistler)\n• Signal interface for handling unit acc. to EUROMAP 67\n• PV-closed loop control, inj.speed, holding and back pressure\n• 3 free programmable in- and outputs in the control cabinet\n• Ethernet router/bridge for the connection of a central computer to the customer",
+    price: "Price on request",
+    placeholder: false
+  },
 
   // ---- other plastic equipment (sample listings, one per category) ----
   {
