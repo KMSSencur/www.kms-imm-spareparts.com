@@ -706,6 +706,22 @@ const MACHINES = [
     description: "Robot equipment:\n• Software VISUAL\n• Horizontal stroke: 2.000 mm\n• Vertical stroke: 1100 mm\n• Demolding stroke: 600 mm\n• Maximum payload: 6 kg\n• Vacuum and pressure circuit 4 x\n• Rotation pneumatic R1 (0 - 90°) and pneumatic R2 (0 - 90° - 180°)\n• 16 x digital inputs in cabinet\n• 16 x digital outputs in cabinet\n• Reiser\n• Interface EUROMAP 67",
     price: "Price on request",
     placeholder: false
+  },
+  {
+    id: "oeq-robots-07",
+    name: "Robot cell for injection moulding FLEXIDO FLEX 7 IMM",
+    category: "Other equipment",
+    subcategory: "robots",
+    make: "Flexido",
+    year: null,
+    clampingForceKN: null,
+    location: "Šenčur, SI",
+    status: "Exhibition model",
+    image: "/images/Flex7 IMM 1.jpg",
+    gallery: ["/images/Flex7 IMM 2.jpg"],
+    description: "• Welded support frame SLIM G02 with all protective guarding\n• Stand-alone electrical cabinet integrated into the cell base\n• Quick couplings for attaching the cell to the machine\n• Safety components\n• Cell dimensions 700 x 1560 mm + conveyor\n• Prepared for an additional inspection station\n• Prepared for an insert feeding unit (pallet system, vibratory bowl feeders)\n• 6-axis robot NACHI MZ07L01-CFD-demo robot\n• Reach: 912 mm + gripper\n• Payload: 7 kg\n• Euromap 67 interface\n• E73/78 connection on the robot\n• Conveyor belt for part removal with fast-forward button (conveyor dimensions 1,500 mm x 400 mm)\n• CE marking\n• Operating instruction",
+    price: "23.300,00 EUR",
+    placeholder: false
   }
 ];
 

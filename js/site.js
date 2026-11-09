@@ -394,7 +394,10 @@ function machineCard(m) {
   foot.className = "card-foot";
   const tag = document.createElement("span");
   tag.className = "tag tag-accent";
-  tag.textContent = m.placeholder ? L().sample + " · " + L().priceOnRequest : L().priceOnRequest;
+  // A listing with a real price (anything other than the default
+  // "Price on request" string) shows it on the card; others stay localized.
+  const priceText = m.price && m.price !== "Price on request" ? m.price : L().priceOnRequest;
+  tag.textContent = m.placeholder ? L().sample + " · " + priceText : priceText;
   foot.appendChild(tag);
   const det = document.createElement("span");
   det.className = "details-link";
