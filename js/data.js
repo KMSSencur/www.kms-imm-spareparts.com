@@ -174,21 +174,6 @@ const MACHINES = [
     placeholder: false
   },
   {
-    id: "mch-km100-180cx",
-    name: "KM 100 - 180 CX",
-    category: "Injection moulding",
-    make: "KraussMaffei",
-    year: 2014,
-    clampingForceKN: 1000,
-    location: "Šenčur, SI",
-    status: "Inspected",
-    image: "/images/mch-km100-180cx-wide.jpg",
-    gallery: ["/images/mch-km100-180cx-panel.jpg", "/images/mch-km100-180cx-rear.jpg", "/images/mch-km100-180cx-front.jpg"],
-    description: "Machine KraussMaffei KM 100 - 180 CX\nClamping force kN: 1000\nClearance between tie bars (h x v) mm: 530 x 470\nMould opening stroke mm: 600\nMould height min. mm: 500\nDaylight mm: 1100\nEjector stroke mm: 150\nEjector force, forward/backward kN: 22.6 / 9.9\nScrew diameter mm: 25\nL/D ratio: 26.0\nInjection pressure bar: 2500\nStroke volume cm³: 59\nControl version: MC5\nScreen text: German, Slovene\nCondition: Checked, ready to work\n\nEquipment:\n• Wear resistant plasticizer, surcharge\n• 1 x pneumatic valve on moving platen for blow function\n• Pneumatic control for one hotrunner\n• Conveyor control including Harting socket HAN 6 E\n• Electric interface and software for connection of separating drop-out chute\n• Extended daylight\n• Wider mold fixing platens and extended horizontal distance between tie bars\n• Pressure accumulator for increased injection capacity\n• 1 x hydraulic core pull system on moving platen\n• 1 x hydraulic core pull system on fixed platen\n• 24 x hotrunner control circuits\n• Potential-free contact for signal \"plasticizing\" on socket HAN 3 A\n• PV-closed loop control, inj.speed, holding and back pressure\n• Interface 20 mA for the data transfer between machine control and external water temperature controllers (TCU)\n• Signal interface for handling unit acc. to EUROMAP 67\n\nOption: Machine can be used as 2K machine (variant L) with rotary table:\n• Independent MC5 injection unit SP55 with screw diameter 15 mm, stroke volume 14 cm³, injection pressure 2500 bar\n• Rotary table TT610EU/3+2+1, 4 x circuits water, 1 x air",
-    price: "Price on request",
-    placeholder: false
-  },
-  {
     id: "mch-km120-380pacn",
     name: "KM 120 - 380 PA CN",
     category: "Injection moulding",
